@@ -107,7 +107,7 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 	
 	In this paper, we examine an argument for being cautious about raising the inflation target. The argument we examine is as follows. The policy rate may become constrained by the ELB not only because of fundamental shocks, but also because of self-fulfilling expectations (\citet{BenhabibSchmittGroheUribe2001} and \citet{Bullard2010}). In economies in which only fundamental shocks can push the policy rate to the ELB, the possibility of being constrained by the ELB increases the optimal inflation target for the reasons stated earlier. However, as first observed by \citet{MertensRavn2014}, a higher inflation target is associated with a lower output gap at the ELB if the policy rate is at the ELB because of self-fulfilling expectations, instead of fundamental shocks. One implication of this observation is that the optimal inflation target would decline if the possibility of falling into expectations-driven liquidity traps (LTs) is introduced to the standard model with the ELB. Using a standard New Keynesian model, we investigate the extent to which the possibility of expectations-driven LTs lowers the optimal inflation target. 
 	
-	Our main finding is that even a very small probability of expectations-driven LTs nontrivially lowers the optimal inflation target. Under various calibrations of our baseline model with a two-state demand shock, a 0.1 percent (quarterly) probability of falling into expectations-driven LTs typically lowers the optimal inflation target by more than 1 percentage point. With a 0.5 percent probability of expectations-driven LTs, the optimal inflation target is typically slightly negative. In an alternative model with an AR(1) demand shock, a 0.1 percent and 0.5 percent probability of falling into expectations-driven LTs lowers the optimal inflation target by 0.55 percentage point and 0.8 percentage point, respectively.
+	Our main finding is that even a very small probability of expectations-driven LTs nontrivially lowers the optimal inflation target. Under various calibrations of our baseline model with a two-state crisis shock, a 0.1 percent (quarterly) probability of falling into expectations-driven LTs typically lowers the optimal inflation target by more than 1 percentage point. With a 0.5 percent probability of expectations-driven LTs, the optimal inflation target is typically slightly negative. In an alternative model with an AR(1) crisis shock, a 0.1 percent and 0.5 percent probability of falling into expectations-driven LTs lowers the optimal inflation target by 0.55 percentage point and 0.8 percentage point, respectively.
 	
 	%---all of which are calibrated so that the optimal inflation target is 2 percent in the absence of expectations-driven LTs---
 	
@@ -205,8 +205,8 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 	As in \citet{MertensRavn2014} and \citet{AruobaCubaBordaSchorfheide2018}, we introduce a two-state Markov sunspot shock, $s_{t}$, that allows the economy to transition between the target regime and the deflationary regime---the regime of an expectations-driven LT. $s_{t}$ takes two values, $T$ and $D$. When $s_{t}=T$, the economy is in the target regime. When $s_{t}=D$, the economy is in the deflationary regime. The persistence of each regime is given by
 	
 	\begin{align}
-		& \text{Prob}(s_{t}=T|s_{t}=T)= p_{T},\\
-		& \text{Prob}(s_{t}=D|s_{t}=D)= p_{D}.
+		& \text{Prob}(s_{t+1}=T|s_{t}=T)= p_{T},\\
+		& \text{Prob}(s_{t+1}=D|s_{t}=D)= p_{D}.
 	\end{align}
 	
 	\noindent As discussed in Appendix~\ref{A:Existence} and analytically shown in \citet{NakataSchmidt2019}, there are restrictions on these transition probabilities for the sunspot equilibrium to exist. In particular, the persistence parameters for both target and deflationary regimes must be sufficiently high for the sunspot equilibrium to exist. Throughout the paper, we restrict our attention to the set of parameter values consistent with the existence of the sunspot equilibrium.  
@@ -227,9 +227,9 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 	A recursive sunspot equilibrium of this stylized economy is given by a set of value and policy functions for $\{V(\delta,s)$, $C(\delta,s)$, $N(\delta,s)$, $Y(\delta,s)$, $w(\delta,s)$, $\Pi(\delta,s)$, $R(\delta,s)\}$ such that (i) the equilibrium conditions described above are satisfied, (ii) the policy rate in the normal state of the target regime is above the ELB, and (iii) the policy rate in the normal state of the deflationary regime is at the ELB. That is, we require that 
 	
 	\begin{align}
-		& R(\delta=\delta_{N},s=T) = \frac{\Pi^{targ}}{\beta\delta_t}\left(\frac{\Pi(\delta=\delta_{N},s=T)}{\Pi^{targ}}\right)^{\phi_{\pi}} > 1,\\
+		& R(\delta=\delta_{N},s=T) = \frac{\Pi^{targ}}{\beta\delta_N}\left(\frac{\Pi(\delta=\delta_{N},s=T)}{\Pi^{targ}}\right)^{\phi_{\pi}} > 1,\\
 		& R(\delta=\delta_{N},s=D) = 1,\\
-		& \frac{\Pi^{targ}}{\beta\delta_t}\left(\frac{\Pi(\delta=\delta_{N},s=D)}{\Pi^{targ}}\right)^{\phi_{\pi}} < 1.
+		& \frac{\Pi^{targ}}{\beta\delta_N}\left(\frac{\Pi(\delta=\delta_{N},s=D)}{\Pi^{targ}}\right)^{\phi_{\pi}} < 1.
 	\end{align}
 	
 	Following \citet{MertensRavn2014} and \citet{AruobaCubaBordaSchorfheide2018}, we focus on a recursive equilibrium in which the allocations today depend only on the realization of the crisis shock and the sunspot shock. In the deflationary regime, the Taylor principle is violated. As a result, there are infinitely many equilibria in the deflationary regime in which allocations today depend on past allocations and sunspot shocks---that are unrelated to the sunspot shock in this paper that dictates whether the economy is in the target or deflationary regime. Our equilibrium definition rules out these equilibria.\footnote{See \citet{Hirose2007} and \citet{HiroseForthcoming} for in-depth analyses on these equilibria.}
@@ -282,7 +282,7 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 	
 	As a baseline, we set the persistence of the deflationary regime to 0.975, which implies an expected duration of the deflationary regime of 10 years. With this persistence, the decline of output in the normal state of the deflationary regime is about 1 percent.\footnote{This level of the output gap during the expectations-driven LT is broadly in line with the average output gap during the prolonged ELB episode in Japan.} We will also consider some alternative values for the deflationary regime persistence for a sensitivity analysis. We use the target regime persistence of 0.995---which implies an expected duration of the target regime of 50 years---as our baseline, but we compute the optimal inflation target for a wide range of values to understand how the probability of moving from the target regime to the deflationary regime affects the optimal inflation target. 
 	
-	In the model, there are four states (two states for the sunspot shock and two states for the natural rate shock); thus, solving for the policy functions amounts to solving a system of nonlinear equations. We used Matlab's built-in nonlinear equation solver, \texttt{fsolve}, to solve our model.
+	In the model, there are four states (two states for the sunspot shock and two states for the crisis shock); thus, solving for the policy functions amounts to solving a system of nonlinear equations. We used Matlab's built-in nonlinear equation solver, \texttt{fsolve}, to solve our model.
 	
 	%Note that the more transitory the expectations-driven LT is, the lower the output gap during the expectations-driven LT, as discussed in Appendix~\ref{A:pTpD}.
 	
@@ -355,7 +355,9 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 			\caption{Welfare and the Inflation Target\label{fig:Welfare_Stylized}}
 			\includegraphics[scale=.65]{Figs/Final/ct_states.eps}\\
 		\end{center}
+		\footnotesize{Note: Sunspot equilibrium does not exist when the inflation target is sufficiently low, as discussed in Appendix B. The lowest value of the inflation target in this panel is the lowest value of the inflation target consistent with the existence of the sunspot equilibrium.} \\
 		\footnotesize{Note: For each model, welfare is measured by the perpetual consumption transfer---expressed as a percentage of consumption at the deterministic steady state of the target regime---we need to give to the household in the version of the economy without the ELB so that it is as well-off as the household in the economy with the ELB.}
+
 	\end{figure}
 	
 	The dashed blue lines in Figure~\ref{fig:IRFs_Target} show the dynamics of the economy when the inflation target is 2 percent. In the normal state, a higher inflation target implies higher inflation and a higher policy rate because the Taylor rule is operative. Higher inflation increases the price adjustment cost and thus lowers consumption, though these effects are very small in our baseline calibration.\footnote{In models with a Calvo-pricing, a higher inflation lowers output by increasing higher price dispersion. The output cost of higher inflation in Rotemberg and Calvo pricing models can be seen as capturing various costs associated with high inflation in reduced-form ways.} Higher normal state inflation leads to a lower expected real interest rate in the crisis state in which the policy rate is constrained at the ELB, mitigating the declines in inflation and consumption in the crisis state: In the crisis state, inflation and consumption are higher under the 2 percent inflation target than under the 0 percent inflation target. 
@@ -399,7 +401,7 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 %		%\footnotesize{Source: .}
 %	\end{figure}
 	
-	All told, in the model with a sunspot shock only, a higher inflation target worsens the allocations in both the target and deflationary regimes. Thus, welfare is higher when the inflation target is lower, as shown in the middle panel of Figure~\ref{fig:Welfare_Stylized}.\footnote{Sunspot equilibrium does not exist when the inflation target is sufficiently low, as discussed in Appendix B. The lowest value of the inflation target in this panel is the lowest value of the inflation target consistent with the existence of the sunspot equilibrium.} 
+	All told, in the model with a sunspot shock only, a higher inflation target worsens the allocations in both the target and deflationary regimes. Thus, welfare is higher when the inflation target is lower, as shown in the middle panel of Figure~\ref{fig:Welfare_Stylized}.
 	
 	\subsection{Model with both a crisis shock and a sunspot shock}
 	
@@ -468,10 +470,10 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 	%==========================================================
 	%==========================================================
 	%==========================================================
-	\section{Analysis from model with an AR(1) demand shock}
+	\section{Analysis from model with an AR(1) crisis shock}
 	\label{S:AR1Model}
 
-    In this section, we examine the implication of introducing the possibility of falling into expectations-driven LTs on the optimal inflation target using a model with an AR(1) demand shock and a two-state sunspot shock. 
+    In this section, we examine the implication of introducing the possibility of falling into expectations-driven LTs on the optimal inflation target using a model with an AR(1) crisis shock and a two-state sunspot shock. 
     
     The structure of the model is identical to the model we have examined thus far. The only difference is that the discount factor shock follows an AR(1) process:
     
@@ -481,7 +483,7 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 
     \noindent where $\epsilon_{t}$ is normally distributed with mean zero and standard deviation of $\sigma_{\epsilon,t}$. 
 
-    We apply the same calibration principle used for the model with a two-state demand shock to this model with an AR(1) demand shock. We first set $\chi_{C}$, $\chi_{N}$, and $\theta$, and $\varphi$ to the same values described in Table~\ref{tab:ParameterValues_Basic}. Conditional on these parameter values, we choose $\alpha = 0.943$, and $\sigma_{\epsilon} = 0.285/100$ so that the optimal inflation target is 2 percent in the absence of the sunspot shock. Appendix \ref{A:SolutionMethod} describes the numerical solution method used to solve this model.
+    We apply the same calibration principle used for the model with a two-state crisis shock to this model with an AR(1) crisis shock. We first set $\chi_{C}$, $\chi_{N}$, and $\theta$, and $\varphi$ to the same values described in Table~\ref{tab:ParameterValues_Basic}. Conditional on these parameter values, we choose $\alpha = 0.943$, and $\sigma_{\epsilon} = 0.285/100$ so that the optimal inflation target is 2 percent in the absence of the sunspot shock. Appendix \ref{A:SolutionMethod} describes the numerical solution method used to solve this model.
     
     \begin{figure}[!h]
 		\begin{center}
@@ -491,7 +493,7 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 		%\footnotesize{Source: .}
 	\end{figure}
     
-    Figure \ref{fig:OptimalPiTarg_sun} shows how the optimal inflation target varies with the probability of falling into an expectations-driven LT in this model. Consistent with what we saw in Figure \ref{fig:OptimalPiTarg_Stylized} for the model with a two-state demand shock, a very small probability of falling into an expectations-driven LT lowers the optimal inflation target nontrivially. The thin black vertical line denotes our baseline value of the target regime persistence ($p_{T}=0.995$); under this calibration the optimal inflation target is 1.2 percent, the lowest value of the inflation target consistent with the equilibrium existence in this model.\footnote{To search for the optimal inflation target, we solve the model with various inflation targets with 5 basis points interval.} With the target regime persistence of 0.999, denoted by the thin dashed black vertical line, the optimal inflation target is 1.45 percent. Although these optimal inflation targets are higher than those in the model with a two-state demand shock and a two-state sunspot shock, they are still nontirivially lower than the 2 percent inflation target that is optimal in the absence of the sunspot shock.
+    Figure \ref{fig:OptimalPiTarg_sun} shows how the optimal inflation target varies with the probability of falling into an expectations-driven LT in this model. Consistent with what we saw in Figure \ref{fig:OptimalPiTarg_Stylized} for the model with a two-state crisis shock, a very small probability of falling into an expectations-driven LT lowers the optimal inflation target nontrivially. The thin black vertical line denotes our baseline value of the target regime persistence ($p_{T}=0.995$); under this calibration the optimal inflation target is 1.2 percent, the lowest value of the inflation target consistent with the equilibrium existence in this model.\footnote{To search for the optimal inflation target, we solve the model with various inflation targets with 5 basis points interval.} With the target regime persistence of 0.999, denoted by the thin dashed black vertical line, the optimal inflation target is 1.45 percent. Although these optimal inflation targets are higher than those in the model with a two-state crisis shock and a two-state sunspot shock, they are still nontirivially lower than the 2 percent inflation target that is optimal in the absence of the sunspot shock.
     
 	%Having explained why the possibility of expectations-driven LTs affects the optimal inflation target, we now quantitatively examine the extent to which that possibility alters the optimal inflation target in an empirically richer model with a few state variables and multiple shocks.
 	
@@ -599,7 +601,7 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 		\noindent This technical appendix is organized as follows:
 		\begin{itemize}
 			\item Section~\ref{A:Details_Stylized} describes the details of the stylized model.
-			\item Section~\ref{A:Existence} describes the conditions under which the equilibrium exists for the model with a demand shock and/or sunspot shock. 
+			\item Section~\ref{A:Existence} describes the conditions under which the equilibrium exists for the model with a crisis shock and/or sunspot shock. 
 			\item Section~\ref{A:SemiLoglinearModel} presents some analytical results on the effect of a higher inflation target in a semi-loglinear New Keynesian model.
 			\item Section~\ref{A:Alpha} discusses the effect of a higher inflation target in the nonlinear model with alternative values of $\alpha$.
 			%\item Section~\ref{A:pTpD} analyzes how $p_{T}$ and $p_{D}$ affect the allocations in the recursive sunspot equilibrium.
@@ -736,7 +738,7 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 		\section{On the existence and multiplicity of a sunspot equilibrium}
 		\label{A:Existence}
 				
-		The left panel of Figure~\ref{fig:Existence} shows pairs of $p_{N}$ and $p_{C}$ that are consistent with the equilibrium existence in the model with a demand shock only, whereas the right panel shows pairs of $p_{T}$ and $p_{D}$ that are consistent with the equilibrium existence in the model with a sunspot shock only.
+		The left panel of Figure~\ref{fig:Existence} shows pairs of $p_{N}$ and $p_{C}$ that are consistent with the equilibrium existence in the model with a crisis shock only, whereas the right panel shows pairs of $p_{T}$ and $p_{D}$ that are consistent with the equilibrium existence in the model with a sunspot shock only.
 		
 		\begin{figure}[!ht]
 			\begin{center}
@@ -746,9 +748,9 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 			%\footnotesize{Source: .}
 		\end{figure}
 		
-		Consistent with the analytical result based on a semi-loglinear New Keynesian model in \citet{NakataSchmidtForthcomingJME}, in the model with a demand shock only, the equilibrium exists if and only if $p_{N}$ is sufficiently high and $p_{C}$ is sufficiently low. When $p_{N}$ is low, there is a high probability of moving to the crisis state in the next period when the economy is currently in the normal state. The anticipation effect of moving to the crisis state in the next period causes the policy rate to decline. When $p_{N}$ is sufficiently low, the policy rate in the normal state becomes negative, violating the conditions for the equilibrium existence. When $p_{C}$ is high, there is a high probability of staying in the crisis state in the next period when the economy is currently in the crisis state. When $p_{C}$ is too high, inflation and output consistent with the private sector equilibrium conditions are positive, which implies a positive policy rate and thus inconsistent with the equilibrium existence.\footnote{A version of this equilibrium existence result with $p_{N}=1$ is well known in the literature. See, for example, \citet{Eggertsson2011} and \citet{BonevaBraunWaki2016}.} 
+		Consistent with the analytical result based on a semi-loglinear New Keynesian model in \citet{NakataSchmidtForthcomingJME}, in the model with a crisis shock only, the equilibrium exists if and only if $p_{N}$ is sufficiently high and $p_{C}$ is sufficiently low. When $p_{N}$ is low, there is a high probability of moving to the crisis state in the next period when the economy is currently in the normal state. The anticipation effect of moving to the crisis state in the next period causes the policy rate to decline. When $p_{N}$ is sufficiently low, the policy rate in the normal state becomes negative, violating the conditions for the equilibrium existence. When $p_{C}$ is high, there is a high probability of staying in the crisis state in the next period when the economy is currently in the crisis state. When $p_{C}$ is too high, inflation and output consistent with the private sector equilibrium conditions are positive, which implies a positive policy rate and thus inconsistent with the equilibrium existence.\footnote{A version of this equilibrium existence result with $p_{N}=1$ is well known in the literature. See, for example, \citet{Eggertsson2011} and \citet{BonevaBraunWaki2016}.} 
 		
-		In the model with a sunspot shock only, the equilibrium exists if and only if $p_{T}$ and $p_{D}$ are both sufficiently high (see \citet{NakataSchmidt2019} for a proof of this statement in a semi-loglinear model). The reason for why $p_{T}$ needs to be high for the equilibrium to exist in this model is the same as the reason for why $p_{N}$ needs to be high for the equilibrium to exist in the model with a demand shock only. Why does $p_{D}$ have to be sufficiently high for the equilibrium to exist? When $p_{D}$ is low, there is a low probability of staying in the deflationary state in the next period when the economy is currently in the target state. When $p_{D}$ is too low, inflation and output consistent with the private sector equilibrium conditions are positive, which implies a positive policy rate and thus inconsistent with the equilibrium existence.\footnote{A version of this equilibrium existence result with $p_{T}=1$ is well known in the literature. See, for example, \citet{MertensRavn2014} and \citet{BonevaBraunWaki2016}.}
+		In the model with a sunspot shock only, the equilibrium exists if and only if $p_{T}$ and $p_{D}$ are both sufficiently high (see \citet{NakataSchmidt2019} for a proof of this statement in a semi-loglinear model). The reason for why $p_{T}$ needs to be high for the equilibrium to exist in this model is the same as the reason for why $p_{N}$ needs to be high for the equilibrium to exist in the model with a crisis shock only. Why does $p_{D}$ have to be sufficiently high for the equilibrium to exist? When $p_{D}$ is low, there is a low probability of staying in the deflationary state in the next period when the economy is currently in the target state. When $p_{D}$ is too low, inflation and output consistent with the private sector equilibrium conditions are positive, which implies a positive policy rate and thus inconsistent with the equilibrium existence.\footnote{A version of this equilibrium existence result with $p_{T}=1$ is well known in the literature. See, for example, \citet{MertensRavn2014} and \citet{BonevaBraunWaki2016}.}
 	
 	    \begin{figure}[!ht]
 			\begin{center}
@@ -867,7 +869,7 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 		
 		\subsection{Model with a crisis shock only}
 		
-		As in the main text, we assume that the demand shock, $\delta_{t}$, follows a two-state Markov shock process. $Prob(N|N) := p_{N}$ is the probability of staying in the normal state in the next period when the economy is in the normal state today. $Prob(C|C) := p_C$ is the probability of staying in the crisis state in the next period when the economy is in the crisis state today. 
+		As in the main text, we assume that the crisis shock, $\delta_{t}$, follows a two-state Markov shock process. $ \text{Prob}(\delta_{t+1}=N|\delta_{t}=N):= p_{N}$ is the probability of staying in the normal state in the next period when the economy is in the normal state today. $\text{Prob}(\delta_{t+1}=C|\delta_{t}=C) := p_C$ is the probability of staying in the crisis state in the next period when the economy is in the crisis state today. 
 		
 		The equilibrium conditions of the economy with a crisis shock only is given by
 		\begin{align}
@@ -879,7 +881,7 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 			i_C =&  \text{max}\left[0,r^* + \pi^*  + \phi_{\pi}\pi_C - \pi^*\right]. \label{i_fdlt}
 		\end{align}
 		
-		%\noindent The two state demand shock equilibrium is given by a vector $\{y_{N},\pi_{N},i_{N},y_{C},\pi_{C},i_{C}\}$ that solves the set of equations (\ref{ee_fdlt}-\ref{i_fdlt}). 
+		%\noindent The two state crisis shock equilibrium is given by a vector $\{y_{N},\pi_{N},i_{N},y_{C},\pi_{C},i_{C}\}$ that solves the set of equations (\ref{ee_fdlt}-\ref{i_fdlt}). 
 		
 		%\subsection{Crisis Shock State Allocations}
 		
@@ -928,8 +930,8 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 				$\kappa$  & $0.02$ & Slope of the Phillips Curve \\
 				$\phi_{\pi}$ & $2$ & Coefficient on inflation in Taylor Rule \\
 				$r^*$ & $1\%$ & Annualized steady state nominal interest rate \\
-				$\delta_N$ & $0$ & Demand shock in normal state \\
-				$\delta_C$ & $1.6/100$ & Demand shock in crisis shock state \\
+				$\delta_N$ & $0$ & crisis shock in normal state \\
+				$\delta_C$ & $1.6/100$ & crisis shock in crisis shock state \\
 				\hline
 				$p_T$ & 1 & Persistence of Target Regime \\
 				$p_D$ & 0.975 & Persistence of Deflationary Regime \\
@@ -963,7 +965,7 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 		
 		\subsection{Model with a sunspot shock only}
 		
-		We now examine the effect of an increase in the inflation target on the deflationary regime output and inflation using the version of the semi-loglinear model with a sunspot shock only. Let $Prob(T|T) = p_T$ be the probability of staying in the target regime in the next period when the economy is in the target regime today and let $Prob(D|D) = p_D$ be the probability of staying in the deflationary regime in the next period when the economy is in the deflationary regime today.
+		We now examine the effect of an increase in the inflation target on the deflationary regime output and inflation using the version of the semi-loglinear model with a sunspot shock only. Let $\text{Prob}(s_{t+1}=T|s_{t}=T) = p_T$ be the probability of staying in the target regime in the next period when the economy is in the target regime today and let $\text{Prob}(s_{t+1}=D|s_{t}=D) = p_D$ be the probability of staying in the deflationary regime in the next period when the economy is in the deflationary regime today.
 		
 		\noindent The equilibrium conditions of the model with a sunspot shock only are given by
 		\begin{align}
@@ -984,12 +986,12 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 			y_T =& 0,  \\
 			\pi_T =& \pi^*, \\
 			i_T =& r^* + \pi^*, \\
-			y_D =& \frac{\sigma(1-\beta p_D)}{(1-\beta p_D)(1-p_D) -\kappa\sigma p_C}\pi^{*} + \frac{\sigma r^*(1-\beta p_D)}{(1-\beta p_D)(1-p_D) -\kappa\sigma p_D},\label{analytical_yd_alloc}\\
+			y_D =& \frac{\sigma(1-\beta p_D)}{(1-\beta p_D)(1-p_D) -\kappa\sigma p_D}\pi^{*} + \frac{\sigma r^*(1-\beta p_D)}{(1-\beta p_D)(1-p_D) -\kappa\sigma p_D},\label{analytical_yd_alloc}\\
 			\pi_D =& \left[\frac{\kappa\sigma}{(1-\beta p_D)(1-p_D) -\kappa\sigma p_D} + 1\right]\pi^*+\frac{\kappa\sigma r^*}{(1-\beta p_D)(1-p_D) -\kappa\sigma p_D},\label{analytical_pid_alloc}\\	
 			i_D =& 0.
 		\end{align}
 		
-		\noindent As shown by \citet{NakataSchmidt2019}, for the equilibrium to exist, $(1-\beta p_D)(1-p_D) -\kappa\sigma p_D <0$. Thus, the coefficient in front of $\pi^*$ in equation (\ref{analytical_yd_alloc}) is negative, meaning that $y_D$ increases with the inflation target. Provided that $p_{D}$ is sufficiently large, the coefficient in front of $\pi^*$ in equation (\ref{analytical_pid_alloc}) is negative, and thus $\pi_D$ increases with the inflation target. 
+		\noindent As shown by \citet{NakataSchmidt2019}, for the equilibrium to exist, $(1-\beta p_D)(1-p_D) -\kappa\sigma p_D <0$. Thus, the coefficient in front of $\pi^*$ in equation (\ref{analytical_yd_alloc}) is negative, meaning that $y_D$ decreases with the inflation target. Provided that $p_{D}$ is sufficiently large, the coefficient in front of $\pi^*$ in equation (\ref{analytical_pid_alloc}) is negative, and thus $\pi_D$ decreases with the inflation target. 
 		
 		To understand the mechanism behind this result, it is useful to investigate the aggregate demand curve and the aggregate supply curve in the deflationary regime:
 		\begin{align}
@@ -997,7 +999,7 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 			\pi_D =& \frac{\kappa }{1-\beta p_D}y_D+\pi^*.
 		\end{align}
 		
-		\noindent As in the model with a crisis shock only, an increase in the inflation target shifts down the AD curve and shifts up AS curves. Because the AS curve is steeper than the AD curve in the model with a sunspot shock only, these shifts in the AS and AD curves mean lower inflation and output in the crisis state, as shown by the right panel of Figure \ref{fig:ASAD_semi}. 
+		\noindent As in the model with a crisis shock only, an increase in the inflation target shifts down the AD curve and shifts up AS curves. Because the AS curve is steeper than the AD curve in the model with a sunspot shock only, these shifts in the AS and AD curves mean lower inflation and output in the deflationary regime, as shown by the right panel of Figure \ref{fig:ASAD_semi}. 
 		
 %		\begin{figure}[!ht]
 %			\begin{center}
@@ -1041,7 +1043,7 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 			\end{center}
 		\end{figure}
 
-		\section{Solution method for model with an AR(1) demand shock and a two-state sunspot shock}
+		\section{Solution method for model with an AR(1) crisis shock and a two-state sunspot shock}
 		\label{A:SolutionMethod}
 
         To find the regime-specific policy functions for the models endogenous state variables, we approximate true policy functions by degree 4 Chebychev polynomials. We solve for a set of basis coefficients ($\Theta$) that satisfy the equilibrium conditions at  101 grid points over $\delta$ and the sunspot shock $s$. The discount rate shock is on the interval of $[1-4\sigma_{\delta}, \hspace{0.1 cm} 1+4\sigma_{\delta}]$. We use a global solution method similar to \citet{Judd1992} and \citet{AruobaCubaBordaSchorfheide2018}, where policy functions are approximated by a projection method (as opposed to a time-iteration method). The minuimum set of state variables is given by $\mathcal{S}_t = \{\delta_t, s_t\}$.
@@ -1085,10 +1087,10 @@ pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
 	
 	The projection method begins by specifying a guess for $\Theta$: $\Theta_0$. The initial parameterization of $\Theta_0$ corresponds to to a set of values the policy functions take on given the discretized state space. For the target regime, this set of parameters corresponds to the set of policy functions that solves the model when the ELB constraint is not present; for the deflationary regime, this set of parameters corresponds to flat line functions at the deflationary deterministic steady state. Then for the current value of $\Theta_k$ and a given grid point $\mathcal{S}_i$, compute $C(\mathcal{S}_{i};\Theta_{k}) = C_{unc}^s(\mathcal{S}_{i};\Theta_{k})$ and $\Pi(\mathcal{S}_{i};\Theta_{k}) = \Pi_{unc}^s(\mathcal{S}_{i};\Theta_{k})$, assuming that the ELB does not bind, and obtain $Y(\mathcal{S}_{i};\Theta_{k}) = Y_{unc}^s(\mathcal{S}_{i};\Theta_{k})$ and $R(\mathcal{S}_{i};\Theta_{k}) = R_{unc}^s(\mathcal{S}_{i};\Theta_{k})$ from their functional forms in equations \ref{eq:ARC_A} and \ref{eq:TR_A}, respectively. If $R(\mathcal{S}_{i};\Theta_{k})\le 1$, then $R(\mathcal{S}_{i};\Theta_{k}) = R_{ELB}^s(\mathcal{S}_{i};\Theta_{k})$ and recompute $C(\mathcal{S}_{i};\Theta_{k}) = C_{ELB}^s(\mathcal{S}_{i};\Theta_{k})$, $\Pi(\mathcal{S}_{i};\Theta_{k}) = \Pi_{ELB}^s(\mathcal{S}_{i};\Theta_{k})$ and obtain $Y(\mathcal{S}_{i};\Theta_{k}) = Y_{ELB}^s(\mathcal{S}_{i};\Theta_{k})$ from equation \ref{eq:ARC_A}. In calculating expectation terms in the Euler equation and Phillips curve, we use Gaussian quadrature and the value of these future variables not on grid points are evaluated using Chebyshev interpolation. Finally, the residuals each regime and each set of policy functions are calculated via the functional forms above. $\Theta$ is updated to minimize the sum of squared residuals of the objective function. We use Matlab's least square minimization algorithm \texttt{lsqnonlin}  to do this. Following \citet{AruobaCubaBordaSchorfheide2018}, we include analytically derived derivatives of our objective function to increase the run-time of the solution method.  
 	
-	\section{Solution Accuracy for model with an AR(1) demand shock and a two-state sunspot shock}
+	\section{Solution Accuracy for model with an AR(1) crisis shock and a two-state sunspot shock}
 	\label{A:SolutionAccuracy}
 	
-	In this section we report the accuracy of our numerical solution for the model with an AR(1) demand shock and a two-state sunspot shock. Following \citet{MaliarMaliar2015}, we evaluate the the residuals for the consumption Euler equation and Phillips curve along a simulated equilibrium path. The length of the path is 101,000, where the first 1,000 simulations are discarded. 
+	In this section we report the accuracy of our numerical solution for the model with an AR(1) crisis shock and a two-state sunspot shock. Following \citet{MaliarMaliar2015}, we evaluate the the residuals for the consumption Euler equation and Phillips curve along a simulated equilibrium path. The length of the path is 101,000, where the first 1,000 simulations are discarded. 
 	
 	The residuals for the consumption Euler equation and Phillips curve are given as follows: 
 	
