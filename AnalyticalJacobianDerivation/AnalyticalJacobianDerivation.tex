@@ -1,0 +1,485 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[nohead]{geometry}
+\usepackage[onehalfspacing]{setspace}
+\usepackage[bottom]{footmisc}
+\usepackage{indentfirst}
+\usepackage{endnotes}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{nccfoots}
+\usepackage{subfig}
+\usepackage{rotating}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage[longnamesfirst]{natbib}
+\usepackage[justification=centering]{caption}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\definecolor{darkgray}{gray}{0.30}
+\makeatletter
+\def\@biblabel#1{\hspace*{-\labelsep}}
+
+%\usepackage[dvips, colorlinks=true, linkcolor=darkgray,
+\usepackage[colorlinks=true, linkcolor=darkgray,
+citecolor=darkgray, urlcolor=darkgray, bookmarks=false, ,
+pdfstartview={FitV},
+pdftitle={Dynamics Around Steady State},
+pdfauthor={Philip Coyle},
+pdfkeywords={}]{hyperref}
+
+\makeatletter
+\def\@biblabel#1{\hspace*{-\labelsep}}
+\makeatother
+\geometry{left=1in,right=1in,top=1.0in,bottom=1.0in}
+
+
+
+\begin{document}
+	
+	\title{Deriving an Analytical Jacobian\\with Chebyshev Functions}
+	\author{Philip Coyle\\Macroeconomics and Quantitative Studies}
+	\date{\today}
+	\maketitle
+	
+	
+\begin{abstract}
+	This document will outline how to define the Jacobian matrix analytically when solving the stylized New Keynesian model using a least squares minimization solution method. The presence of an analytical Jacobian matrix leads to much faster run times when solving the solution. This document will systematically outline how to derive the Jacobian, starting with an economy that does not include a ZLB constraint, ultimately building up to a model that \emph{does} include a ZLB constraint, and finally, a model with a sunspot shock that switches between the Standard Steady State (SSS) and Deflationary Steady State (DSS). 
+\end{abstract}
+
+\section{Introduction and Model Outline}
+
+We consider a model in which the equilibrium conditions are given by the following system of equations: 
+
+\begin{eqnarray}
+& & C_{t}^{-\chi_{c}} = \beta\delta_tR_{t} \mathbb{E}_tC_{t+1}^{-\chi_{c}}\Pi_{t+1}^{-1}\label{eq:CEE}\\
+& & w_t = N_t^{\chi_n}C_t^{\chi_c}\label{eq:IOC}\\
+& & \tilde{\Pi}_t = \frac{\Pi_t}{\left(\Pi_{\text{targ}}^{\iota}\Pi_{t-1}^{1-\iota}\right)^{\alpha}}\label{eq:RIS}\\
+& & \frac{Y_{t}}{C_{t}^{\chi_{c}}}\bigl[ \varphi (\tilde{\Pi}_t - 1)\tilde{\Pi}_t - (1 - \theta) - \theta (1-\tau)w_t\bigr] =  \beta\delta_t\mathbb{E}_t\frac{Y_{t+1}}{C_{t+1}^{\chi_{c}}}\varphi (\tilde{\Pi}_{t+1} - 1)\tilde{\Pi}_{t+1}\label{FPC}\\
+& & Y_{t} = C_{t} + \frac{\varphi}{2}\bigl[ \tilde{\Pi}_{t} - 1 \bigr]^{2}Y_{t}\label{eq:ARC}\\
+& & Y_t = N_t\\
+& & R_{t} = \text{max} \left[1, \frac{\Pi_{\text{targ}}}{\delta_t\beta}\left(\frac{\Pi_{t}}{\Pi_{\text{targ}}}\right)^{\phi_{\Pi}}\left(\frac{Y_{t}}{Y_{\text{targ}}}\right)^{\phi_{Y}}\right] \label{TR}
+%& & V_t = \left[\frac{C_t^{1-\chi_c}}{1-\chi_c} - \frac{N_t^{1_+\chi_n}}{1+\chi_n} \right] + \beta\delta_t\mathbb{E}_tV_{t+1}\label{Value}
+\end{eqnarray}
+
+\noindent where equation (\ref{eq:CEE}) is the consumption Euler Equation; equation (\ref{eq:IOC}) is the intertemporal optimality condition; equation (\ref{eq:RIS}) is the Rotemberg Pricing Indexation scheme found in equation (\ref{FPC}), the forward looking Phillips curve with a Rotemberg Pricing structure; equation (\ref{eq:ARC}) is the aggregate resource constraint; equation (\ref{TR}) is the interest rate feedback rule with a zero lower bound (ZLB) constraint.
+
+\section{Model Without ZLB}
+We begin by deriving the Jacobian for a stylized economy that does not include a ZLB constraint. In other words, equation (\ref{TR}) simplifies to: 
+\begin{align}
+	R_{t} = \frac{\Pi_{\text{targ}}}{\delta\beta}\left(\frac{\Pi_{t}}{\Pi_{\text{targ}}}\right)^{\phi_{\Pi}}\left(\frac{Y_{t}}{Y_{\text{targ}}}\right)^{\phi_{Y}}. \label{TR_NZLB}	
+\end{align}
+To begin, we define a generalized functional form for the given policy functions:
+\begin{align}
+	C(x) &= \sum_{k=0}^{n}a_kT_k(x) \\ 
+	\Pi(x) &= \sum_{k=0}^{n}b_kT_k(x)
+\end{align}
+where $T_k(x)$ is the $k^{th}$ Chebyshev polynomial basis function and $\Theta = \{a_0,a_1,\dots,a_n,b_0,b_1,\dots,b_n\}$ are the vector of coefficients we look minimize in our solution method. Then, for all $k\in\{0,\dots,n\}$ we define the following partial derivatives: 
+\begin{align}
+\frac{\partial C(x)}{\partial a_k} &= T_k(x) \\ 
+\frac{\partial \Pi(x)}{\partial b_k} &= T_k(x).
+\end{align}
+Trivially, $\partial C(x)/\partial b_k = \partial \Pi(x)/\partial a_k = 0$. 
+
+Notice that we can define $N$ -- and as a result $Y$ --  as a function of both $C(x)$ and $\Pi(x)$. Thus, the partial derivatives of these policy functions, with respect to our vector of coefficients, is given by: 
+\begin{align}
+\frac{\partial N(x)}{\partial a_k} &= \frac{\partial Y(x)}{\partial a_k} = \frac{\partial C(x)}{\partial a_k}\left(1-\frac{\varphi}{2}\left[\tilde{\Pi}(x) -1\right]^2\right)^{-1}\\ 
+\frac{\partial N(x)}{\partial b_k} &= \frac{\partial Y(x)}{\partial b_k} = C(x)\left(1-\frac{\varphi}{2}\left[\tilde{\Pi}(x) -1\right]^2\right)^{-2}\left(\varphi\left[\tilde{\Pi}(x) -1\right]\right)\frac{\partial \tilde{\Pi}(x)}{\partial b_k}.
+\end{align}
+where 
+\begin{align}
+	\frac{\partial \tilde{\Pi}(x)}{\partial b_k} = \frac{\partial \Pi(x)}{\partial b_k}\frac{1}{\left(\Pi_{\text{targ}}^{\iota}\Pi_{t-1}^{1-\iota}\right)^{\alpha}}
+\end{align}
+
+Next, we define derivatives with respect to our vector of coefficients for the policy function $w(x)$: 
+\begin{align}
+\frac{\partial w(x)}{\partial a_k} &=\chi_nN(x)^{\chi_n-1}\frac{\partial N(x)}{\partial a_k}C(x)^{\chi_c} + \chi_cC(x)^{\chi_c-1}\frac{\partial C(x)}{\partial a_k}N(x)^{\chi_n} \\ 
+\frac{\partial w(x)}{\partial b_k} &=\chi_nN(x)^{\chi_n-1}\frac{\partial N(x)}{\partial b_k}C(x)^{\chi_c}.
+\end{align}
+
+
+Turning to our Taylor Rule, we define derivatives with respect to our coefficients. Because we are considering an economy without a ZLB constraint, we can define the derivative of $R(X)$ with respect to all our coefficients in one shot:
+\begin{align}
+\frac{\partial R(x)}{\partial a_k} &=\frac{\Pi_{\text{targ}}}{\delta\beta}\left(\frac{\Pi(x)}{\Pi_{\text{targ}}}\right)^{\phi_{\Pi}}\left(\frac{\phi_Y}{Y_{\text{targ}}}\right)\left(\frac{Y(x)}{Y_{\text{targ}}}\right)^{\phi_{Y}-1}\frac{\partial Y(x)}{\partial a_k} \\ 
+\frac{\partial R(x)}{\partial b_k} &=\frac{\Pi_{\text{targ}}}{\delta\beta}\left[\left(\frac{\phi_{\Pi}}{\Pi_{\text{targ}}}\right)\left(\frac{\Pi(x)}{\Pi_{\text{targ}}}\right)^{\phi_{\Pi}-1}\frac{\partial \Pi(x)}\partial b_k\left(\frac{Y(x)}{Y_{\text{targ}}}\right)^{\phi_{Y}} \right. \\ \nonumber
+& \left. + \left(\frac{\Pi(x)}{\Pi_{\text{targ}}}\right)^{\phi_{\Pi}}\left(\frac{\phi_Y}{Y_{\text{targ}}}\right)\left(\frac{Y(x)}{Y_{\text{targ}}}\right)^{\phi_{Y}-1}\frac{\partial Y(x)}{\partial b_k}\right].
+\end{align}
+
+Given that we have defined partial derivatives we are ready to begin defining entries to our Jacobian. Recall our Jacobian is a matrix where entry $(i,j)$ is the derivative of the $i^{th}$ residual equation with respect to the $j^{th}$ entry in our vector of coefficients $\Theta$. In this model, our two residual equations are the equations (\ref{eq:CEE})  and (\ref{FPC}). 
+
+\subsection*{Consumption Euler Equation}
+\noindent 
+Recall that the Euler Equation is defined numerically (using Gauss-Hermite integration) as 
+\begin{align}
+	C(\delta)^{-\chi_{c}} = \beta\delta R(\delta) \sum_{j = 0}^{l}w_jC(\delta')^{-\chi_{c}}\Pi(\delta')^{-1}
+\end{align}
+where $w_j$ are the appropriate weights found in GH numerical integration, and $\delta'$ are future values of $\delta$. We will take derivatives of both the LHS and RHS with respect to all our coefficients.
+
+\subsubsection*{Left Hand Side}
+\begin{align}
+	\frac{\partial LHS}{\partial a_k} &= -\chi_cC(\delta)^{-\chi_c-1}\frac{\partial C(\delta)}{\partial a_k} \\
+	\frac{\partial LHS}{\partial b_k} &= 0
+\end{align}
+
+\subsubsection*{Right Hand Side}
+\begin{align}
+\frac{\partial RHS}{\partial a_k} &= \beta\delta\sum_{j = 0}^{l}w_j\left[\frac{\partial R(\delta)}{\partial a_k} C(\delta')^{-\chi_{c}}\Pi(\delta')^{-1} - R(\delta)\chi_{c}C(\delta')^{-\chi_{c}-1}\frac{\partial C(\delta')}{\partial a_k}\Pi(\delta')^{-1}\right] \\
+\frac{\partial RHS}{\partial b_k} &=  \beta\delta\sum_{j = 0}^{l}w_j\left[\frac{\partial R(\delta)}{\partial b_k} C(\delta')^{-\chi_{c}}\Pi(\delta')^{-1} - R(\delta)C(\delta')^{-\chi_{c}}\Pi(\delta')^{-2}\frac{\partial \Pi(\delta')}{\partial b_k}\right] 
+\end{align}
+
+\subsection*{Forward Looking Phillips Curve}
+\noindent 
+Recall that the Phillips Curve is defined numerically (using Gauss-Hermite integration) as 
+\begin{align}
+\frac{Y(\delta)}{C(\delta)^{\chi_{c}}}\bigl[ \varphi (\tilde{\Pi}(\delta) - 1)\tilde{\Pi}(\delta) - (1 - \theta) - \theta (1-\tau)w(\delta)\bigr] =  \beta\delta\sum_{j = 0}^{l}w_j\frac{Y(\delta')}{C(\delta')^{\chi_{c}}}\varphi (\tilde{\Pi}(\delta') - 1)\tilde{\Pi}(\delta')
+\end{align}
+where $w_j$ are the appropriate weights found in GH numerical integration, and $\delta'$ are future values of $\delta$. We will take derivatives of both the LHS and RHS with respect to all our coefficients.
+
+\subsubsection*{Left Hand Side}
+\begin{align}
+\frac{\partial LHS}{\partial a_k} &= \left(\frac{\partial Y(\delta)}{\partial a_k}C(\delta)^{-\chi_c} - \chi_cC(\delta)^{-\chi_c - 1}\frac{\partial C(\delta)}{\partial a_k}Y(\delta)\right)\left(\varphi (\tilde{\Pi}(\delta) - 1)\tilde{\Pi}(\delta) - (1 - \theta) - \theta (1-\tau)w(\delta)\right) \nonumber \\
+& + \left(\frac{Y(\delta)}{C(\delta)^{\chi_{c}}}\right)\left(- \theta (1-\tau)\frac{\partial w(\delta)}{\partial a_k}\right)\\
+\frac{\partial LHS}{\partial b_k} &= \left(\frac{\partial Y(\delta)}{\partial b_k}C(\delta)^{-\chi_c}\right)\left(\varphi (\tilde{\Pi}(\delta) - 1)\tilde{\Pi}(\delta) - (1 - \theta) - \theta (1-\tau)w(\delta)\right) \nonumber \\
+& + \left(\frac{Y(\delta)}{C(\delta)^{\chi_{c}}}\right)\left(\left(\varphi\left(2\tilde{\Pi}(\delta)\frac{\partial \tilde{\Pi}(\delta)}{\partial b_k} - \frac{\partial \tilde{\Pi}(\delta)}{\partial b_k}\right)\right) - \theta (1-\tau)\frac{\partial w(\delta)}{\partial b_k}\right)
+\end{align}
+
+\subsubsection*{Right Hand Side}
+\begin{align}
+\frac{\partial RHS}{\partial a_k} &= \beta\delta\sum_{j = 0}^{l}w_j\left(\varphi(\tilde{\Pi}(\delta') - 1)\tilde{\Pi}(\delta')\right)\left(\frac{\partial Y(\delta')}{\partial a_k}C(\delta')^{-\chi_c} - \chi_cC(\delta')^{-\chi_c - 1}\frac{\partial C(\delta')}{\partial a_k}Y(\delta')\right) \\
+\frac{\partial RHS}{\partial b_k} &=  \beta\delta\sum_{j = 0}^{l}w_jC(\delta')^{-\chi_c}\left[\frac{\partial Y(\delta')}{\partial b_k}\left(\varphi(\tilde{\Pi}(\delta') - 1)\tilde{\Pi}(\delta')\right) + Y(\delta')\left(\varphi\left(2\tilde{\Pi}(\delta')\frac{\partial \tilde{\Pi}(\delta')}{\partial b_k} - \frac{\partial \tilde{\Pi}(\delta')}{\partial b_k}\right)\right)\right] 
+\end{align}
+
+\section{Model With ZLB}
+Given that we have derived the Jacobian for an economy without a ZLB constraint, we move onto an economy in which the interest rate is bounded by the zero-bound constraint: \emph{i.e} the Taylor Rule takes the form of equation (\ref{TR}).To handle the occasionally binding constraint, we follow the method of Christiano and Fisher, in which the true policy function is constructed in the following way: one component allows the the policy rate to be below the ZLB and the other assumes the policy rate is \emph{at} the ZLB. In other words, for any policy function $F$,
+\begin{equation}
+F(x) = \mathbb{I}_{\{R_N(x)\ge 1\}}F_{N}(X) + (1-\mathbb{I}_{\{R_N(X)\ge 1\}})F_{Z}(x)
+\end{equation}
+In essence, the true policy function is systematically ``stitched together''from these two components. 
+
+Given, then, that we will have two sets of policy functions, we define the set $\Gamma = \{N,Z\}$. Then for all $\gamma\in\Gamma$ we begin defining generalized To begin, we define a generalized functional form for the given policy functions:
+\begin{align}
+C_{\gamma}(x) &= \sum_{k=0}^{n}a_{\gamma,k}T_k(x) \\ 
+\Pi_{\gamma}(x) &= \sum_{k=0}^{n}b_{\gamma,k}T_k(x)
+\end{align}
+where $T_k(x)$ is the $k^{th}$ Chebyshev polynomial basis function and $\Theta = \{a_{N,0},\dots,a_{N,n},b_{N,0},\dots,b_{N,n},$ $a_{Z,0},\dots,a_{Z,n},b_{Z,0},\dots,b_{Z,n}\}$ are the vector of coefficients we look minimize in our solution method. Then, for all $\gamma\in\Gamma$ and $k\in\{0,\dots,n\}$ we define the following partial derivatives:
+
+\begin{align}
+\frac{\partial C_{\gamma}(x)}{\partial a_{\gamma,k}} &= T_k(x) \\ 
+\frac{\partial \Pi_{\gamma}(x)}{\partial b_{\gamma,k}} &= T_k(x).
+\end{align}
+
+Notice that we can define $N_{\gamma}(x)$ -- and as a result $Y_{\gamma}(x)$ --  as a function of both $C_{\gamma}(x)$ and $\Pi_{\gamma}(x)$. Thus, the partial derivatives of these policy functions, with respect to our vector of coefficients, is given by: 
+\begin{align}
+\frac{\partial N_{\gamma}(x)}{\partial a_{\gamma,k}} &= \frac{\partial Y_{\gamma}(x)}{\partial a_{\gamma,k}} = \frac{\partial C_{\gamma}(x)}{\partial a_{\gamma,k}}\left(1-\frac{\varphi}{2}\left[\tilde{\Pi}_{\gamma}(x) -1\right]^2\right)^{-1}\\ 
+\frac{\partial N_{\gamma}(x)}{\partial b_{\gamma,k}} &= \frac{\partial Y_{\gamma}(x)}{\partial b_{\gamma,k}} = C_{\gamma}(x)\left(1-\frac{\varphi}{2}\left[\tilde{\Pi}_{\gamma}(x) -1\right]^2\right)^{-2}\left(\varphi\left[\tilde{\Pi}_{\gamma}(x) -1\right]\right)\frac{\partial \tilde{\Pi}_{\gamma}(x)}{\partial b_{\gamma,k}}.
+\end{align}
+where 
+\begin{align}
+\frac{\partial \tilde{\Pi}_{\gamma}(x)}{\partial b_{\gamma,k}} = \frac{\partial \Pi(x)_{\gamma}}{\partial b_{\gamma,k}}\frac{1}{\left(\Pi_{\text{targ}}^{\iota}\Pi_{t-1}^{1-\iota}\right)^{\alpha}}
+\end{align}
+
+Next, we define derivatives with respect to our vector of coefficients for the policy function $w(x)$: 
+\begin{align}
+\frac{\partial w_{\gamma}(x)}{\partial a_{\gamma,k}} &=\chi_nN_{\gamma}(x)^{\chi_n-1}\frac{\partial N_{\gamma}(x)}{\partial a_{\gamma,k}}C_{\gamma}(x)^{\chi_c} + \chi_cC_{\gamma}(x)^{\chi_c-1}\frac{\partial C_{\gamma}(x)}{\partial a_{\gamma,k}}N_{\gamma}(x)^{\chi_n} \\ 
+\frac{\partial w_{\gamma}(x)}{\partial b_{\gamma,k}} &=\chi_nN_{\gamma}(x)^{\chi_n-1}\frac{\partial N_{\gamma}(x)}{\partial b_{\gamma,k}}C_{\gamma}(x)^{\chi_c}.
+\end{align}
+
+Turning to our Taylor Rule, we define derivatives with respect to our coefficients. Because we are considering an economy with a ZLB constraint, we can define the derivative of $R(X)$ with respect to all our coefficients based on whether the ZLB binds or not:
+\begin{align}
+\frac{\partial R_{\gamma}(x)}{\partial a_{\gamma,k}} &=
+\begin{cases}
+\frac{\Pi_{\text{targ}}}{\delta\beta}\left(\frac{\Pi_{\gamma}(x)}{\Pi_{\text{targ}}}\right)^{\phi_{\Pi}}\left(\frac{\phi_Y}{Y_{\text{targ}}}\right)\left(\frac{Y_{\gamma}(x)}{Y_{\text{targ}}}\right)^{\phi_{Y}-1}\frac{\partial Y_{\gamma}(x)}{\partial a_{\gamma,k}}  & \hspace{2.2cm} \text{if } \gamma = N\\
+0  & \hspace{2.2cm} \text{if } \gamma = Z
+\end{cases}\\
+\frac{\partial R_{\gamma}(x)}{\partial b_{\gamma,k}} &= \begin{cases}
+\begin{aligned}
+\frac{\Pi_{\text{targ}}}{\delta\beta}\left[\left(\frac{\phi_{\Pi}}{\Pi_{\text{targ}}}\right)\left(\frac{\Pi_{\gamma}(x)}{\Pi_{\text{targ}}}\right)^{\phi_{\Pi}-1}\frac{\partial \Pi_{\gamma}(x)}\partial b_{\gamma,k}\left(\frac{Y_{\gamma}(x)}{Y_{\text{targ}}}\right)^{\phi_{Y}} \right. \\
+\left. + \left(\frac{\Pi_{\gamma}(x)}{\Pi_{\text{targ}}}\right)^{\phi_{\Pi}}\left(\frac{\phi_Y}{Y_{\text{targ}}}\right)\left(\frac{Y_{\gamma}(x)}{Y_{\text{targ}}}\right)^{\phi_{Y}-1}\frac{\partial Y_{\gamma}(x)}{\partial b_{\gamma,k}}\right]
+\end{aligned}
+ &\text{if } \gamma = N\\
+0  & \text{if } \gamma = Z
+\end{cases}
+\end{align}
+
+Given that we have defined partial derivatives we are ready to begin defining entries to our Jacobian. However, we must take care to define our forward looking terms: since we are applying the CF approach, forward looking terms are defined as a combination of both NZLB and ZLB policy functions:
+\begin{equation}
+F(x') = \mathbb{I}_{\{R_N(x')\ge 1\}}F_{N}(X') + (1-\mathbb{I}_{\{R_N(X')\ge 1\}})F_{Z}(x')
+\end{equation} 
+Derivatives are straight forward to define. WLOG consider the derivative of $F$ with respect to $a_{\gamma,k}$\footnote{It is important to note that our indicator function $\mathbb{I}_{\{R_N(x')\ge 1\}}$ is a function of $R(X)$. When we take derivatives of our future policy functions, it is important to take derivatives with respect to our indicator function as well. However, our indicator function can also be thought of as a step function, taking on a value of $1$ if $R_N(x')\ge 1$ and $0$ otherwise. Thus the derivative of our indicator function is trivially zero everywhere along the indicator function (except the discontinuity, at which point it is undefined). Thus for the purposes of the derivative with respect to future variables, the derivative with respect to the indicator function can be ignored.}: 
+\begin{align}
+	\frac{\partial F(x')}{\partial a_{\gamma,k}} = \frac{\partial F_{\gamma}(x')}{\partial a_{\gamma,k}}
+\end{align}
+where $\gamma\in\Gamma$.
+
+\subsection*{Consumption Euler Equation}
+\noindent 
+Recall that the Euler Equation is defined numerically (using Gauss-Hermite integration) as 
+\begin{align}
+C_{\gamma}(\delta)^{-\chi_{c}} = \beta\delta R_{\gamma}(\delta) \sum_{j = 0}^{l}w_jC(\delta')^{-\chi_{c}}\Pi(\delta')^{-1}
+\end{align}
+where $w_j$ are the appropriate weights found in GH numerical integration, and $\delta'$ are future values of $\delta$. We will take derivatives of both the LHS and RHS with respect to all our coefficients. First, however, we introduce additional notation to assist us. Let $\gamma'\in\Gamma$. Here $\gamma$ may or may not equal $\gamma'$.
+
+\subsubsection*{Left Hand Side}
+\begin{align}
+\frac{\partial LHS}{\partial a_{\gamma',k}} &=
+\begin{cases}
+ -\chi_cC_{\gamma}(\delta)^{-\chi_c-1}\frac{\partial C_{\gamma}(\delta)}{\partial a_{\gamma',k}} & \text{if } \gamma' = \gamma \\
+ 0 & \text{if } \gamma' \neq \gamma
+ \end{cases}\\
+ \frac{\partial LHS}{\partial b_{\gamma',k}} &= 0 \hspace{4.5cm} \forall \gamma'
+\end{align}
+
+\subsubsection*{Right Hand Side}
+\begin{align}
+\frac{\partial RHS}{\partial a_{\gamma',k}} &= 
+\begin{cases}
+\beta\delta\sum_{j = 0}^{l}w_j\left[\frac{\partial R_{\gamma}(\delta)}{\partial a_{\gamma',k}} C(\delta')^{-\chi_{c}}\Pi(\delta')^{-1} - R_{\gamma}(\delta)\chi_{c}C(\delta')^{-\chi_{c}-1}\frac{\partial C(\delta')}{\partial a_{\gamma',k}}\Pi(\delta')^{-1}\right]& \text{if } \gamma' = \gamma \\
+-\beta\delta\sum_{j = 0}^{l}w_j\left[R_{\gamma}(\delta)\chi_{c}C(\delta')^{-\chi_{c}-1}\frac{\partial C(\delta')}{\partial a_{\gamma',k}}\Pi(\delta')^{-1}\right] & \text{if } \gamma' \neq \gamma 
+\end{cases}\\
+\frac{\partial RHS}{\partial b_{\gamma',k}} &=
+\begin{cases}  
+\beta\delta\sum_{j = 0}^{l}w_j\left[\frac{\partial R_{\gamma}(\delta)}{\partial b_{\gamma',k}} C(\delta')^{-\chi_{c}}\Pi(\delta')^{-1} - R_{\gamma}(\delta)C(\delta')^{-\chi_{c}}\Pi(\delta')^{-2}\frac{\partial \Pi(\delta')}{\partial b_{\gamma',k}}\right]& \text{if } \gamma' = \gamma \\
+-\beta\delta\sum_{j = 0}^{l}w_j\left[R_{\gamma}(\delta)C(\delta')^{-\chi_{c}}\Pi(\delta')^{-2}\frac{\partial \Pi(\delta')}{\partial b_{\gamma',k}}\right] & \text{if } \gamma' \neq \gamma
+\end{cases} 
+\end{align}
+
+\subsection*{Forward Looking Phillips Curve}
+\noindent 
+Recall that the Phillips Curve is defined numerically (using Gauss-Hermite integration) as 
+\begin{align}
+\frac{Y_{\gamma}(\delta)}{C_{\gamma}(\delta)^{\chi_{c}}}\bigl[ \varphi (\tilde{\Pi}_{\gamma}(\delta) - 1)\tilde{\Pi}_{\gamma}(\delta) - (1 - \theta) - \theta (1-\tau)w_{\gamma}(\delta)\bigr] =  \beta\delta\sum_{j = 0}^{l}w_j\frac{Y(\delta')}{C(\delta')^{\chi_{c}}}\varphi (\tilde{\Pi}(\delta') - 1)\tilde{\Pi}(\delta')
+\end{align}
+where $w_j$ are the appropriate weights found in GH numerical integration, and $\delta'$ are future values of $\delta$. We will take derivatives of both the LHS and RHS with respect to all our coefficients.
+
+\subsubsection*{Left Hand Side}
+\begin{align}
+\frac{\partial LHS}{\partial a_{\gamma',k}} &=
+\begin{cases}
+\begin{aligned}
+\left(\frac{\partial Y_{\gamma}(\delta)}{\partial a_{\gamma',k}}C_{\gamma}(\delta)^{-\chi_c} - \chi_cC_{\gamma}(\delta)^{-\chi_c - 1}\frac{\partial C_{\gamma}(\delta)}{\partial a_{\gamma',k}}Y_{\gamma}(\delta)\right) \\
+\cdot \left(\varphi (\tilde{\Pi}_{\gamma}(\delta) - 1)\tilde{\Pi}_{\gamma}(\delta) - (1 - \theta) - \theta (1-\tau)w_{\gamma}(\delta)\right)\\
+ + \left(\frac{Y_{\gamma}(\delta)}{C_{\gamma}(\delta)^{\chi_{c}}}\right)\left(- \theta (1-\tau)\frac{\partial w_{\gamma}(\delta)}{\partial a_{\gamma',k}}\right)
+\end{aligned} & \hspace{3.5cm}\text{if } \gamma' = \gamma \\
+0 & \hspace{3.5cm}\text{if } \gamma' \neq \gamma
+\end{cases}\\
+%\end{align}
+%\begin{align}
+\frac{\partial LHS}{\partial b_{\gamma',k}} &=
+\begin{cases}
+\begin{aligned}
+ \left(\frac{\partial Y_{\gamma}(\delta)}{\partial b_{\gamma',k}}C_{\gamma}(\delta)^{-\chi_c}\right)\left(\varphi (\tilde{\Pi}_{\gamma}(\delta) - 1)\tilde{\Pi}_{\gamma}(\delta) - (1 - \theta) - \theta (1-\tau)w_{\gamma}(\delta)\right) \\
+ + \left(\frac{Y_{\gamma}(\delta)}{C_{\gamma}(\delta)^{\chi_{c}}}\right)\left(\left(\varphi\left(2\tilde{\Pi}_{\gamma}(\delta)\frac{\partial \tilde{\Pi}_{\gamma}(\delta)}{\partial b_{\gamma',k}} - \frac{\partial \tilde{\Pi}_{\gamma}(\delta)}{\partial b_{\gamma',k}}\right)\right) - \theta (1-\tau)\frac{\partial w_{\gamma}(\delta)}{\partial b_{\gamma',k}}\right)
+\end{aligned}& \text{if } \gamma' = \gamma \\
+0 & \text{if } \gamma' \neq \gamma
+\end{cases}
+\end{align}
+
+\subsubsection*{Right Hand Side}
+\begin{align}
+\frac{\partial RHS}{\partial a_{\gamma',k}} &= \beta\delta\sum_{j = 0}^{l}w_j\left(\varphi(\tilde{\Pi}(\delta') - 1)\tilde{\Pi}(\delta')\right)\left(\frac{\partial Y(\delta')}{\partial a_{\gamma',k}}C(\delta')^{-\chi_c} - \chi_cC(\delta')^{-\chi_c - 1}\frac{\partial C(\delta')}{\partial a_{\gamma',k}}Y(\delta')\right) \\
+\frac{\partial RHS}{\partial b_{\gamma',k}} &=  \beta\delta\sum_{j = 0}^{l}w_jC(\delta')^{-\chi_c}\left[\frac{\partial Y(\delta')}{\partial b_{\gamma',k}}\left(\varphi(\tilde{\Pi}(\delta') - 1)\tilde{\Pi}(\delta')\right) + Y(\delta')\left(\varphi\left(2\tilde{\Pi}(\delta')\frac{\partial \tilde{\Pi}(\delta')}{\partial b_{\gamma',k}} - \frac{\partial \tilde{\Pi}(\delta')}{\partial b_{\gamma',k}}\right)\right)\right] 
+\end{align}
+for all $\gamma'\in\Gamma$.
+\section{Model With Sunspot Shock}
+Our final step is to move onto a model in which there is the possibility switching from an economy hovering around the Standard Steady State (SSS) to one hovering around the Deflationary Steady State (DSS). The system of equations we solve for now also increases -- specifically it doubles. The new system is as follows: 
+
+\begin{eqnarray}
+& & C_{S,t}^{-\chi_{c}} = \beta\delta_tR_{S,t} \mathbb{E}_{S,t}C_{t+1}^{-\chi_{c}}\Pi_{t+1}^{-1}\label{CEEs}\\
+& & w_{S,t} = N_{S,t}^{\chi_n}C_{S,t}^{\chi_c}\label{IOCs}\\
+& & \tilde{\Pi}_{S,t} = \frac{\Pi_{S,t}}{\left(\Pi_{\text{targ}}^{\iota}\Pi_{t-1}^{1-\iota}\right)^{\alpha}}\label{RISs}\\
+& & \frac{Y_{S,t}}{C_{S,t}^{\chi_{c}}}\bigl[ \varphi (\tilde{\Pi}_{S,t} - 1)\tilde{\Pi}_{S,t} - (1 - \theta) - \theta (1-\tau)w_{S,t}\bigr] =  \beta\delta_t\mathbb{E}_{S,t}\frac{Y_{t+1}}{C_{t+1}^{\chi_{c}}}\varphi (\tilde{\Pi}_{t+1} - 1)\tilde{\Pi}_{t+1}\label{FPCs}\\
+& & Y_{S,t} = C_{S,t} + \frac{\varphi}{2}\bigl[ \tilde{\Pi}_{S,t} - 1 \bigr]^{2}Y_{S,t}\label{ARCs}\\
+& & Y_{S,t} = N_{S,t}\\
+& & R_{S,t} = \text{max} \left[1, \frac{\Pi_{\text{targ}}}{\delta_t\beta}\left(\frac{\Pi_{S,t}}{\Pi_{\text{targ}}}\right)^{\phi_{\Pi}}\left(\frac{Y_{S,t}}{Y_{\text{targ}}}\right)^{\phi_{Y}}\right] \label{TRs}\\
+& & C_{D,t}^{-\chi_{c}} = \beta\delta_tR_{D,t} \mathbb{E}_{D,t}C_{t+1}^{-\chi_{c}}\Pi_{t+1}^{-1}\label{CEEd}\\
+& & w_{D,t} = N_{D,t}^{\chi_n}C_{D,t}^{\chi_c}\label{IOCd}\\
+& & \tilde{\Pi}_{D,t} = \frac{\Pi_{D,t}}{\left(\Pi_{\text{targ}}^{\iota}\Pi_{t-1}^{1-\iota}\right)^{\alpha}}\label{RISd}\\
+& & \frac{Y_{D,t}}{C_{D,t}^{\chi_{c}}}\bigl[ \varphi (\tilde{\Pi}_{D,t} - 1)\tilde{\Pi}_{D,t} - (1 - \theta) - \theta (1-\tau)w_{D,t}\bigr] =  \beta\delta_t\mathbb{E}_{D,t}\frac{Y_{t+1}}{C_{t+1}^{\chi_{c}}}\varphi (\tilde{\Pi}_{t+1} - 1)\tilde{\Pi}_{t+1}\label{FPCd}\\
+& & Y_{D,t} = C_{D,t} + \frac{\varphi}{2}\bigl[ \tilde{\Pi}_{D,t} - 1 \bigr]^{2}Y_{D,t}\label{ARCd}\\
+& & Y_{D,t} = N_{D,t}\\
+& & R_{D,t} = \text{max} \left[1, \frac{\Pi_{\text{targ}}}{\delta_t\beta}\left(\frac{\Pi_{D,t}}{\Pi_{\text{targ}}}\right)^{\phi_{\Pi}}\left(\frac{Y_{D,t}}{Y_{\text{targ}}}\right)^{\phi_{Y}}\right] \label{TRd}
+\end{eqnarray}
+
+\noindent where 
+\begin{align*}
+\mathbb{E}_{S,t}X_{t+1} &=P_sX_{S,t+1} + (1-P_s)X_{D,t+1} \\
+\mathbb{E}_{D,t}X_{t+1} &= P_dX_{D,t+1} + (1-P_d)X_{S,t+1}
+\end{align*}
+\noindent
+As before, to handle the occasionally binding constraint, we follow the method of Christiano and Fisher, in which the true policy function is constructed in the following way: one component allows the the policy rate to be below the ZLB and the other assumes the policy rate is \emph{at} the ZLB.
+
+Given, then, that we will have two sets of policy functions for each regime, we define the set $\Psi =\{S,D\}$ and $\Gamma = \{N,Z\}$. Then for all $\psi\in\Psi$ and $\gamma\in\Gamma$ we begin defining generalized To begin, we define a generalized functional form for the given policy functions:
+\begin{align}
+C_{\psi,\gamma}(x) &= \sum_{k=0}^{n}a_{\psi,\gamma,k}T_k(x) \\ 
+\Pi_{\psi,\gamma}(x) &= \sum_{k=0}^{n}b_{\psi,\gamma,k}T_k(x)
+\end{align}
+where $T_k(x)$ is the $k^{th}$ Chebyshev polynomial basis function and 
+\begin{align}
+\Theta = & \{a_{S,N,0},\dots,a_{S,N,n},b_{S,N,0},\dots,b_{S,N,n},a_{Z,0},\dots,a_{S,Z,n},b_{S,Z,0},\dots,b_{S,Z,n},\nonumber \\
+& a_{D,N,0},\dots,a_{D,N,n},b_{D,N,0},\dots,b_{D,N,n},a_{D,Z,0},\dots,a_{D,Z,n},b_{D,Z,0},\dots,b_{D,Z,n}\} 
+\end{align}
+are the vector of coefficients we look minimize in our solution method. Then, for all $\psi\in\Psi$, $\gamma\in\Gamma$ and $k\in\{0,\dots,n\}$ we define the following partial derivatives:
+
+\begin{align}
+\frac{\partial C_{\psi,\gamma}(x)}{\partial a_{\psi,\gamma,k}} &= T_k(x) \\ 
+\frac{\partial \Pi_{\psi,\gamma}(x)}{\partial b_{\psi,\gamma,k}} &= T_k(x).
+\end{align}
+
+Notice that we can define $N_{\psi,\gamma}(x)$ -- and as a result $Y_{\psi,\gamma}(x)$ --  as a function of both $C_{\psi,\gamma}(x)$ and $\Pi_{\psi,\gamma}(x)$. Thus, the partial derivatives of these policy functions, with respect to our vector of coefficients, is given by: 
+\begin{align}
+\frac{\partial N_{\psi,\gamma}(x)}{\partial a_{\psi,\gamma,k}} &= \frac{\partial Y_{\psi,\gamma}(x)}{\partial a_{\psi,\gamma,k}} = \frac{\partial C_{\psi,\gamma}(x)}{\partial a_{\psi,\gamma,k}}\left(1-\frac{\varphi}{2}\left[\tilde{\Pi}_{\psi,\gamma}(x) -1\right]^2\right)^{-1}\\ 
+\frac{\partial N_{\psi,\gamma}(x)}{\partial b_{\psi,\gamma,k}} &= \frac{\partial Y_{\psi,\gamma}(x)}{\partial b_{\psi,\gamma,k}} = C_{\psi,\gamma}(x)\left(1-\frac{\varphi}{2}\left[\tilde{\Pi}_{\psi,\gamma}(x) -1\right]^2\right)^{-2}\left(\varphi\left[\tilde{\Pi}_{\psi,\gamma}(x) -1\right]\right)\frac{\partial \tilde{\Pi}_{\psi,\gamma}(x)}{\partial b_{\psi,\gamma,k}}.
+\end{align}
+where 
+\begin{align}
+\frac{\partial \tilde{\Pi}_{\psi,\gamma}(x)}{\partial b_{\psi,\gamma,k}} = \frac{\partial \Pi(x)_{\psi,\gamma}}{\partial b_{\psi,\gamma,k}}\frac{1}{\left(\Pi_{\text{targ}}^{\iota}\Pi_{t-1}^{1-\iota}\right)^{\alpha}}
+\end{align}
+
+Next, we define derivatives with respect to our vector of coefficients for the policy function $w(x)$: 
+\begin{align}
+\frac{\partial w_{\psi,\gamma}(x)}{\partial a_{\psi,\gamma,k}} &=\chi_nN_{\psi,\gamma}(x)^{\chi_n-1}\frac{\partial N_{\psi,\gamma}(x)}{\partial a_{\psi,\gamma,k}}C_{\psi,\gamma}(x)^{\chi_c} + \chi_cC_{\psi,\gamma}(x)^{\chi_c-1}\frac{\partial C_{\psi,\gamma}(x)}{\partial a_{\psi,\gamma,k}}N_{\psi,\gamma}(x)^{\chi_n} \\ 
+\frac{\partial w_{\psi,\gamma}(x)}{\partial b_{\psi,\gamma,k}} &=\chi_nN_{\psi,\gamma}(x)^{\chi_n-1}\frac{\partial N_{\psi,\gamma}(x)}{\partial b_{\psi,\gamma,k}}C_{\psi,\gamma}(x)^{\chi_c}.
+\end{align}
+
+Turning to our Taylor Rule, we define derivatives with respect to our coefficients. Because we are considering an economy with a ZLB constraint, we can define the derivative of $R(X)$ with respect to all our coefficients based on whether the ZLB binds or not:
+\begin{align}
+\frac{\partial R_{\psi,\gamma}(x)}{\partial a_{\psi,\gamma,k}} &=
+\begin{cases}
+\frac{\Pi_{\text{targ}}}{\delta\beta}\left(\frac{\Pi_{\psi,\gamma}(x)}{\Pi_{\text{targ}}}\right)^{\phi_{\Pi}}\left(\frac{\phi_Y}{Y_{\text{targ}}}\right)\left(\frac{Y_{\psi,\gamma}(x)}{Y_{\text{targ}}}\right)^{\phi_{Y}-1}\frac{\partial Y_{\psi,\gamma}(x)}{\partial a_{\psi,\gamma,k}}  & \hspace{2.2cm} \text{if } \gamma = N\\
+0  & \hspace{2.2cm} \text{if } \gamma = Z
+\end{cases}\\
+\frac{\partial R_{\psi,\gamma}(x)}{\partial b_{\psi,\gamma,k}} &= \begin{cases}
+\begin{aligned}
+\frac{\Pi_{\text{targ}}}{\delta\beta}\left[\left(\frac{\phi_{\Pi}}{\Pi_{\text{targ}}}\right)\left(\frac{\Pi_{\psi,\gamma}(x)}{\Pi_{\text{targ}}}\right)^{\phi_{\Pi}-1}\frac{\partial \Pi_{\psi,\gamma}(x)}\partial b_{\psi,\gamma,k}\left(\frac{Y_{\psi,\gamma}(x)}{Y_{\text{targ}}}\right)^{\phi_{Y}} \right. \\
+\left. + \left(\frac{\Pi_{\psi,\gamma}(x)}{\Pi_{\text{targ}}}\right)^{\phi_{\Pi}}\left(\frac{\phi_Y}{Y_{\text{targ}}}\right)\left(\frac{Y_{\psi,\gamma}(x)}{Y_{\text{targ}}}\right)^{\phi_{Y}-1}\frac{\partial Y_{\psi,\gamma}(x)}{\partial b_{\psi,\gamma,k}}\right]
+\end{aligned}
+&\text{if } \gamma = N\\
+0  & \text{if } \gamma = Z
+\end{cases}
+\end{align}
+
+Given that we have defined partial derivatives we are ready to begin defining entries to our Jacobian. However, we must take care to define our forward looking terms: since we are applying the CF approach, forward looking terms are defined as a combination of both NZLB and ZLB policy functions:
+\begin{equation}
+F(x') = \mathbb{I}_{\{R_N(x')\ge 1\}}F_{N}(X') + (1-\mathbb{I}_{\{R_N(X')\ge 1\}})F_{Z}(x')
+\end{equation} 
+Derivatives are straight forward to define. WLOG consider the derivative of $F$ with respect to $a_{\psi,\gamma,k}$\footnote{It is important to note that our indicator function $\mathbb{I}_{\{R_N(x')\ge 1\}}$ is a function of $R(X)$. When we take derivatives of our future policy functions, it is important to take derivatives with respect to our indicator function as well. However, our indicator function can also be thought of as a step function, taking on a value of $1$ if $R_N(x')\ge 1$ and $0$ otherwise. Thus the derivative of our indicator function is trivially zero everywhere along the indicator function (except the discontinuity, at which point it is undefined). Thus for the purposes of the derivative with respect to future variables, the derivative with respect to the indicator function can be ignored.}: 
+\begin{align}
+\frac{\partial F(x')}{\partial a_{\psi,\gamma,k}} = \frac{\partial F_{\psi,\gamma}(x')}{\partial a_{\psi,\gamma,k}}
+\end{align}
+where $\psi\in\Psi$ and $\gamma\in\Gamma$.
+
+\subsection*{Consumption Euler Equation}
+\noindent 
+To help along with notation, we introduce the element $\psi'\in\Psi$ such that $\psi'\neq\psi$. Now, recall that the Euler Equation is defined numerically (using Gauss-Hermite integration) as 
+\begin{align}
+C_{\psi,\gamma}(\delta)^{-\chi_{c}} = \beta\delta R_{\psi,\gamma}(\delta) \left[P_{\psi}, 1-P_{\psi}\right]\cdot
+\begin{bmatrix}
+\sum_{j = 0}^{l}w_jC_{\psi}(\delta')^{-\chi_{c}}\Pi_{\psi}(\delta')^{-1}\\
+\sum_{j = 0}^{l}w_jC_{\psi'}(\delta')^{-\chi_{c}}\Pi_{\psi'}(\delta')^{-1}
+\end{bmatrix}
+\end{align}
+where $P_{\psi}$ is the probability of transitioning from state $\psi$ to $\psi$, $w_j$ are the appropriate weights found in GH numerical integration, and $\delta'$ are future values of $\delta$. We will take derivatives of both the LHS and RHS with respect to all our coefficients. Again, let $\gamma'\in\Gamma$ where $\gamma$ may or may not equal $\gamma'$.
+
+\subsubsection*{Left Hand Side}
+\begin{align}
+\frac{\partial LHS_{\psi}}{\partial a_{\psi,\gamma',k}} &=
+\begin{cases}
+-\chi_cC_{\psi,\gamma}(\delta)^{-\chi_c-1}\frac{\partial C_{\psi,\gamma}(\delta)}{\partial a_{\psi,\gamma',k}} & \text{if } \gamma' = \gamma \\
+0 & \text{if } \gamma' \neq \gamma
+\end{cases}\\
+\frac{\partial LHS_{\psi}}{\partial b_{\psi,\gamma',k}} &= 0 \hspace{4.75cm} \forall \gamma'\in\Gamma\\
+\frac{\partial LHS_{\psi}}{\partial a_{\psi',\gamma',k}} &= 0 \hspace{4.75cm} \forall \gamma'\in\Gamma\\
+\frac{\partial LHS_{\psi}}{\partial b_{\psi',\gamma',k}} &= 0 \hspace{4.75cm} \forall \gamma'\in\Gamma
+\end{align}
+
+\subsubsection*{Right Hand Side}
+\begin{align}
+\frac{\partial RHS_{\psi}}{\partial a_{\psi,\gamma',k}} &= 
+\begin{cases}
+\begin{aligned}
+&\beta\delta\sum_{j = 0}^{l}w_j\left(\frac{\partial R_{\psi,\gamma}(\delta)}{\partial a_{\psi,\gamma',k}}\left[P_{\psi}, 1-P_{\psi}\right]
+\begin{bmatrix}
+C_{\psi}(\delta')^{-\chi_{c}}\Pi_{\psi}(\delta')^{-1}\\
+C_{\psi'}(\delta')^{-\chi_{c}}\Pi_{\psi'}(\delta')^{-1}
+\end{bmatrix} \right.\\
+& \hspace{1.5cm}\left.- P_{\psi}R_{\psi,\gamma}(\delta)\chi_{c}C_{\psi}(\delta')^{-\chi_{c}-1}\frac{\partial C_{\psi}(\delta')}{\partial a_{\psi,\gamma',k}}\Pi_{\psi}(\delta')^{-1}\right)
+\end{aligned} & \text{if } \gamma' = \gamma \\
+\begin{aligned}
+&-\beta\delta\sum_{j = 0}^{l}w_j P_{\psi}R_{\psi,\gamma}(\delta)\chi_{c}C_{\psi}(\delta')^{-\chi_{c}-1}\frac{\partial C_{\psi}(\delta')}{\partial a_{\psi,\gamma',k}}\Pi_{\psi}(\delta')^{-1}
+\end{aligned} & \text{if } \gamma' \neq \gamma 
+\end{cases}\\
+\frac{\partial RHS_{\psi}}{\partial b_{\psi,\gamma',k}} &= 
+\begin{cases}
+\begin{aligned}
+&\beta\delta\sum_{j = 0}^{l}w_j\left(\frac{\partial R_{\psi,\gamma}(\delta)}{\partial b_{\psi,\gamma',k}}\left[P_{\psi}, 1-P_{\psi}\right]
+\begin{bmatrix}
+C_{\psi}(\delta')^{-\chi_{c}}\Pi_{\psi}(\delta')^{-1}\\
+C_{\psi'}(\delta')^{-\chi_{c}}\Pi_{\psi'}(\delta')^{-1}
+\end{bmatrix} \right.\\
+& \hspace{1.5cm}\left.- P_{\psi}R_{\psi,\gamma}(\delta)C_{\psi}(\delta')^{-\chi_{c}}\Pi_{\psi}(\delta')^{-2}\frac{\partial \Pi_{\psi}(\delta')}{\partial b_{\psi,\gamma',k}}\right)
+\end{aligned} & \text{if } \gamma' = \gamma \\
+\begin{aligned}
+&-\beta\delta\sum_{j = 0}^{l}w_j P_{\psi}R_{\psi,\gamma}(\delta)C_{\psi}(\delta')^{-\chi_{c}}\Pi_{\psi}(\delta')^{-2}\frac{\partial \Pi_{\psi}(\delta')}{\partial b_{\psi,\gamma',k}}
+\end{aligned} & \text{if } \gamma' \neq \gamma 
+\end{cases}\\
+\frac{\partial RHS_{\psi}}{\partial a_{\psi',\gamma',k}} &=
+-\beta\delta\sum_{j = 0}^{l}w_j (1-P_{\psi})R_{\psi,\gamma}(\delta)\chi_{c}C_{\psi'}(\delta')^{-\chi_{c}-1}\frac{\partial C_{\psi'}(\delta')}{\partial a_{\psi',\gamma',k}}\Pi_{\psi'}(\delta')^{-1} \nonumber \\
+&\hspace{10.75cm} \forall\gamma'\in\Gamma \\
+\frac{\partial RHS_{\psi}}{\partial b_{\psi',\gamma',k}} & =
+-\beta\delta\sum_{j = 0}^{l}w_j (1-P_{\psi})R_{\psi,\gamma}(\delta)C_{\psi'}(\delta')^{-\chi_{c}}\Pi_{\psi'}(\delta')^{-2}\frac{\partial \Pi_{\psi'}(\delta')}{\partial b_{\psi',\gamma',k}} \nonumber \\
+&\hspace{10.75cm} \forall\gamma'\in\Gamma
+\end{align}
+
+
+\subsection*{Forward Looking Phillips Curve}
+\noindent 
+Recall that the Phillips Curve is defined numerically (using Gauss-Hermite integration) as 
+\begin{align}
+&\frac{Y_{\psi,\gamma}(\delta)}{C_{\psi,\gamma}(\delta)^{\chi_{c}}}\bigl[ \varphi (\tilde{\Pi}_{\psi,\gamma}(\delta) - 1)\tilde{\Pi}_{\psi,\gamma}(\delta) - (1 - \theta) - \theta (1-\tau)w_{\psi,\gamma}(\delta)\bigr] \nonumber \\ 
+& \hspace{1cm }=  \beta\delta\left[P_{\psi}, 1-P_{\psi}\right]\cdot
+\begin{bmatrix}
+\sum_{j = 0}^{l}w_j\frac{Y_{\psi}(\delta')}{C_{\psi}(\delta')^{\chi_{c}}}\varphi (\tilde{\Pi}_{\psi}(\delta') - 1)\tilde{\Pi}_{\psi}(\delta')\\
+\sum_{j = 0}^{l}w_j\frac{Y_{\psi'}(\delta')}{C_{\psi'}(\delta')^{\chi_{c}}}\varphi (\tilde{\Pi}_{\psi'}(\delta') - 1)\tilde{\Pi}_{\psi'}(\delta')
+\end{bmatrix}
+\end{align}
+where $w_j$ are the appropriate weights found in GH numerical integration, and $\delta'$ are future values of $\delta$. We will take derivatives of both the LHS and RHS with respect to all our coefficients.
+
+\subsubsection*{Left Hand Side}
+\begin{align}
+\frac{\partial LHS_{\psi}}{\partial a_{\psi,\gamma',k}} &=
+\begin{cases}
+\begin{aligned}
+\left(\frac{\partial Y_{\psi,\gamma}(\delta)}{\partial a_{\psi,\gamma',k}}C_{\psi,\gamma}(\delta)^{-\chi_c} - \chi_cC_{\psi,\gamma}(\delta)^{-\chi_c - 1}\frac{\partial C_{\psi,\gamma}(\delta)}{\partial a_{\psi,\gamma',k}}Y_{\psi,\gamma}(\delta)\right) \\
+\cdot \left(\varphi (\tilde{\Pi}_{\psi,\gamma}(\delta) - 1)\tilde{\Pi}_{\psi,\gamma}(\delta) - (1 - \theta) - \theta (1-\tau)w_{\psi,\gamma}(\delta)\right)\\
++ \left(\frac{Y_{\psi,\gamma}(\delta)}{C_{\psi,\gamma}(\delta)^{\chi_{c}}}\right)\left(- \theta (1-\tau)\frac{\partial w_{\psi,\gamma}(\delta)}{\partial a_{\psi,\gamma',k}}\right)
+\end{aligned} & \hspace{3.5cm}\text{if } \gamma' = \gamma \\
+0 & \hspace{3.5cm}\text{if } \gamma' \neq \gamma
+\end{cases}\\
+\frac{\partial LHS_{\psi}}{\partial b_{\psi,\gamma',k}} &=
+\begin{cases}
+\begin{aligned}
+\left(\frac{\partial Y_{\psi,\gamma}(\delta)}{\partial b_{\psi,\gamma',k}}C_{\psi,\gamma}(\delta)^{-\chi_c}\right)\left(\varphi (\tilde{\Pi}_{\psi,\gamma}(\delta) - 1)\tilde{\Pi}_{\psi,\gamma}(\delta) - (1 - \theta) - \theta (1-\tau)w_{\psi,\gamma}(\delta)\right) \\
++ \left(\frac{Y_{\psi,\gamma}(\delta)}{C_{\psi,\gamma}(\delta)^{\chi_{c}}}\right)\left(\left(\varphi\left(2\tilde{\Pi}_{\psi,\gamma}(\delta)\frac{\partial \tilde{\Pi}_{\psi,\gamma}(\delta)}{\partial b_{\psi,\gamma',k}} - \frac{\partial \tilde{\Pi}_{\psi,\gamma}(\delta)}{\partial b_{\psi,\gamma',k}}\right)\right) - \theta (1-\tau)\frac{\partial w_{\psi,\gamma}(\delta)}{\partial b_{\psi,\gamma',k}}\right)
+\end{aligned}& \text{if } \gamma' = \gamma \\
+0 & \text{if } \gamma' \neq \gamma
+\end{cases}\\
+\frac{\partial LHS_{\psi}}{\partial a_{\psi',\gamma',k}} &= 0 \hspace{13.72cm} \forall \gamma'\in\Gamma\\
+\frac{\partial LHS_{\psi}}{\partial b_{\psi',\gamma',k}} &= 0 \hspace{13.75cm} \forall \gamma'\in\Gamma
+\end{align}
+
+\subsubsection*{Right Hand Side}
+\begin{align}
+\frac{\partial RHS_{\psi}}{\partial a_{\psi,\gamma',k}} &= \beta\delta P_{\psi}\sum_{j = 0}^{l}w_j\left(\varphi(\tilde{\Pi}_{\psi}(\delta') - 1)\tilde{\Pi}_{\psi}(\delta')\right)\cdot\nonumber \\ 
+&\left(\frac{\partial Y_{\psi}(\delta')}{\partial a_{\psi,\gamma',k}}C_{\psi}(\delta')^{-\chi_c} - \chi_cC_{\psi}(\delta')^{-\chi_c - 1}\frac{\partial C_{\psi}(\delta')}{\partial a_{\psi,\gamma',k}}Y_{\psi}(\delta')\right) \\
+\frac{\partial RHS_{\psi}}{\partial b_{\psi,\gamma',k}} &=  \beta\delta P_{\psi}\sum_{j = 0}^{l}w_jC_{\psi}(\delta')^{-\chi_c}\cdot\nonumber \\ 
+&\left[\frac{\partial Y_{\psi}(\delta')}{\partial b_{\psi,\gamma',k}}\left(\varphi(\tilde{\Pi}_{\psi}(\delta') - 1)\tilde{\Pi}_{\psi}(\delta')\right) + Y_{\psi}(\delta')\left(\varphi\left(2\tilde{\Pi}_{\psi}(\delta')\frac{\partial \tilde{\Pi}_{\psi}(\delta')}{\partial b_{\psi,\gamma',k}} - \frac{\partial \tilde{\Pi}_{\psi}(\delta')}{\partial b_{\psi,\gamma',k}}\right)\right)\right]\\
+\frac{\partial RHS_{\psi}}{\partial a_{\psi',\gamma',k}} &= \beta\delta(1- P_{\psi})\sum_{j = 0}^{l}w_j\left(\varphi(\tilde{\Pi}_{\psi'}(\delta') - 1)\tilde{\Pi}_{\psi'}(\delta')\right)\cdot\nonumber \\ 
+&\left(\frac{\partial Y_{\psi'}(\delta')}{\partial a_{\psi',\gamma',k}}C_{\psi'}(\delta')^{-\chi_c} - \chi_cC_{\psi'}(\delta')^{-\chi_c - 1}\frac{\partial C_{\psi'}(\delta')}{\partial a_{\psi',\gamma',k}}Y_{\psi'}(\delta')\right) \\
+\frac{\partial RHS_{\psi}}{\partial b_{\psi',\gamma',k}} &=  \beta\delta(1- P_{\psi})\sum_{j = 0}^{l}w_jC_{\psi'}(\delta')^{-\chi_c}\cdot\nonumber \\ &\left[\frac{\partial Y_{\psi'}(\delta')}{\partial b_{\psi',\gamma',k}}\left(\varphi(\tilde{\Pi}_{\psi'}(\delta') - 1)\tilde{\Pi}_{\psi'}(\delta')\right) + Y_{\psi'}(\delta')\left(\varphi\left(2\tilde{\Pi}_{\psi'}(\delta')\frac{\partial \tilde{\Pi}_{\psi'}(\delta')}{\partial b_{\psi',\gamma',k}} - \frac{\partial \tilde{\Pi}_{\psi'}(\delta')}{\partial b_{\psi',\gamma',k}}\right)\right)\right] 
+\end{align}
+for all $\gamma'\in\Gamma$.
+
+
+\end{document}

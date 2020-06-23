@@ -1,0 +1,194 @@
+\documentclass[11pt]{article}
+\usepackage{scrextend}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{bm}
+
+\usepackage[section]{placeins}
+%\usepackage{dsfont}
+% \usepackage{bbm}
+
+\usepackage[nohead]{geometry}
+\usepackage[onehalfspacing]{setspace}
+\usepackage[bottom]{footmisc}
+\usepackage{indentfirst}
+\usepackage{endnotes}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{epstopdf}
+
+%\usepackage{epsfig}
+
+\usepackage{lscape}
+\usepackage{titlesec}
+\usepackage{array}
+
+%\usepackage{hyperref}
+
+\usepackage{flexisym}
+\usepackage{nccfoots}
+\usepackage{datetime}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{rotating}
+
+\usepackage[usenames,dvipsnames]{color}
+
+\usepackage[longnamesfirst]{natbib}
+\usepackage[justification=centering]{caption}
+
+%\usepackage{datetime}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+
+\definecolor{darkgray}{gray}{0.30}
+
+%\usepackage[dvips, colorlinks=true, linkcolor=darkgray,
+
+\usepackage[colorlinks=true, linkcolor=darkgray, citecolor=darkgray, urlcolor=darkgray, bookmarks=false, ,
+pdfstartview={FitV},
+pdftitle={Zero Bound Risk},
+pdfauthor={Taisuke Nakata},
+pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
+\usepackage{subfig}
+\usepackage{xcolor,colortbl}
+\usepackage{float}
+
+\newcommand*{\LargerCdot}{\raisebox{-.5ex}{\scalebox{2}{$\cdot$}}}
+
+\makeatletter
+\def\@biblabel#1{\hspace*{-\labelsep}}
+\makeatother
+\geometry{left=1.2in,right=1.2in,top=1in,bottom=1in}
+
+
+\begin{document}
+
+\title{Optimal Inflation Target in Model with EDLT: \\ Different Calibrations}
+\author{
+Philip Coyle\thanks{Board of Governors of the Federal Reserve System, Division of Research and Statistics, 20th Street and Constitution Avenue N.W. Washington, D.C. 20551; Email: philip.m.coyle@frb.gov.}\\
+Federal Reserve Board
+}
+\newdateformat{mydate}{\monthname[\THEMONTH] \THEYEAR}
+\date{\mydate\today}
+
+\maketitle
+
+\vspace{-0.3in}
+
+\section{Baseline Calibration: Optimal Inflation Target $=2$}
+\begin{figure}[!htb]
+	\begin{center}
+		\caption{Minimum Inflation Target Consistent with Target Regime Equilibrium Definition}
+		\includegraphics[scale=.65]{min_inf_targ/min_inftarg_sun.eps}\\
+	\end{center}
+\end{figure}
+\begin{figure}[!htb]
+	\begin{center}
+		\caption{Minimum Inflation Target Consistent with Target Zero Shock Regime Equilibrium Definition}
+		\includegraphics[scale=.65]{min_inf_targ/min_inftarg_sun_demand.eps}\\
+	\end{center}
+\end{figure}
+\begin{figure}[!htb]
+	\begin{center}
+		\caption{Welfare and the Inflation Target}
+		\includegraphics[scale=.65]{Fig_5/welfare_states.eps}\\
+	\end{center}
+\end{figure}
+\begin{figure}[!htb]
+	\begin{center}
+		\caption{Optimal Inflation Target with Alternative Probabilities of Moving to the Deflationary Regime}
+		\includegraphics[scale=.45]{Fig_6/opt_inf_vary_ps_pd.eps}\\
+	\end{center}
+\end{figure}
+
+\newpage
+\section{Baseline Calibration: Optimal Inflation Target $=1$}
+\begin{figure}[!htb]
+	\begin{center}
+		\caption{Minimum Inflation Target Consistent with Target Regime Equilibrium Definition}
+		\includegraphics[scale=.65]{SA/OptInf1/min_inf_targ/min_inftarg_sun.eps}\\
+	\end{center}
+\end{figure}
+\begin{figure}[!htb]
+	\begin{center}
+		\caption{Minimum Inflation Target Consistent with Target Zero Shock Regime Equilibrium Definition}
+		\includegraphics[scale=.65]{SA/OptInf1/min_inf_targ/min_inftarg_sun_demand.eps}\\
+	\end{center}
+\end{figure}
+\begin{figure}[!htb]
+	\begin{center}
+		\caption{Welfare and the Inflation Target}
+		\includegraphics[scale=.65]{SA/OptInf1/SA_Fig_5/welfare_states.eps}\\
+	\end{center}
+\end{figure}
+\begin{figure}[!htb]
+	\begin{center}
+		\caption{Optimal Inflation Target with Alternative Probabilities of Moving to the Deflationary Regime}
+		\includegraphics[scale=.45]{SA/OptInf1/SA_Fig_6/opt_inf_vary_ps_pd.eps}\\
+	\end{center}
+\end{figure}
+
+\newpage
+\section{Baseline Calibration: Optimal Inflation Target $=0.5$}
+\begin{figure}[!htb]
+	\begin{center}
+		\caption{Minimum Inflation Target Consistent with Target Regime Equilibrium Definition}
+		\includegraphics[scale=.65]{SA/OptInf1/min_inf_targ/min_inftarg_sun.eps}\\
+	\end{center}
+\end{figure}
+\begin{figure}[!htb]
+	\begin{center}
+		\caption{Minimum Inflation Target Consistent with Target Zero Shock Regime Equilibrium Definition}
+		\includegraphics[scale=.65]{SA/OptInf05/min_inf_targ/min_inftarg_sun_demand.eps}\\
+	\end{center}
+\end{figure}
+\begin{figure}[!htb]
+	\begin{center}
+		\caption{Welfare and the Inflation Target}
+		\includegraphics[scale=.65]{SA/OptInf05/SA_Fig_5/welfare_states.eps}\\
+	\end{center}
+\end{figure}
+\begin{figure}[!htb]
+	\begin{center}
+		\caption{Optimal Inflation Target with Alternative Probabilities of Moving to the Deflationary Regime}
+		\includegraphics[scale=.45]{SA/OptInf05/SA_Fig_6/opt_inf_vary_ps_pd.eps}\\
+	\end{center}
+\end{figure}
+
+\newpage
+\section{Alternative Calibration:Optimal Inflation Target $=2$}
+\begin{figure}[!htb]
+	\begin{center}
+		\caption{Minimum Inflation Target Consistent with Target Regime Equilibrium Definition}
+		\includegraphics[scale=.65]{SA/LongerCrisis/min_inf_targ/min_inftarg_sun.eps}\\
+	\end{center}
+\end{figure}
+\begin{figure}[!htb]
+	\begin{center}
+		\caption{Minimum Inflation Target Consistent with Target Zero Shock Regime Equilibrium Definition}
+		\includegraphics[scale=.65]{SA/LongerCrisis/min_inf_targ/min_inftarg_sun_demand.eps}\\
+	\end{center}
+\end{figure}
+\begin{figure}[!htb]
+	\begin{center}
+		\caption{Welfare and the Inflation Target}
+		\includegraphics[scale=.65]{SA/LongerCrisis/SA_Fig_5/welfare_states.eps}\\
+	\end{center}
+\end{figure}
+\begin{figure}[!htb]
+	\begin{center}
+		\caption{Optimal Inflation Target with Alternative Probabilities of Moving to the Deflationary Regime}
+		\includegraphics[scale=.45]{SA/LongerCrisis/SA_Fig_6/opt_inf_vary_ps_pd.eps}\\
+	\end{center}
+\end{figure}
+\end{document}
+
+
+
+

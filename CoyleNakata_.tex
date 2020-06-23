@@ -1,0 +1,1024 @@
+\documentclass[11pt]{article}
+\usepackage{scrextend}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{bm}
+
+%\usepackage{dsfont}
+% \usepackage{bbm}
+
+\usepackage[nohead]{geometry}
+\usepackage[onehalfspacing]{setspace}
+\usepackage[bottom]{footmisc}
+\usepackage{indentfirst}
+\usepackage{endnotes}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{subcaption}
+\usepackage{epstopdf}
+
+%\usepackage{epsfig}
+
+\usepackage{lscape}
+\usepackage{titlesec}
+\usepackage{array}
+
+%\usepackage{hyperref}
+
+\usepackage{flexisym}
+\usepackage{nccfoots}
+\usepackage{datetime}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{rotating}
+
+\usepackage[usenames,dvipsnames]{color}
+
+\usepackage[longnamesfirst]{natbib}
+\usepackage[justification=centering]{caption}
+
+%\usepackage{datetime}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+
+\definecolor{darkgray}{gray}{0.30}
+
+%\usepackage[dvips, colorlinks=true, linkcolor=darkgray,
+
+\usepackage[colorlinks=true, linkcolor=darkgray, citecolor=darkgray, urlcolor=darkgray, bookmarks=false, ,
+pdfstartview={FitV},
+pdftitle={Zero Bound Risk},
+pdfauthor={Taisuke Nakata},
+pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
+%\usepackage{subfig}
+\usepackage{xcolor,colortbl}
+\usepackage{float}
+
+\newcommand*{\LargerCdot}{\raisebox{-.5ex}{\scalebox{2}{$\cdot$}}}
+
+\makeatletter
+\def\@biblabel#1{\hspace*{-\labelsep}}
+\makeatother
+\geometry{left=1.2in,right=1.2in,top=1in,bottom=1in}
+
+
+\begin{document}
+	
+	\title{Optimal Inflation Target with\\Expectations-Driven Liquidity Traps\footnote{We thank Roberto Billi, Pablo Cuba-Borda, Yasuo Hirose, Sebastian Schmidt, and Yoichiro Tamanyu for useful discussions and suggestions. We also thank David Jenkins for his editorial assistance. The views expressed in this paper, and all errors and omissions, should be regarded as those of the authors and are not necessarily those of the Federal Reserve Board of Governors or the Federal Reserve System.}}
+	\author{
+		Philip Coyle\thanks{Board of Governors of the Federal Reserve System, Division of Research and Statistics, 20th Street and Constitution Avenue N.W. Washington, D.C. 20551; Email: philip.m.coyle@frb.gov.}\\
+		Federal Reserve Board
+		\and 
+		Taisuke Nakata\thanks{Board of Governors of the Federal Reserve System, Division of Research and Statistics, 20th Street and Constitution Avenue N.W. Washington, D.C. 20551; Email: taisuke.nakata@frb.gov.}\\
+		Federal Reserve Board
+	}
+	%\newdateformat{mydate}{First Draft: August 2018\\This Draft: \monthname[\THEMONTH] \THEYEAR \vspace{1em} \\ Preliminary and Incomplete \\ (Please do not circulate without permission.)}
+	\newdateformat{mydate}{First Draft: August 2018\\This Draft: \monthname[\THEMONTH] \THEYEAR}
+	\date{\mydate\today}
+	
+	\maketitle
+	
+	\vspace{-0.3in}
+	
+	\begin{center}
+		\textbf{Abstract}
+	\end{center}
+	\noindent In expectations-driven liquidity traps, a higher inflation target is associated with lower inflation and consumption. As a result, introducing the possibility of expectations-driven liquidity traps to an otherwise standard model lowers the optimal inflation target. Using a calibrated New Keynesian model with an effective lower bound (ELB) constraint on nominal interest rates, we find that even a very small probability of falling into an expectations-driven liquidity trap lowers the optimal inflation target nontrivially. Our analysis provides a reason to be cautious about the argument that central banks should raise their inflation targets in light of a higher likelihood of hitting the ELB.
+	
+	\vspace{5em}
+	
+	\noindent JEL: E32, E52, E61, E62, E63\\
+	
+	\noindent Keywords: Liquidity Traps, Optimal Inflation Target, Sunspot Shock, Zero Lower Bound.
+	
+	\newpage
+	
+	\section{Introduction}
+	\label{S:Introduction}
+	
+	The recent experiences with the effective lower bound (ELB) constraint in advanced economies have put the question of how central banks should manage the problems associated with the ELB constraint on nominal interest rates at the forefront of the monetary policy debate. One popular policy proposal to manage the consequences of the ELB constraint is to increase the inflation target. With a higher inflation target, the nominal interest rate would be higher on average. As a result, the probability that the policy rate is constrained by the ELB would be lower. Also, a higher inflation target mitigates the declines in output and inflation when the policy rate is constrained at the ELB by pushing down the expected real rate facing households and firms. With the long-run neutral real rates expected to be lower now and in the future compared with the past, some economists have suggested that central banks may want to increase the inflation target from the current 2 percent in advanced economies (\citet{Ball2013}; \citet{BlanchardDellAricciaMauro2010}).
+	
+	In this paper, we examine an argument for being cautious about raising the inflation target. The argument we examine is as follows. The policy rate may become constrained by the ELB not only because of fundamental shocks, but also because of self-fulfilling expectations (\citet{BenhabibSchmittGroheUribe2001} and \citet{Bullard2010}). In economies in which only fundamental shocks can push the policy rate to the ELB, the possibility of being constrained by the ELB increases the optimal inflation target for the reasons stated earlier. However, as first observed by \citet{MertensRavn2014}, a higher inflation target is associated with a lower output gap at the ELB if the policy rate is at the ELB because of self-fulfilling expectations, instead of fundamental shocks. One implication of this observation is that the optimal inflation target would decline if the possibility of falling into expectations-driven liquidity traps (LTs) is introduced to the standard model with the ELB. Using a standard New Keynesian model, we investigate the extent to which the possibility of expectations-driven LTs lowers the optimal inflation target. 
+	
+	Our main finding is that even a very small probability of expectations-driven LTs nontrivially lowers the optimal inflation target. Under various calibrations of the model, a 0.1 percent (quarterly) probability of falling into expectations-driven LTs typically lowers the optimal inflation target by more than 1 percentage point. With a 0.5 percent probability of expectations-driven LTs, the optimal inflation target is typically slightly negative.
+	
+	%---all of which are calibrated so that the optimal inflation target is 2 percent in the absence of expectations-driven LTs---
+	
+	The reason for the very high sensitivity of the optimal inflation target to the probability of expectations-driven LTs is somewhat technical. In the standard New Keynesian model, the persistence of the expectations-driven LT and the persistence of the fundamental-driven LT have to be sufficiently high and low, respectively, for the equilibrium to exist (\citet{NakataSchmidt2019}). As a result, even a small probability of falling into an expectations-driven LT implies an unconditional probability of being in an expectations-driven LT that is higher than the unconditional probability of being in a fundamental-driven LT, making expectations-driven LTs the primary concern for the central bank. When expectations-driven LTs are the primary concern, the optimal inflation target is negative. Thus, even a small probability of falling into an expectations-driven LT makes the optimal inflation target negative.
+	
+	%In our baseline calibration of the quantitative model, 0.5, 1, and 2 percent (quarterly) probabilities of falling into the expectations-driven LTs lowers the optimal inflation target by x, y, and z percentage points. [Elaborate]
+	
+	Our analysis is motivated by the observation that Japan's prolonged ELB experience may well be characterized as being primarily driven by self-fulfilling expectations rather than fundamental shocks (see, among others, \citet{AruobaCubaBordaSchorfheide2018}; \citet{Bullard2010}).\footnote{\citet{Bullard2010} makes this observation casually based on the historical constellation of the inflation rate and the policy rate in Japan. \citet{AruobaCubaBordaSchorfheide2018} provide formal econometric evidence that Japan has been in expectations-driven LTs for most of the past two decades using a nonlinear DSGE models that allows for a sunspot shock.} In Japan, both the output gap and inflation have been positive in the past few years. However, before that, inflation rates and the output gap had been negative for almost two decades. The combination of a slightly negative output gap and mild deflation with the nominal interest rate at the ELB constraint is consistent with the expectations-driven LT in the standard New Keynesian model. As we have learned over the past decade, what happens in Japan---though it may initially seem a theoretical curiosity for other countries--- may happen in other countries years later. Thus, our analysis will be relevant for thinking about the optimal inflation target not only in Japan, but also in other countries.\footnote{Not all economists agree that an expectations-driven LT is a good characterization of the Japanese ELB experience. See, for example, \citet{NishizakiSekineUeno2014}; \citet{Eichenbaum2017}.} 
+	
+	%\begin{figure}[!h]
+	%\begin{center}
+	%\caption{Inflation, Output Gap, and the Policy Rate\label{fig:JapanData}}
+	%\includegraphics[scale=0.7]{Figs/Fig_1/JpnTimeSeries.eps}\\
+	%\end{center}
+	%\footnotesize{Source: The measure of the output gap is based on the Bank of Japan's estimate produced by the Research and Statistics Division. The inflation rate is computed as the annualized percentage change (log difference) in the Core-Core Consumer Price Index of all items in Japan (Japanese Statistics Bureau). The quarterly average of the (annualized) Call rate, Uncollateralized Overnight/Average for Japan is used as the measure of the policy rate (St. Louis Fed's FRED).}
+	%\end{figure}
+	
+	Myriad factors that influence the optimal inflation target of an economy are absent in our model.\footnote{See, for example, \citet{KileyMauskopfWilcox2007}; \citet{KryvtsovMendes2015}.} In this paper, our goal is not to come up with a sensible policy recommendation about whether to change the inflation target of 2 percent currently adopted by many central banks. Rather, our goal is to highlight a factor that has been neglected in the literature and examine its quantitative relevance.
+	
+	Our paper is related to a set of papers that analyze the implications of alternative inflation targets in the interest rate feedback rule for the dynamics and welfare of economies with the ELB constraint. Earlier research on this topic includes \citet{ReifschneiderWilliams2000} and \citet{CoenenOrphanidesWieland2004} who use the FRB/US model---a large-scale macroeconometric models of the U.S. economy---to analyze how the volatilities of output and inflation are affected by the level of the inflation target.\footnote{See \citet{Williams2009}, \citet{Tulip2014}, and \citet{KileyRoberts2017} for more recent examples of analyses based on FRB/US model.} Our paper is most closely related to recent papers that compute the optimal inflation target in DSGE models, such as \citet{CoibionGorodnichenkoWieland2012}; \citet{Blanco2018}; \citet{CarrerasCoibionGorodnichenkoWieland2016}; and \citet{AndradeGaliLeBihanMatheron2018}.\footnote{Some economists compute the average inflation rate that prevails when the interest rate policy is conducted optimally and refer to that rate of inflation as the optimal rate of inflation. See, for example, \citet{Billi2011}.} None of these papers allows for expectations-driven LTs. Our focus is the implications of expectations-driven LTs for the optimal inflation target.\footnote{There is also one methodological difference between our paper and these papers. We work with a fully nonlinear macroeconomic model, while these authors work with semi-loglinear models in which all the equilibrium conditions are log-linearized except for the ELB constraint. The only exception is \citet{Blanco2018}.} 
+	
+	Our paper builds on \citet{MertensRavn2014}, who analyze the effects of exogenous fiscal shocks in a one-time temporary expectations-driven LT. While not their focus, they note an interesting feature of the expectations-driven LT---an increase in the inflation target lowers the output gap in an expectations-driven LT. Our work examines implications of this observation for the optimal inflation target. To do so, we go beyond their framework in which an expectations-driven LT is a one-time event and allow the expectations-driven LT to be recurring, as in \citet{AruobaCubaBordaSchorfheide2018}.
+	
+	Beyond \citet{MertensRavn2014}, our paper is related to various papers analyzing expectations-driven LTs. Some papers are focused on analyzing what policies may (or may not) eliminate this LT (\citet{AlstadheimHenderson2006}; \citet{Armenter2017}; \citet{BenhabibSchmittGroheUribe2002}; \citet{Schmidt2016}; \citet{SchmittGroheUribe2014}; \citet{SugoUeda2014}; \citet{NakataSchmidt2019}; and \citet{Tamanyu2019}). Others are focused on the dynamics in and out of this LT (\citet{AruobaCubaBordaSchorfheide2018}; \citet{Bilbiie2018}; \citet{CubaBordaSingh2018}; \citet{Hirose2007}; \citet{HiroseForthcoming}; \citet{SchmittGroheUribe2017}). The novelty of our paper is that we examine the implication of expectations-driven LTs for the optimal inflation target. 
+	
+	The rest of the paper is organized as follows. Section~\ref{S:StylizedModel} describes the stylized model and its calibration. Section~\ref{S:StylizedResults} describes the results from the stylize model. Section~\ref{S:Conclusion} concludes.
+	
+	
+	
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%========================================================== Model (Stylized Model)
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%\section{Stylized Model}
+	\section{Model}
+	\label{S:StylizedModel}
+	
+	We use a nonlinear New Keynesian model with Rotemberg pricing. Because the model is standard, we relegate the details of the model to Appendix~\ref{A:Details_Stylized}. The equilibrium conditions of the model are given by
+	
+	\begin{equation}
+		C_{t}^{-\chi_{c}} = \beta\delta_{t}R_{t}\mathrm{E_{t}}C_{t+1}^{-\chi_{c}}\Pi_{t+1}^{-1},\label{eq:CEE}
+	\end{equation}
+	\begin{equation}
+		w_{t}=N_{t}^{\chi_{n}}C_{t}^{\chi_{c}},\label{eq:IOC}
+	\end{equation}
+	\begin{equation}
+		\begin{multlined}
+			\frac{Y_{t}}{C_{t}^{\chi_{c}}}\left[\varphi \left(\frac{\Pi_{t}}{\bigl(\Pi^{targ}\bigr)^{\alpha}}-1\right)\frac{\Pi_{t}}{\bigl(\Pi^{targ}\bigr)^{\alpha}} - (1-\theta)- (1-\tau)\theta w_{t}\right]\\
+			\hspace{10em}= \beta\delta_{t}\mathrm{E_{t}}\frac{Y_{t+1}}{C_{t+1}^{\chi_{c}}}\varphi \left(\frac{\Pi_{t+1}}{\bigl(\Pi^{targ}\bigr)^{\alpha}}-1\right)\frac{\Pi_{t+1}}{\bigl(\Pi^{targ}\bigr)^{\alpha}},\label{eq:FLPC}
+		\end{multlined}
+	\end{equation}
+	\begin{equation}
+		Y_{t} = C_{t} + \frac{\varphi}{2}\left[\frac{\Pi_{t}}{\bigl(\Pi^{targ}\bigr)^{\alpha}}-1\right]^{2}Y_{t},\label{eq:ARC}
+	\end{equation}
+	\begin{equation}
+		Y_{t}=N_{t}, \label{eq:APF}
+	\end{equation}
+	\begin{equation}
+		R_{t} = \max \left[R_{ELB}, \quad\frac{\Pi^{targ}}{\beta\delta_t}\left(\frac{\Pi_{t}}{\Pi^{targ}}\right)^{\phi_{\pi}}\right].\label{eq:MP}
+	\end{equation}
+	
+	\noindent $C_{t}$, $N_{t}$, $Y_{t}$, $w_{t}$, $\Pi_{t}$, and $R_{t}$ are consumption, labor supply, output, real  wage, inflation, and the policy rate, respectively. Equation~\ref{eq:CEE} is the consumption Euler equation, equation~\ref{eq:IOC} is the intratemporal optimality condition of the household, and equation~\ref{eq:FLPC} is the optimality condition of the intermediate good producing firms relating today's inflation to real marginal cost today and expected inflation tomorrow (forward-looking Phillips curve). Equation~\ref{eq:ARC} is the aggregate resource constraint capturing the resource cost of price adjustment,  equation~\ref{eq:APF} is the aggregate production function, and equation~\ref{eq:MP} is the interest-rate feedback rule where $\Pi^{targ}$ is the central bank's inflation target.
+	
+	Note that the intercept of the interest-rate feedback rule is time-varying and depends on $\delta_{t}$. Under this policy rule, the effect the discount rate shock has on the economy through the consumption Euler equation is fully offset by a corresponding movement in the policy rate, as under optimal policy, unless the ELB constraint binds. This specification of the policy rule is often used in the ELB literature (see, for example, \citet{BonevaBraunWaki2016}; \citet{Eggertsson2011}). 
+	
+	We allow for a form of indexation in the specification of the price adjustment cost. Specifically, the price adjustment cost is a quadratic function of $\Pi_{t}/(\Pi^{targ})^{\alpha}$. If the indexation parameter, $\alpha$, is 1, there is no steady state cost of a non-zero inflation target. The smaller the indexation parameter is, the larger the steady state cost of a non-zero inflation target becomes. Thus, holding all other parameter values fixed, an increase in $\alpha$ increases the optimal inflation target. The key ingredient of our model---a higher inflation target lowers consumption and inflation in the deflationary regime---does not depend on the value of $\alpha$, as shown in Appendix~\ref{A:Alpha}. However, as we will discuss shortly in Section~\ref{S:Calibration}, one of our calibration principles is to make the optimal inflation target 2 percent in the model without expectations-driven LTs; Thus, it is necessary to allow for some degree of price indexation to achieve that goal.\footnote{It is common to not allow for any degree of price indexation in the literature computing the optimal inflation target (see, for example, \citet{CoibionGorodnichenkoWieland2012};  \citet{AndradeGaliLeBihanMatheron2018}). In our fully nonlinear model, we find that the optimal inflation target is only slightly positive under a wide range of parameter configurations unless we allow for some degree of price indexation.}
+	
+	$\delta_{t}$ is an exogenous shock to the household's discount rate and follows a two-state Markov process. It takes two values, $\delta_{N}=1$ and $\delta_{C}>1$, where $N$ and $C$ stand for \textbf{normal} and \textbf{crisis} states, respectively. The persistence of each state is given by
+	\begin{align}
+		& \text{Prob}(\delta_{t+1}=\delta_{N}|\delta_{t}=\delta_{N})= p_{N},\\
+		& \text{Prob}(\delta_{t+1}=\delta_{C}|\delta_{t}=\delta_{C})= p_{C}.
+	\end{align}
+	
+	As pointed out by \citet{BenhabibSchmittGroheUribe2002} and as illustrated in Figure~\ref{fig:FisherTaylor}, the coexistence of the Euler equation---which implies a Fisher relation---and the truncated Taylor rule means that there are two steady states: one in which the policy rate is above zero and inflation is at the target (the target steady state), and one in which the policy rate is zero and the gross rate of inflation is $\beta$ (the deflationary steady state). With an exogenous crisis shock, we have one equilibrium associated with each steady state: one that fluctuates around the target steady state, and one that fluctuates around the deflationary steady state. 
+	
+	\begin{figure}[!h]
+		\begin{center}
+			\caption{Target and Deflationary Steady States\label{fig:FisherTaylor}}
+			\includegraphics[scale=.8]{Figs/Final/FisherRelation.eps}\\
+		\end{center}
+	\end{figure}
+	
+	As in \citet{MertensRavn2014} and \citet{AruobaCubaBordaSchorfheide2018}, we introduce a two-state Markov sunspot shock, $s_{t}$, that allows the economy to transition between the target regime and the deflationary regime---the regime of an expectations-driven LT. $s_{t}$ takes two values, $T$ and $D$. When $s_{t}=T$, the economy is in the target regime. When $s_{t}=D$, the economy is in the deflationary regime. The persistence of each regime is given by
+	
+	\begin{align}
+		& \text{Prob}(s_{t}=T|s_{t}=T)= p_{T},\\
+		& \text{Prob}(s_{t}=D|s_{t}=D)= p_{D}.
+	\end{align}
+	
+	\noindent As discussed in Appendix~\ref{A:Existence} and analytically shown in \citet{NakataSchmidt2019}, there are restrictions on these transition probabilities for the sunspot equilibrium to exist. In particular, the persistence parameters for both target and deflationary regimes must be sufficiently high for the sunspot equilibrium to exist. Throughout the paper, we restrict our attention to the set of parameter values consistent with the existence of the sunspot equilibrium.  
+	
+	The value function associated with an equilibrium is given by the the expected discounted sum of future utility flows to the household. We can recursively write the value function as follows:
+	
+	\begin{equation}
+		V_{t} = u(C_{t},N_{t}) + \beta \delta_{t}\mathrm{E_{t}}V_{t+1},
+	\end{equation}
+	
+	\noindent where the per-period utility flow is given by
+	\begin{equation}
+		u(C_{t},N_{t}) : = \Bigg[\frac{C_{t}^{1-\chi_{c}}}{1-\chi_{c}}-\frac{N_{t}^{1+\chi_{n}}}{1+\chi_{n}}\Bigg]. 
+	\end{equation}
+	
+	\noindent The welfare of the economy is measured by the unconditional expected value.
+	
+	A recursive sunspot equilibrium of this stylized economy is given by a set of value and policy functions for $\{V(\delta,s)$, $C(\delta,s)$, $N(\delta,s)$, $Y(\delta,s)$, $w(\delta,s)$, $\Pi(\delta,s)$, $R(\delta,s)\}$ such that (i) the equilibrium conditions described above are satisfied, (ii) the policy rate in the normal state of the target regime is above the ELB, and (iii) the policy rate in the normal state of the deflationary regime is at the ELB. That is, we require that 
+	
+	\begin{align}
+		& R(\delta=\delta_{N},s=T) = \frac{\Pi^{targ}}{\beta\delta_t}\left(\frac{\Pi(\delta=\delta_{N},s=T)}{\Pi^{targ}}\right)^{\phi_{\pi}} > 1,\\
+		& R(\delta=\delta_{N},s=D) = 1,\\
+		& \frac{\Pi^{targ}}{\beta\delta_t}\left(\frac{\Pi(\delta=\delta_{N},s=D)}{\Pi^{targ}}\right)^{\phi_{\pi}} < 1.
+	\end{align}
+	
+	Following \citet{MertensRavn2014} and \citet{AruobaCubaBordaSchorfheide2018}, we focus on a recursive equilibrium in which the allocations today depend only on the realization of the crisis shock and the sunspot shock. In the deflationary regime, the Taylor principle is violated. As a result, there are infinitely many equilibria in the deflationary regime in which allocations today depend on past allocations and sunspot shocks---that are unrelated to the sunspot shock in this paper that dictates whether the economy is in the target or deflationary regime. Our equilibrium definition rules out these equilibria.\footnote{See \citet{Hirose2007} and \citet{HiroseForthcoming} for in-depth analyses on these equilibria.}
+	
+	
+	\subsection{Calibration}
+	\label{S:Calibration}
+	
+	We set $\chi_{C}$, $\chi_{N}$, and $\theta$ to 1, 1, and 11, respectively. These are in line with the standard values in the literature. A production subsidy, $\tau$, is set to $1/\theta$ so as to eliminate the distortion associated with monopolistic competition in the product market. With this value of $\tau$, the level of consumption and labor supply are efficient if the inflation target is 0 percent and if there are no shocks. For the policy rule, the inflation response coefficient, $\phi_{\pi}$, is set to 2 and the ELB, $R_{ELB}$, is set to 1. While we solve our model under a number of different values of the inflation target parameter to determine the optimal inflation target, we will closely examine the dynamics of the model under 0 percent and 2 percent inflation targets to understand the key forces of the model.
+	
+	Conditional on the aforementioned parameters and the persistence parameters that will be discussed shortly, the price adjustment cost parameter ($\varphi$), the degree of indexation ($\alpha$), and the size of the crisis shock ($\delta_{C}$) are chosen so that (i) consumption falls about 7 percent and inflation declines by about 2 percentage points in the crisis state of the target regime, and (ii) the optimal inflation target is 2 percent in the absence of the sunspot shock. The severity of a crisis is in line with those considered in \citet{BonevaBraunWaki2016} and \citet{HillsNakata2018}. 
+	
+	\begin{table}[!htp]
+		{\small
+			\begin{center}
+				\caption{Baseline Parameter Values for the Stylized Model\label{tab:ParameterValues_Basic}}
+				\vspace{-1.5em}
+				\begin{tabular}{llc}
+					\multicolumn{3}{c}{}\\
+					Parameter & Description  & Parameter Value  \\
+					\hline
+					\hline
+					$\beta$      & Discount rate & $\frac{1}{1+0.0025}$ \\
+					$\chi_{c}$   & Inverse intertemporal elasticity of substitution for $C_{t}$ & 1\\
+					$\chi_{n}$   & Inverse labor supply elasticity & 1  \\
+					$\theta$     & Elasticity of substitution among intermediate goods & 11 \\
+					$\tau$       & Production subsidy & $1/\theta$\\
+					$\varphi$    & Price adjustment cost & 1038\\
+					$\alpha$     & Degree of indexation & 0.893\\
+					\hline
+					$400(\Pi^{targ}-1)$ & Inflation target in the Taylor rule & [0, 2]\\
+					$\phi_{\pi}$ & Coefficient on inflation in the Taylor rule & 2\\
+					$R_{ELB}$    & Effective lower bound & 1\\
+					\hline
+					$\delta_{C}$ & Size of the crisis shock & 1.0165\\
+					$p_{N}$ & Persistence of the normal state  & 0.995\\  
+					$p_{C}$ & Persistence of the crisis state     & 0.75\\
+					\hline
+					$p_{T}$ & Persistence of the target regime     & 0.995\\  
+					$p_{D}$ & Persistence of the deflationary regime & 0.975\\
+					\hline
+					\hline
+				\end{tabular}
+			\end{center}
+		}
+		\vspace{-0.5em}
+	\end{table}
+	
+	The persistence of the normal state and the persistence of the crisis state are set to 0.995 and 0.75, respectively. The normal state persistence of 0.995 implies that the crisis shock hits the economy, on average, once in 50 years. The crisis state persistence of 0.75 implies that the crisis shocks lasts for one year on average. We will also consider other values of $p_{C}$ and $p_{N}$ for sensitivity analyses.
+	
+	As a baseline, we set the persistence of the deflationary regime to 0.975, which implies an expected duration of the deflationary regime of 10 years. With this persistence, the decline of output in the normal state of the deflationary regime is about 1 percent.\footnote{This level of the output gap during the expectations-driven LT is broadly in line with the average output gap during the prolonged ELB episode in Japan.} We will also consider some alternative values for the deflationary regime persistence for a sensitivity analysis. We use the target regime persistence of 0.995---which implies an expected duration of the target regime of 50 years---as our baseline, but we compute the optimal inflation target for a wide range of values to understand how the probability of moving from the target regime to the deflationary regime affects the optimal inflation target. 
+	
+	In the model, there are four states (two states for the sunspot shock and two states for the natural rate shock); thus, solving for the policy functions amounts to solving a system of nonlinear equations. We used Matlab's built-in nonlinear equation solver, \texttt{fsolve}, to solve our model.
+	
+	%Note that the more transitory the expectations-driven LT is, the lower the output gap during the expectations-driven LT, as discussed in Appendix~\ref{A:pTpD}.
+	
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%========================================================== Results (Stylized Model)
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	\section{Results}
+	\label{S:StylizedResults}
+	
+	We first discuss how the inflation target affects allocations and welfare in a version of the model with a crisis shock only. Next, we discuss how the inflation target affects allocations and welfare in a version of the model with a sunspot shock only. Finally, we discuss the optimal inflation target in the model with both a crisis shock and a sunspot shock.
+	
+	\subsection{Optimal inflation target in the model with a crisis shock only}
+	
+	Figure~\ref{fig:IRFs_Target} shows the dynamics of the economy in the model with a crisis shock only under 0 percent and 2 percent inflation targets. The economy is in the normal state from period 1 to period 5. The crisis shock hits the economy at period 6, and stays there until period 10. The economy is back in the normal state thereafter. 
+	
+	When the inflation target is zero---the case shown by the solid black lines---inflation and the output gap are close to the target and the policy rate is positive in the normal state.\footnote{Inflation and the output gap are not exactly zero because of the anticipation effects of being constrained by the ELB in the future. See \citet{HillsNakataSchmidt2016} and \citet{NakataSchmidtForthcomingJME} for detailed analyses on the anticipation effects associated with the ELB constraint.} When the crisis shock hits the economy, the central bank lowers the policy rate, trying to offset the adverse effects of the shock, but the ELB constraint prevents the central bank from fully neutralizing the effects of the shock: Inflation and consumption decline and the policy rate is at the ELB. 
+	
+	%inflation and consumption decline and the policy rate hits the ELB constraint. Because the ELB constraint limits the ability of the central bank to provide accommodation, the declines in inflation and the output gap in the crisis state are larger than they would be in the absence of the ELB.
+	
+	\begin{figure}[!h]
+		\begin{center}
+			\caption{Allocations under a crisis shock\label{fig:IRFs_Target}}
+			\includegraphics[scale=.65]{Figs/Final/demand_only_IRFs.eps}\\
+		\end{center}
+		%\footnotesize{Source: .}
+	\end{figure}
+	
+	
+	\begin{figure}[t]
+		\caption{AD and AS Curves in the Crisis State and in the Deflationary Regime} \label{fig:ASAD}
+		\begin{center}
+			\begin{subfigure}[b]{0.4\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{Figs/Final/AS_AD_plot_cALPHAstar_demand_largeax.eps}
+				%					\caption{Model with Zero Inflation Target}
+				%					\label{fig:RAFR_Baseline}
+			\end{subfigure}
+			\hspace{0.5cm}  
+			\begin{subfigure}[b]{0.4\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{Figs/Final/AS_AD_plot_cALPHAstar_sunspot_largeax.eps}
+				%					\caption{Model with Positive Inflation Target}
+				%					\label{fig:RAFR_Baseline_inftarg}
+			\end{subfigure}
+		\end{center}
+	\end{figure}
+	%	\begin{figure}[!h]
+	%		\begin{center}
+	%			\caption{Welfare and the Inflation Target\label{fig:Welfare_Stylized}}
+	%			\includegraphics[scale=.65]{Figs/Final/welfare_states.eps}\\
+	%		\end{center}
+	%		%\footnotesize{Source: .}
+	%	\end{figure}
+	
+	\begin{figure}[!h]
+		\begin{center}
+			\caption{Welfare and the Inflation Target\label{fig:Welfare_Stylized}}
+			\includegraphics[scale=.65]{Figs/Final/ct_states.eps}\\
+		\end{center}
+		\footnotesize{Note: For each model, welfare is measured by the perpetual consumption transfer---expressed as a percentage of consumption at the deterministic steady state of the target regime---we need to give to the household in the version of the economy without the ELB so that it is as well-off as the household in the economy with the ELB.}
+	\end{figure}
+	
+	The dashed blue lines in Figure~\ref{fig:IRFs_Target} show the dynamics of the economy when the inflation target is 2 percent. In the normal state, a higher inflation target implies higher inflation and a higher policy rate because the Taylor rule is operative. Higher inflation increases the price adjustment cost and thus lowers consumption, though these effects are very small in our baseline calibration.\footnote{In models with a Calvo-pricing, a higher inflation lowers output by increasing higher price dispersion. The output cost of higher inflation in Rotemberg and Calvo pricing models can be seen as capturing various costs associated with high inflation in reduced-form ways.} Higher normal state inflation leads to a lower expected real interest rate in the crisis state in which the policy rate is constrained at the ELB, mitigating the declines in inflation and consumption in the crisis state: In the crisis state, inflation and consumption are higher under the 2 percent inflation target than under the 0 percent inflation target. 
+	
+	These favorable effects of a higher inflation target on crisis state inflation and consumption can be fully understood by examining how an increase in the inflation target affects crisis state AD and AS curves---the set of consumption-inflation pairs consistent with the consumption Euler equation and the Phillips curve in the crisis state, respectively. A higher inflation target means that inflation is higher in the normal state, because the Taylor rule operates in the normal state. When there is a positive probability of returning to the normal state---holding the crisis state inflation rate fixed---higher normal state inflation leads to higher inflation expectations and thus a lower expected real rate in the crisis state in which the ELB bind. The consumption Euler equation requires that crisis state consumption increases when the expected real rate declines. Thus, the AD curve shifts to the right. At the same time, the Phillips curve requires that crisis state inflation increases with normal state inflation---holding crisis state consumption fixed---because firms are forward-looking in their pricing decision. Thus, the AS curve shifts up. Taken together, these shifts in the AD and AS curves mean that, in equilibrium, an increase in the inflation target leads to higher inflation and consumption in the crisis state.
+	
+	%To take a closer look at the effect of the higher inflation target on the crisis state allocation. the left panel of Figure X shows crisis state AS and AD curves---the set of consumption-inflation pairs consistent with the consumption Euler equation and the Phillips curve in the crisis state, respectively---under the inflation target of 0 percent and 2 percent. A higher inflation target means that inflation is higher in the normal state. For a given inflation rate in the crisis state, according to the consumption Euler equation, a higher inflation in the normal state means a lower expected real rate and thus higher consumption in the crisis state. Thus, the AD curve shifts to the right. For a given consumption in the crisis state, according to the Phillips curve, higher inflation in the normal state leads to higher inflation in the crisis state, pushing up the AS curve. These shifts in the AS and AD curves in equilibrium means higher inflation and consumption with a higher inflation target.
+	
+	All told, there is a simple trade-off in adjusting the inflation target in this model with a crisis shock only. On the one hand, a higher inflation target is associated with inefficiently low consumption in the normal state. On the other hand, a higher inflation target is associated with better stabilization outcomes in the crisis state.\footnote{In models with a continuous shock, there is an additional benefit of raising the inflation target, which is that a higher inflation target lowers the probability of being constrained by the ELB.} Reflecting this trade-off, welfare is a concave function of the inflation target, as shown in the left panel of Figure~\ref{fig:Welfare_Stylized}. As discussed earlier, the degree of indexation is chosen so that welfare attains its maximum at 2 percent, indicated by the vertical blue line.
+	
+	\subsection{Optimal inflation target in the model with a sunspot shock only}
+	
+	Figure~\ref{fig:IRFs_Deflationary} shows the dynamics of the model with a sunspot shock only. The economy is in the target regime from period 1 to period 5. The sunspot shock hits the economy at period 6 and stays there until period 10 -- that is, the economy is in the deflationary regime from period 6 to 10. The economy is back in the target regime thereafter. 
+	
+	\begin{figure}[!h]
+		\begin{center}
+			\caption{Allocations under a sunspot shock\label{fig:IRFs_Deflationary}}
+			\includegraphics[scale=.65]{Figs/Final/sunspot_only_IRFs.eps}\\
+			%\includegraphics[scale=1.2]{fig/Deflationary.eps}\\
+		\end{center}
+		%\footnotesize{Source: .}
+	\end{figure}
+	
+	When the inflation target is zero---shown by the solid black lines---the policy rate is positive, inflation is essentially zero, and consumption is slightly above the efficient level in the target regime. When the economy moves to the deflationary regime, the policy rate hits the ELB, inflation falls by 1 percentage point, and consumption declines by 1/2 percentage point. 
+	
+	When the inflation target is 2 percent---shown by the dashed blue lines---the policy rate is close to 3 percent, inflation is slightly below 2 percent, and consumption is slightly above the efficient level in the target regime. When the economy moves to the deflationary regime, the policy rate hits the ELB and inflation and consumption fall. Inflation is about negative 1.5 percent and consumption is about 3 percent below the efficient level under the 2 percent inflation target. Inflation and consumption are nontrivially lower in the deflationary regime under the 2 percent inflation target than under the 0 percent inflation target. 
+	
+	These adverse effects of a higher inflation target on the deflationary regime inflation and consumption can be understood through AS and AD curves in the deflationary regime. As in the model with a crisis shock only, a higher inflation target means higher inflation in the target regime. When there is a positive probability of returning to the target regime---holding the deflationary regime inflation rate fixed---higher target regime inflation means higher inflation expectations, a lower expected real rate, and higher consumption in the deflationary regime.\footnote{If the deflationary regime is an absorbing regime, a change in the inflation target does not affect inflation and output in the deflationary regime, as pointed out by \citet{CubaBordaSingh2018}.} Thus, the AD curve shifts to the right. Similar to what we saw in the model with a crisis shock only, the Phillips curve requires that higher target regime inflation leads to higher deflationary regime inflation, holding the deflationary regime consumption fixed, causing the AS curve to shift up. These shifts in the AD and AS curves mean that, in equilibrium, a higher inflation target leads to lower inflation and consumption in the deflationary regime.
+	
+	Although the effects of a higher inflation target on the AD and AS curves in the deflationary regime are the same as those in the crisis state we examined earlier, they have the opposite equilibrium implications in the deflationary regime. In the crisis state, the AD curve is steeper than the AS curve. However, in the deflationary regime, the AD curve is flatter than the AS curve. Thus, a shift of the AD or AS curve in the same direction leads to the opposite equilibrium effects in inflation and consumption.
+	
+	%In the deflationary regime, a higher inflation target is associated with lower inflation and consumption because of the following reason. A higher inflation target means higher inflation in the target regime. On the one hand, when there is a possibility of escaping the deflationary regime, all else equal, higher inflation in the target regime lowers the expected real rate in the deflationary regime. Thus, to support the same level of consumption in the deflationary regime, the optimizing behavior of the household---as embodied in consumption Euler equation---requires that inflation in the deflationary regime has to decline. The solid and dashed blue lines in Figure~\ref{fig:ASAD} capture the necessity of the deflationary regime inflation to decline to support the same level of consumption when the inflation target increases. In this figure, the solid and dashed blue lines show the pair of the deflationary regime consumption and inflation consistent with the consumption Euler equation under 0 and 2 percent inflation target, respectively.
+	
+	%On the other hand, according to the Phillips curve, given the same level of consumption, higher inflation in the target regime is associated with a higher inflation in the deflationary regime because price-setters are forward looking. The solid and dashed black lines in Figure~\ref{fig:ASAD} capture this necessity of the deflationary regime inflation to increase to support the same level of consumption when the inflation target increases. In equilibrium, when the inflation target increases, both inflation and consumption have to decline in the deflationary regime so as to be consistent with the optimizing behaviors of households and price-setters embodied in the consumption Euler equation and the Phillips curve. 
+	
+	%	\begin{figure}[!h]
+	%		\begin{center}
+	%			\caption{Euler Equation and Phillips Curve in the Deflationary Regime\label{fig:ASAD}}
+	%			\includegraphics[scale=.4]{Figs/Final/AS_AD_plot_cALPHAstar_sunspot_largeax.eps}\\
+	%		\end{center}
+	%		%\footnotesize{Source: .}
+	%	\end{figure}
+	
+	All told, in the model with a sunspot shock only, a higher inflation target worsens the allocations in both the target and deflationary regimes. Thus, welfare is higher when the inflation target is lower, as shown in the middle panel of Figure~\ref{fig:Welfare_Stylized}.\footnote{Sunspot equilibrium does not exist when the inflation target is sufficiently low, as discussed in Appendix B. The lowest value of the inflation target in this panel is the lowest value of the inflation target consistent with the existence of the sunspot equilibrium.} 
+	
+	\subsection{Model with both a crisis shock and a sunspot shock}
+	
+	Because a higher inflation target is associated with lower welfare in the model with a sunspot shock, if we introduce the sunspot shock to the model with a crisis shock only, the optimal inflation target declines. The solid line in the right panel of Figure~\ref{fig:Welfare_Stylized} shows how the welfare of the economy depends on the inflation target in the model with both a crisis shock and a sunspot shock. The welfare is maximized at negative $0.6$ percent, the lowest value of the inflation target consistent with the existence of the sunspot equilibrium and $2.6$ percentage points lower than that in the economy with a crisis shock only and essentially the same as that in the economy with a sunspot shock only.
+	
+	\begin{figure}[!h]
+		\begin{center}
+			\caption{Optimal Inflation Target with Alternative Probabilities of Moving to the Deflationary Regime\label{fig:OptimalPiTarg_Stylized}}
+			\includegraphics[scale=0.8]{Figs/Final/opt_inf_vary_ps_pd.eps}\\
+		\end{center}
+		%\footnotesize{Source: .}
+	\end{figure}
+	
+	The extent to which the sunspot shock lowers the inflation target depends on how likely it is for the economy to be in the deflationary regime. In Figure~\ref{fig:OptimalPiTarg_Stylized}, we show how the optimal inflation target varies with the probability of moving from the target regime to the deflationary regime under our baseline calibration. According to the figure, the optimal inflation declines as the persistence of the target regime declines---in other words, the probability of moving from the target regime to the deflationary regime increases---for any given persistence of the deflationary regime. With the target regime persistence of 0.998 and 0.999, the optimal inflation target is $0.1$ percent and negative $0.3$ percent, respectively. %For any given persistence of the target regime, the optimal inflation target is lower when the persistence of the deflationary regime is higher. 
+	
+	%With the deflationary regime persistence of 0.95 and 0.99, the optimal inflation target is minus $0.54$ percent and minus $0.62$ percent, respectively.
+	
+	The effect of the sunspot shock on the optimal inflation target dominates that of the crisis shock because the unconditional probability of being in the deflationary regime is much higher than the unconditional probability of being in the crisis state, unless the transition probability of moving from the target regime to the deflationary regime ($p_{T}$) is very small. To see this point, Figure~\ref {fig:UncProb} shows the unconditional probabilities of being in the deflationary regime for a range of $p_{T}$ (solid black line) with other transition probability parameters fixed at their baseline values. Under our baseline value, $p_{T}=0.995$, the unconditional probability of the deflationary regime is 16.6 percent, about 8 times as large as the unconditional probability of the crisis state, which is 2 percent as shown by the dashed black line. Only when $p_{T}$ is very close to 1 (higher than 0.9995, to be specific) is the unconditional probability of the crisis state higher than the unconditional probability of the deflationary regime.
+	
+	\begin{figure}[!h]
+		\begin{center}
+			\caption{Unconditional Probability of Being in a Crisis State or Deflationary Regime\label{fig:UncProb}}
+			\includegraphics[scale=0.8]{Figs/Final/uncprob.eps}\\
+		\end{center}
+		%\footnotesize{Source: .}
+	\end{figure}
+	
+	The unconditional probability of the deflationary regime being much higher than the unconditional probability of the crisis state is a necessary by-product of the equilibrium existence conditions on the transition probabilities of the crisis shock and the sunspot shock. For an equilibrium to exist in the model with a crisis shock, the persistence of the crisis state has to be sufficiently low (\citet{NakataSchmidtForthcomingJME}; Appendix~\ref{A:Existence}); for an equilibrium to exist in the model with a sunspot shock, the persistence of the deflationary regime has to be sufficiently high (\citet{NakataSchmidt2019}; Appendix~\ref{A:Existence}). Thus, unless the transition probability from the target regime to the deflationary regime is very high (it is very unlikely for an economy to fall into expectation-driven LTs) or the transition probability from the normal state to the crisis state is very low (it is very likely for an economy to be hit by a crisis shock) the unconditional probability of the deflationary regime is higher than the unconditional probability of the crisis state.
+	
+	\subsection{Sensitivity analysis}
+	
+	We have just seen that the extent to which the possibility of falling into an expectations-driven LT lowers the optimal inflation target depends on the likelihood of being in an expectations-driven LT relative to the likelihood of being in a fundamental-driven LT. Thus, the optimal inflation target is higher under alternative calibrations in which the unconditional probability of being in an expectations-driven LT is lower than that in our baseline calibration calibration or those in which the unconditional probability of being in a fundamental-driven LT is higher than that in our baseline. 
+	
+	%In our baseline calibration, the unconditional probability of being in an expectations-driven LT (\emph{i.e.} being in the normal and crisis state of the deflationary regime) is $16.6$ percent, whereas the unconditional probability of being in a fundamental-driven LT (\emph{i.e.} being in the crisis state of the target or deflationary regime) is $2$ percent. Accordingly, the optimal inflation target in the model with both shocks is closer to the optimal target in the model with a sunspot shock only than to the optimal target in the model with a fundamental shock only.\footnote{As discussed in Appendix~\ref{A:Existence}, the deflationary state has to be persistent for the equilibrium to exist, whereas the crisis state has to be sufficiently transitory for the equilibrium to exist. As a result, as long as the persistence of the normal state is not too different from the persistence of the target state, the unconditional probability of being in a expectations-driven LT is higher than the unconditional probability of being in an fundamental-driven LT.}
+	
+	\begin{figure}[!h]
+		\begin{center}
+			\caption{Optimal Inflation Target with Alternative Probabilities of Moving to the Deflationary Regime\label{fig:OptimalPiTarg_SA}}
+			\includegraphics[scale=.5]{Figs/Final/opt_inf_vary_ps_sa.eps}\\
+		\end{center}
+		%\footnotesize{Source: .}
+	\end{figure}
+	
+	%Thus, the optimal inflation target is higher under alternative calibrations in which the unconditional probability of being in the fundamental-driven LT is higher than that in our baseline calibration. 
+	In the top-right, top-left, and bottom-left panels of Figure~\ref{fig:OptimalPiTarg_SA}, we show two alternative calibrations of the model with lower deflationary regime persistence ($p_{D}$), lower crisis shock persistence ($p_{C}$), and lower crisis shock frequency---equivalently, higher normal state persistence ($p_{N}$)---respectively. In each panel, these alternative calibrations are displayed by the dashed and dash-dotted lines. In the top-right and bottom-left panels, when we vary the crisis shock persistence and frequency, the crisis shock size, price adjustment cost ($\varphi$), and the degree of indexation ($\alpha$) are adjusted to be consistent with the calibration principle outlined earlier. 
+	
+	The top-left panel shows that the lower deflationary regime persistence, the higher the optimal inflation target. The top-right and bottom-left panels show that the higher the crisis persistence or the crisis frequency---both of which implies a higher unconditional probability of being in the crisis state---the higher the optimal inflation target. 
+	
+	%the extent to which the optimal inflation target \textit{declines} as the probability of falling into the expectations-driven LT increases depends on the level of the optimal inflation target in the absence of the sunspot shock. 
+	
+	Finally, in the bottom-right panel of Figure~\ref{fig:OptimalPiTarg_SA}, we show two alternative calibrations---shown by the dashed and dash-dotted lines---in which the crisis shock size, $\varphi$, and $\alpha$ are chosen so that the optimal inflation target is 0.5 percent and 1 percent in the model with the crisis shock only, respectively. This exercise is motivated by the possibility that the ELB is the only reason why the central bank aims for a positive inflation target and that the ELB accounts for only a part of the stated inflation target by central banks.\footnote{One commonly cited reason for having a positive inflation target, besides the ELB, is an upward bias in the measured rate of inflation. See, for example, \citet{KileyMauskopfWilcox2007}.} In these alternative calibrations, because the optimal inflation target is lower to begin with, the possibility of falling into the expectations-driven LT reduces the optimal inflation target by less than it does in the baseline calibration.
+	
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%========================================================== Empirical Model
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%\section{Analysis from an Empirical Model}
+	%\label{S:EmpiricalModel}
+	
+	%Having explained why the possibility of expectations-driven LTs affects the optimal inflation target, we now quantitatively examine the extent to which that possibility alters the optimal inflation target in an empirically richer model with a few state variables and multiple shocks.
+	
+	%In the future version of the paper, we present the results from a quantitative model in this section.
+	
+	%\subsection{Model}
+	
+	%[To be completed]
+	
+	%\subsection{Calibration}
+	
+	%[To be completed]
+	
+	%\subsection{Results}
+	
+	%[To be completed]
+	
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%========================================================== Discussion
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%\section{Discussion}
+	%\label{S:Discussion}
+	
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%========================================================== Conclusion
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	\section{Conclusion}
+	\label{S:Conclusion}
+	
+	In this paper, we examine how the possibility of falling into expectations-driven LTs affects the optimal inflation target. Using a calibrated New Keynesian model, we find that even a very small probability of expectations-driven LTs nontrivially lowers the optimal inflation target under a wide range of parameter values. Our paper highlights a factor that has been neglected in the literature and the policy debate regarding the optimal inflation target. Because myriad factors influence the judgment on whether central banks should increase their inflation target in light of the ELB consideration, caution is of course warranted in drawing any policy implications from our exercise.
+	
+	One limitation of our analysis---shared by other papers on this topic---is that we are silent about why an economy may fall into the expectations-driven LT or why it may escape from it. In particular, we assume that the transition probabilities governing the sunspot shock are exogenous to the conduct of monetary policy. According to a commonly told narrative of the Japanese policy by seasoned observers (see, for example, \citet{Hayakawa2016Book}), one rationale for the aggressive monetary policy easing in Japan that started in 2013---including an official adaptation of the 2 percent inflation target---is that the aggressive easing may help push the Japanese economy out of the expectations-driven LT. While it is plausible that a change in some aspects of the monetary policy can affect the likelihood of falling into an expectations-driven LT, we followed the literature and excluded such a possibility in this paper. We leave the investigation of such a possibility to future research.
+	
+	
+	\newpage
+	\bibliographystyle{econometrica}
+	\bibliography{All}
+	
+	
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%========================================================== Appendix
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	%==========================================================
+	\newpage
+	\appendix
+	\begin{center}
+		\textbf{\LARGE{Technical Appendix for Online Publication}}
+	\end{center}
+	
+	\begin{singlespace}
+		
+		\vspace{2em}
+		\noindent This technical appendix is organized as follows:
+		\begin{itemize}
+			\item Section~\ref{A:Details_Stylized} describes the details of the stylized model.
+			\item Section~\ref{A:Existence} describes the conditions under which the equilibrium exists for the model with a demand shock and/or sunspot shock. 
+			\item Section~\ref{A:SemiLoglinearModel} presents some analytical results on the effect of a higher inflation target in a semi-loglinear New Keynesian model.
+			\item Section~\ref{A:Alpha} discusses the effect of a higher inflation target in the nonlinear model with alternative values of $\alpha$.
+			%\item Section~\ref{A:pTpD} analyzes how $p_{T}$ and $p_{D}$ affect the allocations in the recursive sunspot equilibrium.
+			%\item Section~\ref{A:SolutionAlgorithm} explains the solution algorithm for the empirical model.
+		\end{itemize}
+		
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%========================================================== Details of the Stylized model
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		\section{Details of the Stylized Model}
+		\label{A:Details_Stylized}
+		
+		\normalsize{This section describes a stylized DSGE model with a representative household, a final good producer, a continuum of intermediate goods producers with unit measure, and government policies.}
+		
+		\subsection{Household}
+		
+		\normalsize{The representative household chooses its consumption level, amount of labor, and bond holdings so as to maximize the expected discounted sum of utility in future periods. As is common in the literature, the household enjoys consumption and dislikes labor. Assuming that period utility is separable, the household problem can be defined by}
+		\begin{equation}
+			\max\limits_{C_{t},N_{t},B_{t}}\mathrm{E_{1}}\sum\limits_{t=1}^{\infty}\beta^{t-1}\Bigg[\prod\limits_{s=0}^{t-1}\delta_{s}\Bigg]\Bigg[\frac{C_{t}^{1-\chi_{c}}}{1-\chi_{c}}-\frac{N_{t}^{1+\chi_{n}}}{1+\chi_{n}}\Bigg],
+		\end{equation}
+		\normalsize{subject to the budget constraint}
+		\begin{equation}
+			P_{t}C_{t} + R_{t}^{-1}B_{t} \leq W_{t}N_{t}+B_{t-1}+P_{t}\Phi_{t}, %+P_{t}T_{t}
+		\end{equation}
+		\normalsize{or equivalently}
+		\begin{equation}
+			C_{t} + \frac{B_{t}}{R_{t}P_{t}} \leq w_{t}N_{t} + \frac{B_{t-1}}{P_{t}}+\Phi_{t}, %+T_{t}
+		\end{equation}
+		\normalsize{where \(C_{t}\) is consumption, \(N_{t}\) is the labor supply, \(P_{t}\) is the price of the consumption good, \(W_{t}\) \((w_{t})\) is the nominal (real) wage, \(\Phi_{t}\) is the profit share (dividends) of the household from the intermediate goods producers, \(B_{t}\) is a one-period risk free bond that pays one unit of money at period t+1, and \(R_{t}^{-1}\) is the price of the bond.}\\\\
+		%\(T_{t}\) are lump-sum taxes or transfers, 
+		
+		\normalsize{The discount rate at time $t$ is given by \(\beta\delta_{t}\) where \(\delta_{t}\) is the discount factor shock altering the weight of future utility at time $t+1$ relative to the period utility at time $t$.} %This shock follows an AR(1) process:%}
+		%		\begin{equation}
+		%			\delta_{t} - 1= \rho(\delta_{t-1}-1) + \epsilon_{t}, \quad \epsilon_{t} \sim N(0,\sigma_{\epsilon}).
+		%		\end{equation}
+		\normalsize{This increase in \(\delta_{t}\) is a preference imposed by the household to increase the relative valuation of future utility flows, resulting in decreased consumption today (when considered in the absence of changes in the nominal interest rate).}
+		
+		\subsection{Firms}
+		
+		\normalsize{There is a final good producer and a continuum of intermediate goods producers indexed by \(i \in [0,1]\). The final good producer purchases the intermediate goods \(Y_{i,t}\) at the intermediate price \(P_{i,t}\) and aggregates them using CES technology to produce and sell the final good \(Y_{t}\) to the household and government at price \(P_{t}\). Its problem is then summarized as}
+		\begin{equation}
+			\max\limits_{Y_{i,t},i \in [0,1]} P_{t}Y_{t} - \int\nolimits^{1}_{0} P_{i,t}Y_{i,t}di,
+		\end{equation}
+		\normalsize{subject to the CES production function}
+		\begin{equation}
+			Y_{t} = \Bigg[\int\nolimits_{0}^{1}Y_{i,t}^{\frac{\theta-1}{\theta}}di\Bigg]^{\frac{\theta}{\theta-1}}.
+		\end{equation}\\
+		\normalsize{Intermediate goods producers use labor to produce the imperfectly substitutable intermediate goods according to a linear production function (\(Y_{i,t}=N_{i,t}\)) and then sell the product to the final good producer. Each firm maximizes its expected discounted sum of future profits\footnote{Each period, as it is written below, is in \textit{nominal} terms. However, we want each period's profits in \textit{real} terms so the profits in each period must be divided by that period's price level \(P_{t}\) which we take care of further along in the document.} by setting the price of its own good. We can assume that each firm receives a production subsidy \(\tau\) so that the economy is fully efficient in the steady state.\footnote{\((\theta-1)=(1-\tau)\theta\) which implies zero profits in the zero inflation steady state. In a welfare analysis, this would extract any inflation bias from the second-order approximated objective welfare function. \(\tau\) therefore represents the size of a steady state distortion (see Chapter 5 Appendix, Gal\'{i} (2008)).} In our baseline, we set $\tau = 1/\theta$. Price changes are subject to quadratic adjustment costs. }\\
+		\begin{equation}
+			\max\limits_{P_{i,t}} \mathrm{E_{1}}\sum\limits_{t=1}^{\infty}\beta^{t-1}\Bigg[\prod\limits_{s=0}^{t-1}\delta_{s}\Bigg]\lambda_{t}\Bigg[P_{i,t}Y_{i,t}-( 1-\tau )W_{t}N_{i,t}-P_{t}\frac{\varphi}{2}\Big[\frac{P_{i,t}}{P_{i,t-1}\bigl(\Pi^{targ}\bigr)^{\alpha}}-1\Big]^{2}Y_{t}\Bigg],
+		\end{equation}
+		\normalsize{such that}
+		\begin{equation}
+			Y_{i,t} = \left[\frac{P_{i,t}}{P_{t}}\right]^{-\theta}Y_{t}.\footnote{This expression is derived from the profit maximizing input demand schedule when solving for the final good producer's problem above. Plugging this expression back into the CES production function implies that the final good producer will set the price of the final good \(P_{t} = \Bigg[\int\nolimits_{0}^{1}P_{i,t}^{1-\theta}di\Bigg]^{\frac{1}{1-\theta}}\).} 
+		\end{equation}
+		\normalsize{\(\lambda_{t}\) is the Lagrange multiplier on the household's budget constraint at time $t$ and \(\beta^{t-1}\Bigg[\prod\nolimits_{s=0}^{t-1}\delta_{s}\Bigg]\lambda_{t}\) is the marginal value of an additional profit to the household. The positive time zero price is the same across firms (i.e. \(P_{i,0} = P_{0} > 0\)).}
+		
+		\subsection{Monetary Policy}
+		
+		\normalsize{It is assumed that the central bank determines the short term nominal interest rate according to a Taylor rule}\\
+		\begin{equation}
+			R_{t} = \max \left[1, \quad\frac{\Pi^{targ}}{\beta\delta_t}\left(\frac{\Pi_{t}}{\Pi^{targ}}\right)^{\phi_{\pi}}\right],
+		\end{equation}
+		\normalsize{where \(\Pi_{t} = \frac{P_{t}}{P_{t-1}}\).} %This equation will be modified in order to do an extensive sensitivity analysis of policy inertia and other rule specifications.}\\\\
+		%\normalsize{The government budget constraint simply equates lump-sum taxes and transfers to the government spending process \(G_{t} = T_{t}\).}
+		
+		\subsection{Market clearing conditions}
+		
+		\normalsize{The market clearing conditions for the final good, labor, and government bond are given by}
+		\begin{equation}
+			Y_{t} = C_{t} + \int\nolimits_{0}^{1}\frac{\varphi}{2}\Bigg[\frac{P_{i,t}}{P_{i,t-1}\bigl(\Pi^{targ}\bigr)^{\alpha}}-1\Bigg]^{2}Y_{t}di,
+		\end{equation}
+		\begin{equation}
+			N_{t} = \int\nolimits_{0}^{1}N_{i,t}di,
+		\end{equation}
+		\normalsize{and}
+		\begin{equation}
+			B_{t} = 0.
+		\end{equation}
+		
+		\subsection{Recursive equilibrium}
+		
+		\normalsize{Given \(P_{0}\) and a two-state Markov shock process establishing \(\delta_{t}\), an equilibrium consists of allocations \(\{C_{t},N_{t},N_{i,t},Y_{t},Y_{i,t},G_{t}\}_{t=1}^{\infty}\), prices \(\{W_{t},P_{t},P_{i,t}\}_{t=1}^{\infty}\), and a policy instrument \(\{R_{t}\}_{t=1}^{\infty}\) such that (i) given the determined prices and policies, allocations solve the problem of the household, (ii) \(P_{i,t}\) solves the problem of firm \(i\), (iii) \(R_{t}\) follows a specified rule, and (iv) all markets clear.}\\
+		
+		\normalsize{Combining all of the results from (i)-(iv), a symmetric equilibrium can be characterized recursively by \(\{C_{t},N_{t},Y_{t},w_{t},\Pi_{t},R_{t}\}^{\infty}_{t=1}\) satisfying the following equilibrium conditions:}
+		\begin{equation}
+			C_{t}^{-\chi_{c}} = \beta\delta_{t}R_{t}\mathrm{E_{t}}C_{t+1}^{-\chi_{c}}\Pi_{t+1}^{-1},\label{eq:CEE_a}
+		\end{equation}
+		\begin{equation}
+			w_{t}=N_{t}^{\chi_{n}}C_{t}^{\chi_{c}},\label{eq:IOC_a}
+		\end{equation}
+		\begin{equation}
+			\begin{multlined}
+				\frac{Y_{t}}{C_{t}^{\chi_{c}}}\left[\varphi \left(\frac{\Pi_{t}}{\bigl(\Pi^{targ}\bigr)^{\alpha}}-1\right)\frac{\Pi_{t}}{\bigl(\Pi^{targ}\bigr)^{\alpha}} - (1-\theta)-\theta (1-\tau)w_{t}\right]\\
+				\hspace{10em}=
+				\beta\delta_{t}\mathrm{E_{t}}\frac{Y_{t+1}}{C_{t+1}^{\chi_{c}}}\varphi \left(\frac{\Pi_{t+1}}{\bigl(\Pi^{targ}\bigr)^{\alpha}}-1\right)\frac{\Pi_{t+1}}{\bigl(\Pi^{targ}\bigr)^{\alpha}},\label{eq:FLPC_a}
+			\end{multlined}
+		\end{equation}
+		\begin{equation}
+			Y_{t} = C_{t} + \frac{\varphi}{2}\left[\frac{\Pi_{t}}{\bigl(\Pi^{targ}\bigr)^{\alpha}}-1\right]^{2}Y_{t},\label{eq:ARC_a}
+		\end{equation}
+		\begin{equation}
+			Y_{t}=N_{t}, \label{eq:APF_a}
+		\end{equation}
+		\begin{equation}
+			R_{t} = \max \left[1, \quad\frac{\Pi^{targ}}{\beta\delta_t}\left(\frac{\Pi_{t}}{\Pi^{targ}}\right)^{\phi_{\pi}}\right]. \label{eq:MP_a}
+		\end{equation}
+		\normalsize{Equation~\ref{eq:CEE_a} is the consumption Euler equation, Equation~\ref{eq:IOC_a} is the intratemporal optimality condition of the household, Equation~\ref{eq:FLPC_a} is the optimal condition of the intermediate good producing firms (forward-looking Phillips Curve) relating today's inflation to real marginal cost today and expected inflation tomorrow, Equation~\ref{eq:ARC_a} is the aggregate resource constraint capturing the resource cost of price adjustment, and Equation~\ref{eq:APF_a} is the aggregate production function. Equation~\ref{eq:MP_a} is the interest-rate feedback rule.}
+		
+		
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%========================================================== Equilibrium existence
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		\section{On the existence and multiplicity of a sunspot equilibrium}
+		\label{A:Existence}
+		
+		The left panel of Figure~\ref{fig:Existence} shows pairs of $p_{N}$ and $p_{C}$ that are consistent with the equilibrium existence in the model with a demand shock only, whereas the right panel shows pairs of $p_{T}$ and $p_{D}$ that are consistent with the equilibrium existence in the model with a sunspot shock only.
+		
+		\begin{figure}[!ht]
+			\begin{center}
+				\caption{Transition probabilities and the equilibrium existence\label{fig:Existence}}
+				\includegraphics[scale=.55]{Figs/Final/equib_exist_sun_demand.eps}\\
+			\end{center}
+			%\footnotesize{Source: .}
+		\end{figure}
+		
+		Consistent with the analytical result based on a semi-loglinear New Keynesian model in \citet{NakataSchmidtForthcomingJME}, in the model with a demand shock only, the equilibrium exists if and only if $p_{N}$ is sufficiently high and $p_{C}$ is sufficiently low. When $p_{N}$ is low, there is a high probability of moving to the crisis state in the next period when the economy is currently in the normal state. The anticipation effect of moving to the crisis state in the next period causes the policy rate to decline. When $p_{N}$ is sufficiently low, the policy rate in the normal state becomes negative, violating the conditions for the equilibrium existence. When $p_{C}$ is high, there is a high probability of staying in the crisis state in the next period when the economy is currently in the crisis state. When $p_{C}$ is too high, inflation and output consistent with the private sector equilibrium conditions are positive, which implies a positive policy rate and thus inconsistent with the equilibrium existence.\footnote{A version of this equilibrium existence result with $p_{N}=1$ is well known in the literature. See, for example, \citet{Eggertsson2011} and \citet{BonevaBraunWaki2016}.} 
+		
+		In the model with a sunspot shock only, the equilibrium exists if and only if $p_{T}$ and $p_{D}$ are both sufficiently high (see \citet{NakataSchmidt2019} for a proof of this statement in a semi-loglinear model). The reason for why $p_{T}$ needs to be high for the equilibrium to exist in this model is the same as the reason for why $p_{N}$ needs to be high for the equilibrium to exist in the model with a demand shock only. Why does $p_{D}$ have to be sufficiently high for the equilibrium to exist? When $p_{D}$ is low, there is a low probability of staying in the deflationary state in the next period when the economy is currently in the target state. When $p_{D}$ is too low, inflation and output consistent with the private sector equilibrium conditions are positive, which implies a positive policy rate and thus inconsistent with the equilibrium existence.\footnote{A version of this equilibrium existence result with $p_{T}=1$ is well known in the literature. See, for example, \citet{MertensRavn2014} and \citet{BonevaBraunWaki2016}.}
+		
+		\begin{figure}[!ht]
+			\begin{center}
+				\caption{Transition probabilities and the sunspot equilibria multiplicity\label{fig:ExistenceMultiplicity}}
+				\vspace{-1em}
+				\includegraphics[scale=0.325]{Figs/Final/mult_equib_exist_sun.eps}\\
+			\end{center}
+			\vspace{-1em}
+			%\footnotesize{Source: .}
+		\end{figure}
+		
+		Consistent with \citet{BonevaBraunWaki2016} and as shown by the red dots in Figure~\ref{fig:ExistenceMultiplicity}, there are two pairs of inflation and the output gap in the deflationary regime satisfying the equilibrium conditions when $p_{D}$ is sufficiently small, but large enough so that an equilibrium exists. To illustrate the multiplicity of the sunspot equilibrium, Figure~\ref{fig:ASAD_high_pD} and \ref{fig:ASAD_low_pD} show the AD and AS curves in the deflationary regime when $p_{D}=0.975$ and $p_{D}=0.95$, respectively. Focusing on the part of the AD curve consistent with the binding ELB constraint, there is only one intersection of the AS and AD curves when $p_{D}=0.975$, as shown by Figure~\ref{fig:ASAD_high_pD}. When $p_{D}=0.95$, there are two intersection of the AS and AD curves, as shown by Figure~\ref{fig:ASAD_low_pD}. One intersection features moderate declines in inflation and consumption, as well as a moderate increase in output (output increases due to price-adjustment costs associated with the mild decline in inflation). The other intersection features very large declines in inflation and consumption, as well as a very large increase in output. 
+		
+		\begin{figure}[H]
+			\caption{AD and AS Curves in the Deflationary Regime\\---High $p_D$---} \label{fig:ASAD_high_pD}
+			\vspace{-1em}
+			\begin{center}
+				\begin{subfigure}[b]{0.4\textwidth}
+					\centering
+					\includegraphics[width=\textwidth]{Figs/Final/AS_AD_sunspot_consumption.eps}
+					%					\caption{Model with Positive Inflation Target}
+					%					\label{fig:RAFR_Baseline_inftarg}
+				\end{subfigure}
+				\hspace{0.5cm}  
+				\begin{subfigure}[b]{0.4\textwidth}
+					\centering
+					\includegraphics[width=\textwidth]{Figs/Final/AS_AD_sunspot_output.eps}
+					%					\caption{Model with Zero Inflation Target}
+					%					\label{fig:RAFR_Baseline}
+				\end{subfigure}
+			\end{center}
+			\vspace{-1em}
+			{\footnotesize Note: Grey shades indicate the region in which the ELB is not binding.}
+		\end{figure}
+		
+		\begin{figure}[h]
+			\caption{AD and AS Curves in the Deflationary Regime\\---Low $p_D$---} \label{fig:ASAD_low_pD}
+			\vspace{-1em}
+			\begin{center}
+				\begin{subfigure}[b]{0.4\textwidth}
+					\centering
+					\includegraphics[width=\textwidth]{Figs/Final/AS_AD_sunspot_consumption_3eq.eps}
+					%					\caption{Model with Positive Inflation Target}
+					%					\label{fig:RAFR_Baseline_inftarg}
+				\end{subfigure}
+				\hspace{0.5cm}  
+				\begin{subfigure}[b]{0.4\textwidth}
+					\centering
+					\includegraphics[width=\textwidth]{Figs/Final/AS_AD_sunspot_output_3eq.eps}
+					%					\caption{Model with Zero Inflation Target}
+					%					\label{fig:RAFR_Baseline}
+				\end{subfigure}
+			\end{center}
+			\vspace{-1em}
+			{\footnotesize Note: Grey shades indicate the region in which the ELB is not binding.}
+		\end{figure}
+		
+		When there are more than one sunspot equilibrium, we focus on the equilibrium with moderate declines in inflation and consumption in the deflationary regime for two reasons. First, the allocation in this equilibrium changes continuously with a change in $p_{D}$ even at the threshold value of $p_{D}$ above which there is one sunspot equilibrium and below which there are two sunspot equilibrium. In contrast, the other sunspot equilibrium with very large declines in inflation and consumption ``suddenly'' shows up when $p_{D}$ declines below the threshold. Second, we would like our deflationary regime to look like the Japanese economy over the past two decades, which features mild deflation.
+		
+		\subsection{Equilibrium existence and the inflation target}
+		
+		As noted in Section~\ref{S:StylizedResults}, the sunspot equilibrium ceases to exist when the inflation target is sufficiently low. To see this result, Figure~\ref{fig:ASAD_low_pitarg} shows the AS and AD curves when the inflation target is 0 percent and -2 percent. According to the figure, the AD curve shifts to the left and the AS curve shifts to the right when the inflation target declines. With the inflation target of -2 percent, there is no intersection for the region of inflation rate consistent with the binding ELB constraint.
+		
+		\begin{figure}[H]
+			\caption{AD and AS Curves in the Deflationary Regime\\---Low $\Pi^{targ}$---} \label{fig:ASAD_low_pitarg}
+			\vspace{-1em}
+			\begin{center}
+				\begin{subfigure}[b]{0.4\textwidth}
+					\centering
+					\includegraphics[width=\textwidth]{Figs/Final/AS_AD_low_pitarg_consumption_alt.eps}
+					%					\caption{Model with Positive Inflation Target}
+					%					\label{fig:RAFR_Baseline_inftarg}
+				\end{subfigure}
+				\hspace{0.5cm}  
+				\begin{subfigure}[b]{0.4\textwidth}
+					\centering
+					\includegraphics[width=\textwidth]{Figs/Final/AS_AD_low_pitarg_output_alt.eps}
+					%					\caption{Model with Zero Inflation Target}
+					%					\label{fig:RAFR_Baseline}
+				\end{subfigure}
+			\end{center}
+			\vspace{-1em}
+			{\footnotesize Note: Grey shades indicate the region in which the ELB is not binding.}
+		\end{figure}
+		
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%========================================================== Semi-Loglinear Analysis
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		%==========================================================
+		\section{Some analytical results from a semi-loglinear model}
+		\label{A:SemiLoglinearModel}
+		
+		In this section, we will investigate the effect of raising the inflation target in a semi-loglinear model that allows for analytical results.\footnote{See \citet{Bilbiie2018} for a related analysis. He analytically shows that a \textit{temporary} increase in inflation in the target regime lowers inflation and output in a deflationary regime in a similar setup. We analytical shows that a permanent increase in inflation in the target regime lowers inflation and output in a deflationary regime.}
+		
+		\subsection{Model}
+		
+		\begin{align}
+			& y_{t} = \mathbb{E}_t\{y_{t+1}\}  -\sigma \left[i_t - \mathbb{E}_t\{\hat{\pi}_{t+1}\} - (r^* + \pi^*) + \delta_t \right],\label{ll_ee}\\
+			& \hat{\pi}_{t} = \kappa y_t + \beta\mathbb{E}_t\{\hat{\pi}_{t+1}\}\label{ll_pc},\\
+			& \hat{\pi}_{t} = \pi_t - \pi^*,\\
+			& i_t = \text{max}\left[0, (r^* + \pi^*) +  \phi_{\pi}\hat{\pi}_{t}\right].\label{ll_tr}
+		\end{align}
+		
+		\noindent Here, equation (\ref{ll_ee}) is the log-linearized consumption Euler Equation, equation (\ref{ll_pc}) is the forward looking Phillips curve, and  equation (\ref{ll_tr}) is the interest rate feedback rule with a zero lower bound (ZLB) constraint. Notice that $\hat{\pi}_{t}$ is the inflation gap---deviation of the inflation rate ($\pi_{t}$) from the inflation target ($\pi^*$). $y_{t}$ is the deviation of output from its deterministic steady state level. Note that, in deriving these semi-loglinear equilibrium conditions, we assume that the the price ``indexation'' parameter in the original fully nonlinear model is unity so that the level of the inflation target does not affect the deterministic steady state level of output. 
+		
+		As in the main body of the paper, we will first discuss the effect of an increase in the inflation target parameter in the version of the model with a crisis shock only, and then move on to the analysis in the version of the model with a sunspot shock only. 
+		
+		\subsection{Model with a crisis shock only}
+		
+		As in the main text, we assume that the demand shock, $\delta_{t}$, follows a two-state Markov shock process. $Prob(N|N) := p_{N}$ is the probability of staying in the normal state in the next period when the economy is in the normal state today. $Prob(C|C) := p_C$ is the probability of staying in the crisis state in the next period when the economy is in the crisis state today. 
+		
+		The equilibrium conditions of the economy with a crisis shock only is given by
+		\begin{align}
+			y_{N} =& p_{N} y_{N} + (1-p_{N})y_C +  \sigma\left[p_{N} \pi_{N} + (1-p_{N})\pi_C - \pi^*\right] -\sigma\left[i_{N} - (r^* + \pi^*) + \delta_{N}\right] \label{ee_fdlt},\\
+			\pi_{N} - \pi^*=& \kappa y_{N} + \beta\left(p_{N} \pi_{N} + (1-p_{N})\pi_C - \pi^*\right),\\
+			i_{N} =& r^* + \pi^* + \phi_{\pi}(\pi_{N}-\pi^*),\\
+			y_{C} =& p_C y_C + (1-p_C)y_{N} +  \sigma\left[p_C \pi_C + (1-p_C)\pi_{N} - \pi^*\right] - \sigma\left[i_C - (r^* + \pi^*)+ \delta_C\right],\\
+			\pi_{C} - \pi^* =& \kappa y_C + \beta\left(p_C \pi_C + (1-p_C)\pi_{N} - \pi^*\right),\\
+			i_C =&  \text{max}\left[0,r^* + \pi^*  + \phi_{\pi}\pi_C - \pi^*\right]. \label{i_fdlt}
+		\end{align}
+		
+		%\noindent The two state demand shock equilibrium is given by a vector $\{y_{N},\pi_{N},i_{N},y_{C},\pi_{C},i_{C}\}$ that solves the set of equations (\ref{ee_fdlt}-\ref{i_fdlt}). 
+		
+		%\subsection{Crisis Shock State Allocations}
+		
+		To analyze how an increase in the inflation target affects the crisis shock state in a transparent way, we assume that the normal state is an absorbing state (i.e., $p_{N}=1$). Then,
+		\begin{align}
+			y_{N} =& 0,  \\
+			\pi_{N} =& \pi^*, \\
+			i_{N} =& r^* + \pi^*,  \\
+			y_C =& \frac{\sigma(1-\beta p_C)}{(1-\beta p_C)(1-p_C) -\kappa\sigma p_C}\pi^{*} + \frac{\sigma ( r^*-\delta_C )(1-\beta p_C)}{(1-\beta p_C)(1-p_C) -\kappa\sigma p_C},  \label{analytical_yd_fdlt_alloc}\\
+			\pi_C =& \left[\frac{\kappa\sigma}{(1-\beta p_C)(1-p_C) -\kappa\sigma p_C} + 1\right]\pi^*+\frac{\kappa\sigma(r^* - \delta_C)}{(1-\beta p_C)(1-p_C) -\kappa\sigma p_C},\label{analytical_pid_fdlt_alloc}\\
+			i_C =& 0.
+		\end{align}
+		
+		\noindent As shown by \citet{NakataSchmidtForthcomingJME} and \citet{NakataSchmidt2019}, for the equilibrium to exist, $(1-\beta p_C)(1-p_C) -\kappa\sigma p_C >0$. Thus, the coefficients in front of $\pi^*$ in equations (\ref{analytical_yd_fdlt_alloc} and \ref{analytical_pid_fdlt_alloc}) are both positive, meaning that $y_C$ and $\pi_C$ increase with the inflation target. 
+		
+		To understand the mechanism behind this result , it is useful to investigate the aggregate demand curve---a set of pairs of inflation and output in the crisis state consistent with the  Euler equation---and the aggregate supply curve---a set of pairs of inflation and output in the crisis state consistent with the Phillips curve. They are given by
+		
+		\begin{align}
+			\pi_C =& \frac{1-p_C}{\sigma p_C}y_C - \frac{1-p_C}{p_C}\pi^* - \frac{r^* - \delta_C}{p_C},\label{eq:ad_semiloglinear_c}\\
+			\pi_C =& \frac{\kappa }{1-\beta p_C}y_C+\pi^*.\label{eq:as_semiloglinear_c}
+		\end{align}
+		
+		According to equation (\ref{eq:ad_semiloglinear_c}), an increase in the inflation target shifts down the AD curve. An increase in the inflation target parameter translates into an increase in the normal state inflation. According to the Euler equation, to support the same level of output in the crisis state, the expected real interest rate has to remain unchanged. Thus, if the normal state inflation is higher, the crisis state inflation has to decline.
+		
+		According to equation (\ref{eq:as_semiloglinear_c}), an increase in the inflation target shifts up the AS curve. An increase in the inflation target parameter translates into an increase in the normal state inflation. According to the Phillips curve, the crisis state inflation positively depends on the expected inflation in the next period, which also positively depends on the normal state inflation. As a result, a higher normal state inflation leads to a higher crisis state inflation for any given level of the crisis state output.
+		
+		%		\begin{figure}[!ht]
+		%			\begin{center}
+		%				\caption{Euler Equation and Phillips Curve in the Crisis State\\---Semi-Loglinear Model---\label{fig:fig:ASAD_semi_c}}			\includegraphics[width = 10cm ]{Figs/Final/as_ad_CRISIS_cPIstar_lin.eps}\label{CrisisStateLogLin}
+		%			\end{center}
+		%		\end{figure}
+		
+		As shown by the left panel of Figure \ref{fig:ASAD_semi} which plots the effect of an increase in $\pi^*$ from 0 percent to 2 percent on the AS and AD curves, these shifts in the AS and AD curves mean a higher inflation and output in the crisis state. Table \ref{calib} shows the calibration of the semi-loglinear model used to generate the left panel of Figure \ref{fig:ASAD_semi}.
+		\begin{table}
+			\centering
+			\caption{Calibrations for the Semi-Loglinear Model\label{calib}}
+			{\footnotesize
+				\begin{tabular}{ccc}
+					\hline
+					\hline
+					Parameter & Calibration & Description\\
+					\hline
+					$\beta$ & $1/1.0025$ & Discount factor \\
+					$\sigma$ & $1$ & Elasticity of Intertemporal Substitution\\
+					%		$\theta$ & $11$ & Relative price elasticity of demand \\
+					$\kappa$  & $0.02$ & Slope of the Phillips Curve \\
+					$\phi_{\pi}$ & $2$ & Coefficient on inflation in Taylor Rule \\
+					$r^*$ & $1\%$ & Annualized steady state nominal interest rate \\
+					$\delta_N$ & $0$ & Demand shock in normal state \\
+					$\delta_C$ & $1.6/100$ & Demand shock in crisis shock state \\
+					\hline
+					$p_T$ & 1 & Persistence of Target Regime \\
+					$p_D$ & 0.975 & Persistence of Deflationary Regime \\
+					$p_{N}$ & 1 & Persistence of Normal State \\
+					$p_C$ & 0.75 & Persistence of Crisis Shock State \\
+					\hline 
+					$\pi^*$ & $\{0\%, 2\%\}$ & Annualized steady state nominal interest rate \\
+					\hline
+					\hline
+				\end{tabular}
+			}		\end{table}
+			
+			\begin{figure}[h]
+				\caption{AD and AS Curves in the Crisis State and in the Deflationary Regime\\---Semi-Loglinear Model---} \label{fig:ASAD_semi}
+				\vspace{-1em}
+				\begin{center}
+					\begin{subfigure}[b]{0.4\textwidth}
+						\centering
+						\includegraphics[width=\textwidth]{Figs/Final/as_ad_CRISIS_cPIstar_lin.eps}
+						%					\caption{Model with Zero Inflation Target}
+						%					\label{fig:RAFR_Baseline}
+					\end{subfigure}
+					\hspace{0.5cm}     
+					\begin{subfigure}[b]{0.42\textwidth}
+						\centering
+						\includegraphics[width=\textwidth]{Figs/Final/as_ad_DR_cPIstar_lin.eps}
+						%					\caption{Model with Positive Inflation Target}
+						%					\label{fig:RAFR_Baseline_inftarg}
+					\end{subfigure}
+				\end{center}
+			\end{figure}
+			
+			\subsection{Model with a sunspot shock only}
+			
+			We now examine the effect of an increase in the inflation target on the deflationary regime output and inflation using the version of the semi-loglinear model with a sunspot shock only. Let $Prob(T|T) = p_T$ be the probability of staying in the target regime in the next period when the economy is in the target regime today and let $Prob(D|D) = p_D$ be the probability of staying in the deflationary regime in the next period when the economy is in the deflationary regime today.
+			
+			\noindent The equilibrium conditions of the model with a sunspot shock only are given by
+			\begin{align}
+				y_{T} =& p_T y_T + (1-p_T)y_D +  \sigma\left[p_T \pi_T + (1-p_T)\pi_D - \pi^* \right] - \sigma\left[i_T - (r^* + \pi^*)\right],\label{ee_edlt}\\
+				\pi_{T} - \pi^* =& \kappa y_T + \beta\left(p_T \pi_T + (1-p_T)\pi_D - \pi^*\right),\\
+				i_T =& r^* + \pi^* + \phi_{\pi}(\pi_T - \pi^*),\\
+				y_{D} =& p_D y_D + (1-p_D)y_T +  \sigma\left[p_D \pi_D + (1-p_D)\pi_T - \pi^*\right] - \sigma\left[i_D - (r^* + \pi^*)\right],\\
+				\pi_{D} - \pi^* =& \kappa y_D + \beta\left(p_D \pi_D + (1-p_D)\pi_T - \pi^*\right),\\
+				i_D =& 0. \label{i_edlt}
+			\end{align}
+			
+			%\noindent Notice that, by assumption, $i_T > 0$ and $i_D = 0$. The two state sunspot equilibrium is given by a vector $\{y_{T},\pi_{T},i_{T},y_{D},\pi_{D},i_{D}\}$ that solves the set of equations (\ref{ee_edlt}-\ref{i_edlt}). 
+			
+			%\subsection{Deflationary Regime Allocations}
+			
+			To analyze how an increase in the inflation target affects the deflationary regime in a transparent way, we assume that the target regime is an absorbing state (i.e., $p_{T}=1$). Then,
+			\begin{align}
+				y_T =& 0,  \\
+				\pi_T =& \pi^*, \\
+				i_T =& r^* + \pi^*, \\
+				y_D =& \frac{\sigma(1-\beta p_D)}{(1-\beta p_D)(1-p_D) -\kappa\sigma p_C}\pi^{*} + \frac{\sigma r^*(1-\beta p_D)}{(1-\beta p_D)(1-p_D) -\kappa\sigma p_D},\label{analytical_yd_alloc}\\
+				\pi_D =& \left[\frac{\kappa\sigma}{(1-\beta p_D)(1-p_D) -\kappa\sigma p_D} + 1\right]\pi^*+\frac{\kappa\sigma r^*}{(1-\beta p_D)(1-p_D) -\kappa\sigma p_D},\label{analytical_pid_alloc}\\	
+				i_D =& 0.
+			\end{align}
+			
+			\noindent As shown by \citet{NakataSchmidt2019}, for the equilibrium to exist, $(1-\beta p_D)(1-p_D) -\kappa\sigma p_D <0$. Thus, the coefficient in front of $\pi^*$ in equation (\ref{analytical_yd_alloc}) is negative, meaning that $y_D$ increases with the inflation target. Provided that $p_{D}$ is sufficiently large, the coefficient in front of $\pi^*$ in equation (\ref{analytical_pid_alloc}) is negative, and thus $\pi_D$ increases with the inflation target. 
+			
+			To understand the mechanism behind this result, it is useful to investigate the aggregate demand curve and the aggregate supply curve in the deflationary regime:
+			\begin{align}
+				\pi_D =& \frac{1-p_D}{\sigma p_D}y_D - \frac{1-p_D}{p_D}\pi^* - \frac{r^*}{p_D},\\
+				\pi_D =& \frac{\kappa }{1-\beta p_D}y_D+\pi^*.
+			\end{align}
+			
+			\noindent As in the model with a crisis shock only, an increase in the inflation target shifts down the AD curve and shifts up AS curves. Because the AS curve is steeper than the AD curve in the model with a sunspot shock only, these shifts in the AS and AD curves mean lower inflation and output in the crisis state, as shown by the right panel of Figure \ref{fig:ASAD_semi}. 
+			
+			%		\begin{figure}[!ht]
+			%			\begin{center}
+			%				\caption{Euler Equation and Phillips Curve in the Deflationary Regime\\---Semi-Loglinear Model---\label{fig:fig:ASAD_semi_d}}
+			%				\includegraphics[width = 10cm ]{Figs/Final/as_ad_DR_cPIstar_lin.eps}\label{DeflationaryRegimeLogLin}
+			%			\end{center}
+			%		\end{figure}
+			
+			\section{Effects of a Higher Inflation Target with $\alpha=0$ and $\alpha=1$}
+			\label{A:Alpha}
+			
+			While we set $\alpha$ to 0.893 in our baseline calibration, the key property of the model---a higher inflation target leads to lower inflation and consumption in the deflationary regime---does not hinge on the specific value of $\alpha$. In this section, we examine the effect of a higher inflation target under $\alpha=0$ (no price indexation) and $\alpha=1$ (full price indexation). The assumption of no price indexation is common in papers analyzing the effect of a non-zero trend inflation, including those papers on the optimal inflation target (see, for example, \citet{Ascari2004} and \citet{AscariCastelnuovoRossi2011}). The assumption of full price indexation is widespread in the literature estimating DSGE models and in papers using policy-oriented, medium-scale DSGE models, as the full price indexation make the dynamics of the loglinear version of those models invariant to the level of the inflation target (see, for example, \citet{SmetsWouters2007}).
+			
+			\begin{figure}[h]
+				\caption{AD and AS Curves: $\alpha = 0$} \label{fig:ASAD_alpha0}
+				\vspace{-1em}
+				\begin{center}
+					\begin{subfigure}[b]{0.4\textwidth}
+						\centering		        	\includegraphics[width=\textwidth]{Figs/Final/AS_AD_plot_cALPHAstar_demand_cALPHA0.eps}
+					\end{subfigure}
+					\hspace{0.5cm}     
+					\begin{subfigure}[b]{0.4\textwidth}
+						\centering					\includegraphics[width=\textwidth]{Figs/Final/AS_AD_plot_cALPHAstar_sunspot_cALPHA0.eps}
+					\end{subfigure}
+				\end{center}
+			\end{figure}
+			
+			Figures~\ref{fig:ASAD_alpha0} and~\ref{fig:ASAD_alpha1} shows the effect of a higher inflation target with $\alpha=0$ and $\alpha=1$, respectively. When $\alpha=0$, the effect of a higher inflation target is negligible for the AD curve. When $\alpha=1$, the AD curves in both the crisis state and the deflationary regime shift down by a small amount, as in the case discussed in Section~\ref{S:StylizedResults}. For both $\alpha=0$ and $\alpha=1$, the AS curves shift up in both the crisis state and the deflationary regime, as in the case discussed in Section~\ref{S:StylizedResults}. Thus, a higher inflation target leads to lower inflation and consumption regardless of the value of $\alpha$.
+			
+			\begin{figure}[h]
+				\caption{AD and AS Curves: $\alpha = 1$} \label{fig:ASAD_alpha1}
+				\vspace{-1em}
+				\begin{center}
+					\begin{subfigure}[b]{0.4\textwidth}
+						\centering		        	\includegraphics[width=\textwidth]{Figs/Final/AS_AD_plot_cALPHAstar_demand_cALPHA1.eps}
+					\end{subfigure}
+					\hspace{0.5cm}     
+					\begin{subfigure}[b]{0.4\textwidth}
+						\centering					\includegraphics[width=\textwidth]{Figs/Final/AS_AD_plot_cALPHAstar_sunspot_cALPHA1.eps}
+					\end{subfigure}
+				\end{center}
+			\end{figure}
+			
+		\end{singlespace}
+		
+	\end{document}
+	

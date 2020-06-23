@@ -1,0 +1,3 @@
+PF,Mean_log_10_Residuals,Percentile_95_log_10_Residuals
+Comsumption Euler Equation,-3.9,-3.31
+Phillips Curve,-4.43,-3.52

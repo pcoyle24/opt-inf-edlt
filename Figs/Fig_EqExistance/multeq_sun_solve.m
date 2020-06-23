@@ -1,0 +1,32 @@
+function residuals_sun = multeq_sun_solve(x_guess_sun)
+
+global cBET cCHIc cCHIn cTHETA cTAU cVARPHI cPHIpi cPHIy cRzlb cIOTA cALPHA cPItarg cDELz p_s p_d
+
+Cs   = x_guess_sun(1);
+PIs  = x_guess_sun(2);
+Ys   = x_guess_sun(3);
+Ns   = x_guess_sun(4);
+
+Cd   = x_guess_sun(5);
+PId  = x_guess_sun(6);
+Yd   = x_guess_sun(7);
+Nd   = x_guess_sun(8);
+
+Ws  = Ns^cCHIn*Cs^cCHIc;
+% Rs  = (cPItarg/cBET)*((PIs/cPItarg)^cPHIpi)*((Ys/Ys)^cPHIy);
+Rs  = cRzlb;
+
+Wd  = Nd^cCHIn*Cd^cCHIc;
+Rd  = cRzlb;
+
+
+residuals_sun(1) = Cs^(-cCHIc) - cBET*cDELz*Rs*(p_s*(Cs^(-cCHIc)*PIs^(-1)) + (1-p_s)*(Cd^(-cCHIc)*PId^(-1)));
+residuals_sun(2) = Ys/Cs^(cCHIc)*(cVARPHI*(PIs/((cPItarg^cIOTA*PIs^(1-cIOTA))^cALPHA) - 1)*PIs/((cPItarg^cIOTA*PIs^(1-cIOTA))^cALPHA) - (1 - cTHETA) - cTHETA*(1-cTAU)*Ws) - (cBET*cDELz*cVARPHI*(p_s*((Ys/Cs^(cCHIc))*(PIs/((cPItarg^cIOTA*PIs^(1-cIOTA))^cALPHA) - 1)*PIs/((cPItarg^cIOTA*PIs^(1-cIOTA))^cALPHA)) + (1-p_s)*((Yd/Cd^(cCHIc))*(PId/((cPItarg^cIOTA*PId^(1-cIOTA))^cALPHA) - 1)*PId/((cPItarg^cIOTA*PId^(1-cIOTA))^cALPHA))));
+residuals_sun(3) = Ys - Cs - cVARPHI/2*(PIs/((cPItarg^cIOTA*PIs^(1-cIOTA))^cALPHA) - 1)^2*Ys;
+residuals_sun(4) = Ys - Ns;
+
+residuals_sun(5) = Cd^(-cCHIc) - cBET*cDELz*Rd*(p_d*(Cd^(-cCHIc)*PId^(-1)) + (1-p_d)*(Cs^(-cCHIc)*PIs^(-1)));
+residuals_sun(6) = Yd/Cd^(cCHIc)*(cVARPHI*(PId/((cPItarg^cIOTA*PId^(1-cIOTA))^cALPHA) - 1)*PId/((cPItarg^cIOTA*PId^(1-cIOTA))^cALPHA) - (1 - cTHETA) - cTHETA*(1-cTAU)*Wd) - (cBET*cDELz*cVARPHI*(p_d*((Yd/Cd^(cCHIc))*(PId/((cPItarg^cIOTA*PId^(1-cIOTA))^cALPHA) - 1)*PId/((cPItarg^cIOTA*PId^(1-cIOTA))^cALPHA)) + (1-p_d)*((Ys/Cs^(cCHIc))*(PIs/((cPItarg^cIOTA*PIs^(1-cIOTA))^cALPHA) - 1)*PIs/((cPItarg^cIOTA*PIs^(1-cIOTA))^cALPHA))));
+residuals_sun(7) = Yd - Cd - cVARPHI/2*(PId/((cPItarg^cIOTA*PId^(1-cIOTA))^cALPHA) - 1)^2*Yd;
+residuals_sun(8) = Yd - Nd;
+

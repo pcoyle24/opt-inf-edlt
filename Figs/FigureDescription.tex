@@ -1,0 +1,136 @@
+\documentclass[11pt]{article}
+\usepackage{scrextend}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{bm}
+
+%\usepackage{dsfont}
+% \usepackage{bbm}
+
+\usepackage[nohead]{geometry}
+\usepackage[onehalfspacing]{setspace}
+\usepackage[bottom]{footmisc}
+\usepackage{indentfirst}
+\usepackage{endnotes}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{subcaption}
+\usepackage{epstopdf}
+
+%\usepackage{epsfig}
+
+\usepackage{lscape}
+\usepackage{titlesec}
+\usepackage{array}
+
+%\usepackage{hyperref}
+
+\usepackage{flexisym}
+\usepackage{nccfoots}
+\usepackage{datetime}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{rotating}
+
+\usepackage[usenames,dvipsnames]{color}
+
+\usepackage[longnamesfirst]{natbib}
+\usepackage[justification=centering]{caption}
+
+%\usepackage{datetime}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+
+\definecolor{darkgray}{gray}{0.30}
+
+%\usepackage[dvips, colorlinks=true, linkcolor=darkgray,
+
+\usepackage[colorlinks=true, linkcolor=darkgray, citecolor=darkgray, urlcolor=darkgray, bookmarks=false, ,
+pdfstartview={FitV},
+pdftitle={Zero Bound Risk},
+pdfauthor={Taisuke Nakata},
+pdfkeywords={Liquidity Trap, Zero Lower Bound}]{hyperref}
+%\usepackage{subfig}
+\usepackage{xcolor,colortbl}
+\usepackage{float}
+
+\newcommand*{\LargerCdot}{\raisebox{-.5ex}{\scalebox{2}{$\cdot$}}}
+
+\makeatletter
+\def\@biblabel#1{\hspace*{-\labelsep}}
+\makeatother
+\geometry{left=1.2in,right=1.2in,top=1in,bottom=1in}
+
+
+\begin{document}
+	
+	\title{Description of figures for ``Optimal Inflation Target with\\Expectations-Driven Liquidity Traps''}
+	\author{
+		Philip Coyle\thanks{Board of Governors of the Federal Reserve System, Division of Research and Statistics, 20th Street and Constitution Avenue N.W. Washington, D.C. 20551; Email: philip.m.coyle@frb.gov.}\\
+		Federal Reserve Board
+		\and 
+		Taisuke Nakata\thanks{Board of Governors of the Federal Reserve System, Division of Research and Statistics, 20th Street and Constitution Avenue N.W. Washington, D.C. 20551; Email: taisuke.nakata@frb.gov.}\\
+		Federal Reserve Board
+	}
+	%\newdateformat{mydate}{First Draft: August 2018\\This Draft: \monthname[\THEMONTH] \THEYEAR \vspace{1em} \\ Preliminary and Incomplete \\ (Please do not circulate without permission.)}
+	\newdateformat{mydate}{\monthname[\THEMONTH] \THEYEAR}
+	\date{\mydate\today}
+	
+	\maketitle
+	
+	\section*{Main body of the paper}
+	\noindent \emph{Figure 1: Target and Deflationary Steady States}\\
+	\noindent Inflation is plotted on the x-axis; nominal interest rates are plotted on the y-axis. The figure shows the intersection of two lines: the Taylor Rule (black line) and the Fisher Relation (red line). The left-most intersection is the deflationary steady state, denoted by a diamond; the right-most intersection is the target steady state, denoted by a circle. \vspace{0.5cm}
+	
+	\noindent \emph{Figure 2: Allocations under a crisis shock}\\
+	\noindent Three panels are presented: Inflation (left-most), Consumption (center), and Policy Rate (right-most). The x-axis is time. The figures display the dynamics of the economy under different inflation targets in the normal state and crisis state. The economy under a 0\% inflation target portrayed by the solid black line. The economy under a 2\% inflation target portrayed by the dashed blue line.\vspace{0.5cm}
+	
+	\noindent \emph{Figure 3: AD and AS Curves in the Crisis State and in the Deflationary Regime}\\
+	\noindent Two panels are presented, each with four lines. Blue lines represent the AD curves and black lines represent the AS curves; solid lines represent the economy under a 0\% inflation target and dashed lines represent the economy under a 2\% inflation target. The left-most panel displays the lines for the crisis state; the right-most panel displays the lines for the deflationary regime. The intersection of the AS-AD curves plot the equilibrium allocations of consumption and inflation in the economy.  \vspace{0.5cm}
+	
+	\noindent \emph{Figure 4: Welfare and the Inflation Target}\\
+	\noindent Three panels are presented. The left-most panel plots welfare in a model with a crisis shock only, the center panel plots welfare in a model with a sunspot shock only, and the right-most panel plots welfare in a model with a crisis and sunspot shock. Welfare is plotted as a solid black line. A think solid blue vertical line indicates the inflation target that corresponds to the point where welfare is maximized. \vspace{0.5cm}
+	
+	\noindent \emph{Figure 5: Allocations under a sunspot shock}\\
+	\noindent Three panels are presented: Inflation (left-most), Consumption (center), and Policy Rate (right-most). The x-axis is time. The figures display the dynamics of the economy under different inflation targets in the target regime and deflationary regime. The economy under a 0\% inflation target portrayed by the solid black line. The economy under a 2\% inflation target portrayed by the dashed blue line.\vspace{0.5cm}
+	
+	\noindent \emph{Figure 6: Optimal Inflation Target with Alternative Probabilities of Moving to the Deflationary Regime }\\
+	\noindent The x-axis displays various values for $p_T$; the y-axis displays the optimal inflation target. For a given level of $p_T$, the solid black line displays the corresponding optimal inflation target in the economy. One thin solid vertical line represents the baseline calibration of $p_T$. Two thin dot-dashed vertical lines represent alternative values for $p_T$.\vspace{0.5cm}
+	
+	\noindent \emph{Figure 7: Unconditional Probability of being in a Crisis State or Deflationary Regime}\\
+	\noindent The x-axis displays various values for $p_T$; the left y-axis displays the unconditional probability of being in either a crisis state or deflationary regime; the right y-axis displays the ratio of the unconditional probability of being in a deflationary regime to that of being in a crisis state. For a given level of $p_T$, the dot-dashed black line displays the corresponding unconditional probability of being in a crisis state. Similarly, the solid black line displays the the corresponding unconditional probability of being in a deflationary regime. One thin solid vertical line represents the baseline calibration of $p_T$. \vspace{0.5cm}
+	
+	\noindent \emph{Figure 8: Optimal Inflation Target with Alternative Probabilities of Moving to the Deflationary Regime}\\
+	\noindent There are four panels arranged in a two-by-two grid. For all four panels, the x-axis displays various values for $p_T$; the y-axis displays the optimal inflation target for the economy. In the northwest panel, three lines (dashed blue, solid black, and dot-dashed red) are plotted for $p_D$, the persistence of remaining in the deflationary regime. In the northeast panel, three lines (dashed blue, solid black, and dot-dashed red) are plotted for $p_C$, the persistence of remaining in the crisis state. In the southwest panel, three lines (dashed blue, solid black, and dot-dashed red) are plotted for $p_N$, the persistence of remaining in the normal state. In the southeast panel, three lines (dashed blue, solid black, and dot-dashed red) are plotted for what the optimal inflation target is in the model with just a demand shock. In all four panels, the black line corresponds to the baseline calibration of the model.  \vspace{0.5cm}
+	
+	\section*{Appendix}
+	\noindent \emph{Figure 9: Transition probabilities and the equilibrium existence}\\
+	\noindent Two panels are presented. The left panel plots the equilibrium existence under a demand shock only for pairs of $(p_C, p_N)$. The x-axis displays $100*p_C$ and the y-axis plots $100*p_N$. Blue dots represent equilibrium existence and white space indicates that an equilibrium does not exist. The right panel plots the equilibrium existence under a sunspot shock only for pairs of $(p_D, p_T)$. The x-axis displays $100*p_D$ and the y-axis plots $100*p_T$. Blue dots represent equilibrium existence and white space indicates that an equilibrium does not exist. \vspace{0.5cm}
+	
+	\noindent \emph{Figure 10: Transition probabilities and the sunspot equilibria multiplicity}\\
+	\noindent This panel plots the equilibrium existence under a sunspot shock only. In addition to plotting equilibrium existence, it indicates the multiplicity of sunspot equilibria for pairs of $(p_D, p_T)$. The x-axis displays $100*p_D$ and the y-axis plots $100*p_T$. A colored dot indicates that a sunspot equilibrium exists; blue dots represent the existence of a unique sunspot equilibrium; red dots represent the existence of a multiple sunspot equilibria;  white space indicates that an equilibrium does not exist. \vspace{0.5cm}
+	
+	\noindent \emph{Figure 11: AD and AS Curves in the Deflationary Regime -- High $p_D$}\\
+	\noindent Two panels are presented. Each panel displays AD and AS curves. AD curves are plotted by blue lines; AS curves are plotted by black lines. The intersection of the curves are indicated by black dots. Each panel also presents a grey region, in which the ELB does not bind. For both panels, the y-axis is inflation. In the left panel, the x-axis is consumption; in the right panel, the x-axis is output. \vspace{0.5cm}
+	
+	\noindent \emph{Figure 12: AD and AS Curves in the Deflationary Regime -- Low $p_D$}\\
+	\noindent Two panels are presented. Each panel displays AD and AS curves. AD curves are plotted by blue lines; AS curves are plotted by black lines. The intersection of the curves are indicated by black dots. Each panel also presents a grey region, in which the ELB does not bind. For both panels, the y-axis is inflation. In the left panel, the x-axis is consumption; in the right panel, the x-axis is output. \vspace{0.5cm}
+	
+	\noindent \emph{Figure 13: AD and AS Curves in the Deflationary Regime -- Low $\Pi^{targ}$}\\
+	\noindent Two panels are presented. Each panel displays two AD and AS curves. AD curves are plotted by blue lines; AS curves are plotted by black lines. Curves for an inflation target of 0\% are plotted as solid lines; curves for an inflation target of -2\% are plotted as dashed lines. The intersection of the (solid) curves are indicated by black dots. Each panel also presents two grey regions, in which the ELB does not bind for -2\% and 0\% inflation targets, respectively. For both panels, the y-axis is inflation. In the left panel, the x-axis is consumption; in the right panel, the x-axis is output. \vspace{0.5cm}
+	
+	\noindent \emph{Figure 14: AD and AS Curves in the Crisis State and in the Deflationary Regime -- Semi-Loglinear Model}\\
+	\noindent Two panels are presented, each with four lines. Blue lines represent the AD curves and black lines represent the AS curves; solid lines represent the economy under a 0\% inflation target and dashed lines represent the economy under a 2\% inflation target. The left-most panel displays the lines for the crisis state; the right-most panel displays the lines for the deflationary regime. The intersection of the AS-AD curves plot the equilibrium allocations of output and inflation in the economy.  \vspace{0.5cm}
+	
+	\noindent \emph{Figure 15: AD and AS Curves: $\alpha = 0$}\\
+	\noindent Two panels are presented, each with four lines. Blue lines represent the AD curves and black lines represent the AS curves; solid lines represent the economy under a 0\% inflation target and dashed lines represent the economy under a 2\% inflation target. The left-most panel displays the lines for the crisis state; the right-most panel displays the lines for the deflationary regime. The intersection of the AS-AD curves plot the equilibrium allocations of output and inflation in the economy.  \vspace{0.5cm}
+	
+	\noindent \emph{Figure 15: AD and AS Curves: $\alpha = 1$}\\
+	\noindent Two panels are presented, each with four lines. Blue lines represent the AD curves and black lines represent the AS curves; solid lines represent the economy under a 0\% inflation target and dashed lines represent the economy under a 2\% inflation target. The left-most panel displays the lines for the crisis state; the right-most panel displays the lines for the deflationary regime. The intersection of the AS-AD curves plot the equilibrium allocations of output and inflation in the economy.  \vspace{0.5cm}
+	
+	\end{document}
