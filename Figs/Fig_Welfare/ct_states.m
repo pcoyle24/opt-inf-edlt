@@ -13,10 +13,10 @@ clc
 
 if ispc
     addpath ..\Calib\
-    addpath ..\min_inf_targ\
+    addpath ..\Fig_MinInfTarg\
 else
     addpath ../Calib/
-    addpath ../min_inf_targ/
+    addpath ../Fig_MinInfTarg/
 end
 
 load('params.mat')
