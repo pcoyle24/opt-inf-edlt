@@ -1,5 +1,10 @@
 # Optimal Inflation Target with Expectations Driven Liquidity Traps
 
+## System Requirements
+All codes are run in MATLAB and heavily utilize fsovle in the optimization toolbox. Pleae make sure this is installed. 
+
+Additionally, for the AR(1) portion of the code, mex functions are utilized for speed pickups. The mex functions call interpolation codes written in Fortran. To sucessfully run, make sure you have installed a compatable MATLAB mex Fortran compiler (see MATLAB documentation for a list) and have taken the appropriate steps in MATLAB to run mex functions. 
+
 ## Folders
 There are three folders that contain relevant information
 - **AnalyticalJacobianDerivation/**
