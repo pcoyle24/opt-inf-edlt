@@ -2,17 +2,17 @@
 
 ## Folders
 There are three folders that contain relevant information
-**1) AnalyticalJacobianDerivation/**
-**2) Data/**
-**3) Figs/**
+- **AnalyticalJacobianDerivation/**
+- **Data/**
+- **Figs/**
 
-#### AnalyticalJacobianDerivation/
+### AnalyticalJacobianDerivation/
 Documentation on the derivation of the analytical Jacobian used in the AR(1) portion of the model
 
-#### Data/
+### Data/
 Contains excel files and documentation to data sources on Japanese data related to inflation, output gap, and interest rates
 
-#### Figs/
+### Figs/
 Contains all codes used in the paper, organized by the figure they generate. 
 - **Calib/** contains codes used to calibrate the model used in the paper. Description on calibration method can be found in the paper
 - **Fig_AR1/PiTarg_pT** contains codes used to generate Figure 9 of current paper
