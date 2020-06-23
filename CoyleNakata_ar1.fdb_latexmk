@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex CoyleNakata_ar1"] 1592923030 "CoyleNakata_ar1.aux" "CoyleNakata_ar1.bbl" "CoyleNakata_ar1" 1592923359
+["bibtex CoyleNakata_ar1"] 1592929421 "CoyleNakata_ar1.aux" "CoyleNakata_ar1.bbl" "CoyleNakata_ar1" 1592930265
   "./econometrica.bst" 1564178430 28627 0e40ddb729e676156b50b16d7b5febc0 ""
   "All.bib" 1564178432 180300 bafd667e5f226a4e171384e145e91b0d ""
-  "CoyleNakata_ar1.aux" 1592923338 20458 81493fc4aecce42b2107c76950d88f0c "pdflatex"
+  "CoyleNakata_ar1.aux" 1592930264 20501 d07e20193bb20aef8f1aba27ca8fdd19 "pdflatex"
   (generated)
   "CoyleNakata_ar1.bbl"
   "CoyleNakata_ar1.blg"
-["pdflatex"] 1592923325 "CoyleNakata_ar1.tex" "CoyleNakata_ar1.pdf" "CoyleNakata_ar1" 1592923359
+["pdflatex"] 1592930252 "CoyleNakata_ar1.tex" "CoyleNakata_ar1.pdf" "CoyleNakata_ar1" 1592930265
   "/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2020/texmf-dist/fonts/tfm/jknappen/ec/tcrm0600.tfm" 1136768653 1536 12e8c510d3e158fdd0e9a42e75118bd9 ""
@@ -194,9 +194,9 @@
   "/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1586288239 4811913 0be9a7e86c70a26e5e3042966bcd7097 ""
   "/usr/local/texlive/2020/texmf-var/web2c/pdftex/pdflatex.fmt" 1586288259 2432462 fd0fa20e9a3cb5f8169fd0ba1c955158 ""
   "/usr/local/texlive/2020/texmf.cnf" 1586288231 577 d60164b4589a341208aff7a667fbbdcb ""
-  "CoyleNakata_ar1.aux" 1592923338 20458 81493fc4aecce42b2107c76950d88f0c "pdflatex"
-  "CoyleNakata_ar1.bbl" 1592923030 11421 9bbfa04bd4d05ec6aa948df27a0cab63 "bibtex CoyleNakata_ar1"
-  "CoyleNakata_ar1.tex" 1592923324 109665 58bbd215f86dcf06c4000ce1f762b02d ""
+  "CoyleNakata_ar1.aux" 1592930264 20501 d07e20193bb20aef8f1aba27ca8fdd19 "pdflatex"
+  "CoyleNakata_ar1.bbl" 1592929422 11421 9bbfa04bd4d05ec6aa948df27a0cab63 "bibtex CoyleNakata_ar1"
+  "CoyleNakata_ar1.tex" 1592929468 109985 ad2064db8d788fc9b77d2799460ade18 ""
   "Figs/Final/AS_AD_low_pitarg_consumption_alt.eps" 1592937276 131664 45fc2a3d00da7178802d7d52ba155e18 ""
   "Figs/Final/AS_AD_low_pitarg_output_alt.eps" 1592937276 129170 cfc56baf46a706268c095cf3f046eb2b ""
   "Figs/Final/AS_AD_plot_cALPHAstar_demand_cALPHA0.eps" 1592937276 101374 aa4035a3c1fb670245c62b8bbc945f49 ""
@@ -216,13 +216,13 @@
   "Figs/Final/as_ad_DR_cPIstar_lin.eps" 1592937276 100624 3b66e01f4b1573bdcd14618e4482dbea ""
   "Figs/Final/ct_states.eps" 1592937276 54962 3ab5e6292ecbbf547ab0dca4c4f21899 ""
   "Figs/Final/demand_only_IRFs.eps" 1592937276 27511 9a343af6935846b77962b191f343fde1 ""
-  "Figs/Final/equib_exist_sun_demand.eps" 1592937276 404455 51de0bfe7952d529bed1055d59a3a60f ""
+  "Figs/Final/equib_exist_sun_demand.eps" 1592930240 121573 3279f07a4fefcc7b3dfac032aa8c1c40 ""
   "Figs/Final/mult_equib_exist_sun.eps" 1592937276 179614 07ed6c4b6c8f04a30c82636968a31a30 ""
   "Figs/Final/opt_inf_vary_ps_pd.eps" 1592937276 18827 9a423c56d23eb7cb316591f3b0c86e3a ""
   "Figs/Final/opt_inf_vary_ps_sa.eps" 1592937276 144778 6b87581e91efde5da00235f63add40e9 ""
   "Figs/Final/sunspot_only_IRFs.eps" 1592937276 28422 9c78978b301308426da1f354b1f5951e ""
   "Figs/Final/uncprob.eps" 1592937276 23689 f9a1a0b431424f04f1ce65afbaf82f22 ""
   (generated)
-  "CoyleNakata_ar1.log"
   "CoyleNakata_ar1.pdf"
   "CoyleNakata_ar1.aux"
+  "CoyleNakata_ar1.log"

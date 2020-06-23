@@ -39,7 +39,7 @@ end
 set(gca,'XLim',[0 100],'XTick',(0:20:100),'YLim',[0 100],'YTick',(0:20:100),'FontSize',15)
 xlabel('100p_C','FontSize',15)
 ylabel('100p_N','FontSize',15)
-title('Existence under Demand Shock Only','FontSize',15,'FontWeight','normal');
+title('Existence under Crisis Shock Only','FontSize',15,'FontWeight','normal');
 
 load('equib_exist_sun.mat','flag_save','Rs');
 [ss,dd] = meshgrid(p_s_grid,p_d_grid);
