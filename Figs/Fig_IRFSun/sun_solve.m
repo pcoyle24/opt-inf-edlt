@@ -21,9 +21,18 @@ Wd  = Nd^cCHIn*Cd^cCHIc;
 Rd  = cRzlb;
 
 
-residuals_sun(1) = Cs^(-cCHIc) - cBET*cDELz*Rs*(p_s*(Cs^(-cCHIc)*PIs^(-1)) + (1-p_s)*(Cd^(-cCHIc)*PId^(-1)));
-residuals_sun(2) = Ys/Cs^(cCHIc)*(cVARPHI*(PIs/((cPItarg(j)^cIOTA*PIs^(1-cIOTA))^cALPHA(i)) - 1)*PIs/((cPItarg(j)^cIOTA*PIs^(1-cIOTA))^cALPHA(i)) - (1 - cTHETA) - cTHETA*(1-cTAU)*Ws) - (cBET*cDELz*cVARPHI*(p_s*((Ys/Cs^(cCHIc))*(PIs/((cPItarg(j)^cIOTA*PIs^(1-cIOTA))^cALPHA(i)) - 1)*PIs/((cPItarg(j)^cIOTA*PIs^(1-cIOTA))^cALPHA(i))) + (1-p_s)*((Yd/Cd^(cCHIc))*(PId/((cPItarg(j)^cIOTA*PId^(1-cIOTA))^cALPHA(i)) - 1)*PId/((cPItarg(j)^cIOTA*PId^(1-cIOTA))^cALPHA(i)))));
-residuals_sun(3) = Ys - Cs - cVARPHI/2*(PIs/((cPItarg(j)^cIOTA*PIs^(1-cIOTA))^cALPHA(i)) - 1)^2*Ys;
+
+
+Eee_s = p_s*(Cs^(-cCHIc)*PIs^(-1)) + (1-p_s)*(Cd^(-cCHIc)*PId^(-1));
+Eee_d = p_d*(Cd^(-cCHIc)*PId^(-1)) + (1-p_d)*(Cs^(-cCHIc)*PIs^(-1));
+
+Epc_s = cBET*cDELz*cVARPHI*(p_s*((Ys/Cs^(cCHIc))*(PIs/(cPItarg(j)^cALPHA) - 1)*PIs/(cPItarg(j)^cALPHA)) + (1-p_s)*((Yd/Cd^(cCHIc))*(PId/(cPItarg(j)^cALPHA) - 1)*PId/(cPItarg(j)^cALPHA)));
+Epc_d = cBET*cDELz*cVARPHI*(p_d*((Yd/Cd^(cCHIc))*(PId/(cPItarg(j)^cALPHA) - 1)*PId/(cPItarg(j)^cALPHA)) + (1-p_d)*((Ys/Cs^(cCHIc))*(PIs/(cPItarg(j)^cALPHA) - 1)*PIs/(cPItarg(j)^cALPHA)));
+
+
+residuals_sun(1) = Cs^(-cCHIc) - cBET*cDELz*Rs*Eee_s;
+residuals_sun(2) = Ys/Cs^(cCHIc)*(cVARPHI*(PIs/(cPItarg(j)^cALPHA) - 1)*PIs/(cPItarg(j)^cALPHA) - (1 - cTHETA) - cTHETA*(1-cTAU)*Ws) - Epc_s;
+residuals_sun(3) = Ys - Cs - cVARPHI/2*(PIs/(cPItarg(j)^cALPHA) - 1)^2*Ys;
 residuals_sun(4) = Ys - Ns;
 if cCHIc == 1
     residuals_sun(5) = Vs - log(Cs) + Ns^(1+cCHIn)/(1+cCHIn) - cBET*cDELz*(p_s*Vs + (1-p_s)*Vd);
@@ -31,9 +40,9 @@ else
     residuals_sun(5) = Vs - Cs^(1-cCHIc)/(1-cCHIc) + Ns^(1+cCHIn)/(1+cCHIn) - cBET*cDELz*(p_s*Vs + (1-p_s)*Vd);
 end
 
-residuals_sun(6) = Cd^(-cCHIc) - cBET*cDELz*Rd*(p_d*(Cd^(-cCHIc)*PId^(-1)) + (1-p_d)*(Cs^(-cCHIc)*PIs^(-1)));
-residuals_sun(7) = Yd/Cd^(cCHIc)*(cVARPHI*(PId/((cPItarg(j)^cIOTA*PId^(1-cIOTA))^cALPHA(i)) - 1)*PId/((cPItarg(j)^cIOTA*PId^(1-cIOTA))^cALPHA(i)) - (1 - cTHETA) - cTHETA*(1-cTAU)*Wd) - (cBET*cDELz*cVARPHI*(p_d*((Yd/Cd^(cCHIc))*(PId/((cPItarg(j)^cIOTA*PId^(1-cIOTA))^cALPHA(i)) - 1)*PId/((cPItarg(j)^cIOTA*PId^(1-cIOTA))^cALPHA(i))) + (1-p_d)*((Ys/Cs^(cCHIc))*(PIs/((cPItarg(j)^cIOTA*PIs^(1-cIOTA))^cALPHA(i)) - 1)*PIs/((cPItarg(j)^cIOTA*PIs^(1-cIOTA))^cALPHA(i)))));
-residuals_sun(8) = Yd - Cd - cVARPHI/2*(PId/((cPItarg(j)^cIOTA*PId^(1-cIOTA))^cALPHA(i)) - 1)^2*Yd;
+residuals_sun(6) = Cd^(-cCHIc) - cBET*cDELz*Rd*Eee_d;
+residuals_sun(7) = Yd/Cd^(cCHIc)*(cVARPHI*(PId/(cPItarg(j)^cALPHA) - 1)*PId/(cPItarg(j)^cALPHA) - (1 - cTHETA) - cTHETA*(1-cTAU)*Wd) - Epc_d;
+residuals_sun(8) = Yd - Cd - cVARPHI/2*(PId/(cPItarg(j)^cALPHA) - 1)^2*Yd;
 residuals_sun(9) = Yd - Nd;
 if cCHIc == 1
     residuals_sun(10) = Vd - log(Cd) + Nd^(1+cCHIn)/(1+cCHIn) - cBET*cDELz*(p_d*Vd + (1-p_d)*Vs);

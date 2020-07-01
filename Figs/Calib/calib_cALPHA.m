@@ -24,7 +24,7 @@ cPHIpi      = 2;
 cPHIy       = 0;
 cRzlb       = 1;
 cIOTA       = 1;
-cALPHA_guess  = 0.9;
+cALPHA_guess  = 0.09;
 cPItarg_min_ann = 1.9; 
 cPItarg_max_ann = 2.1;
 cPItarg_min = cPItarg_min_ann/400 + 1;
@@ -50,4 +50,4 @@ cALPHA   = x_out_param(1);
 
 params = [cVARPHI, c, cALPHA];
 
-save('params.mat','params')
+% save('params.mat','params')
