@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex CoyleNakata_ar1"] 1594130260 "CoyleNakata_ar1.aux" "CoyleNakata_ar1.bbl" "CoyleNakata_ar1" 1594130270
+["bibtex CoyleNakata_ar1"] 1594130260 "CoyleNakata_ar1.aux" "CoyleNakata_ar1.bbl" "CoyleNakata_ar1" 1594130464
   "./econometrica.bst" 1564178430 28627 0e40ddb729e676156b50b16d7b5febc0 ""
-  "All.bib" 1594130208 180300 bafd667e5f226a4e171384e145e91b0d ""
+  "All.bib" 1594130389 180300 bafd667e5f226a4e171384e145e91b0d ""
   "CoyleNakata_ar1.aux" 1594130261 20458 81493fc4aecce42b2107c76950d88f0c "pdflatex"
   (generated)
-  "CoyleNakata_ar1.blg"
   "CoyleNakata_ar1.bbl"
-["pdflatex"] 1594130260 "CoyleNakata_ar1.tex" "CoyleNakata_ar1.pdf" "CoyleNakata_ar1" 1594130270
+  "CoyleNakata_ar1.blg"
+["pdflatex"] 1594130260 "CoyleNakata_ar1.tex" "CoyleNakata_ar1.pdf" "CoyleNakata_ar1" 1594130464
   "/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2020/texmf-dist/fonts/tfm/jknappen/ec/tcrm0600.tfm" 1136768653 1536 12e8c510d3e158fdd0e9a42e75118bd9 ""
@@ -196,7 +196,7 @@
   "/usr/local/texlive/2020/texmf.cnf" 1586288231 577 d60164b4589a341208aff7a667fbbdcb ""
   "CoyleNakata_ar1.aux" 1594130261 20458 81493fc4aecce42b2107c76950d88f0c "pdflatex"
   "CoyleNakata_ar1.bbl" 1594130260 11421 9bbfa04bd4d05ec6aa948df27a0cab63 "bibtex CoyleNakata_ar1"
-  "CoyleNakata_ar1.tex" 1594130208 109665 58bbd215f86dcf06c4000ce1f762b02d ""
+  "CoyleNakata_ar1.tex" 1594130389 109665 58bbd215f86dcf06c4000ce1f762b02d ""
   "Figs/Final/AS_AD_low_pitarg_consumption_alt.eps" 1592937276 131664 45fc2a3d00da7178802d7d52ba155e18 ""
   "Figs/Final/AS_AD_low_pitarg_output_alt.eps" 1592937276 129170 cfc56baf46a706268c095cf3f046eb2b ""
   "Figs/Final/AS_AD_plot_cALPHAstar_demand_cALPHA0.eps" 1592937276 101374 aa4035a3c1fb670245c62b8bbc945f49 ""
