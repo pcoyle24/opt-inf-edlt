@@ -172,7 +172,8 @@ for i = 1:length(cPItarg)
         
         if j == 2
             h(i) = plot(period,X(:,i,j),colors{i},'LineWidth',2);
-            set(gca,'YLim',[-5 5],'FontSize',15)
+%             set(gca,'YLim',[-1 1],'FontSize',15)
+            set(gca,'YLim',[-2 4],'FontSize',15)
         else
             plot(period,X(:,i,j),colors{i},'LineWidth',2);
         end
